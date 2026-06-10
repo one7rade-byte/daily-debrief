@@ -132,7 +132,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,sa
   <div class="topbar-brand"><i class="ti ti-layout-dashboard"></i> Daily Debrief</div>
   <div class="topbar-meta">
     <span class="live-dot"></span>
-    Wednesday, June 10 · 10:09 PM
+    Wednesday, June 10 · 10:13 PM
     <span class="countdown" id="countdown"></span>
   </div>
 </div>
@@ -145,7 +145,861 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,sa
   </nav>
 
   <main class="main">
-    <section class="mod-section" id="section-email"><div class="mod-body"><div class="module-empty error"><i class="ti ti-alert-circle"></i> HTTP Error 404: Not Found</div></div></section><section class="mod-section" id="section-stocks"><div class="mod-body"><div class="mod-meta"><span class="market-closed">Market closed</span> · as of 10:10 PM ET</div><div class="ticker-grid"><div class="ticker-tile">
+    <section class="mod-section" id="section-email"><div class="mod-body"><div class="mod-stats">
+      <div class="ms"><span class="msn cr">17</span><span class="msl">Action needed</span></div>
+      <div class="ms"><span class="msn ca">9</span><span class="msl">Watch</span></div>
+      <div class="ms"><span class="msn cm">34</span><span class="msl">Low priority</span></div>
+      <div class="ms"><span class="msn">0</span><span class="msl">Unread</span></div>
+    </div><div class="mod-summary">Your inboxes contain urgent security notifications regarding app password generation and new device logins across Google, Yahoo, Notion, and TradingView, which require verification. Additionally, you have a failed GitHub Action workflow that needs troubleshooting and support replies from Tradeify about account disruptions. Several high-value job opportunities on LinkedIn, Indeed, and Ladders also require your review.</div><div class="filters" id="email-filters">
+      <button class="chip active" onclick="filterEmail('all',this)">All</button>
+      <button class="chip cr" onclick="filterEmail('high',this)">Action</button>
+      <button class="chip ca" onclick="filterEmail('medium',this)">Watch</button>
+      <button class="chip" onclick="filterEmail('low',this)">Low</button>
+      <button class="chip" onclick="filterEmail('unread',this)">Unread</button>
+    </div><div id="email-cards" data-emails="[{&quot;account_id&quot;: &quot;gmail1&quot;, &quot;account_label&quot;: &quot;one7rade@gmail.com&quot;, &quot;account_color&quot;: &quot;blue&quot;, &quot;from_name&quot;: &quot;Google&quot;, &quot;from_email&quot;: &quot;no-reply@accounts.google.com&quot;, &quot;subject&quot;: &quot;Security alert&quot;, &quot;snippet&quot;: &quot;[image: Google] App password created to sign in to your account one7rade@gmail.com If you didn&#x27;t generate this password for Daily Debrief, someone might be usin\u2026&quot;, &quot;time&quot;: &quot;50m ago&quot;, &quot;unread&quot;: false, &quot;gmail_link&quot;: &quot;https://mail.google.com/mail/u/0/#search/rfc822msgid%3A5ApKvjVAB8Dmq0DOC7tmfA@notifications.google.com&quot;, &quot;priority&quot;: &quot;high&quot;, &quot;tags&quot;: [&quot;personal&quot;, &quot;action&quot;], &quot;action&quot;: &quot;Confirm if you authorized the creation of this Google app password.&quot;}, {&quot;account_id&quot;: &quot;gmail1&quot;, &quot;account_label&quot;: &quot;one7rade@gmail.com&quot;, &quot;account_color&quot;: &quot;blue&quot;, &quot;from_name&quot;: &quot;one7rade-byte&quot;, &quot;from_email&quot;: &quot;notifications@github.com&quot;, &quot;subject&quot;: &quot;[one7rade-byte/daily-debrief] Run failed:\r\n .github/workflows/debrief.yml -  (a96d235)&quot;, &quot;snippet&quot;: &quot;[one7rade-byte/daily-debrief] .github/workflows/debrief.yml workflow run Repository: one7rade-byte/daily-debrief Workflow: .github/workflows/debrief.yml Duratio\u2026&quot;, &quot;time&quot;: &quot;1h ago&quot;, &quot;unread&quot;: false, &quot;gmail_link&quot;: &quot;https://mail.google.com/mail/u/0/#search/rfc822msgid%3Aone7rade-byte/daily-debrief/check-suites/CS_kwDOS24uVs8AAAARF45Lzg/1781125827@github.com&quot;, &quot;priority&quot;: &quot;high&quot;, &quot;tags&quot;: [&quot;work&quot;, &quot;action&quot;], &quot;action&quot;: &quot;Troubleshoot and resolve the failed debrief.yml GitHub workflow run.&quot;}, {&quot;account_id&quot;: &quot;gmail1&quot;, &quot;account_label&quot;: &quot;one7rade@gmail.com&quot;, &quot;account_color&quot;: &quot;blue&quot;, &quot;from_name&quot;: &quot;Amir from Tradeify&quot;, &quot;from_email&quot;: &quot;help@tradeify.co&quot;, &quot;subject&quot;: &quot;Re: why today only 2 out of 5 of my trdovate accoun shows up in trodavoate&quot;, &quot;snippet&quot;: &quot;Hi Simon, Thanks for reaching out, and apologies for the disruption you experienced this morning. Earlier today we had a system fault that caused Tradovate trad\u2026&quot;, &quot;time&quot;: &quot;7h ago&quot;, &quot;unread&quot;: false, &quot;gmail_link&quot;: &quot;https://mail.google.com/mail/u/0/#search/rfc822msgid%3A37a7f620-c087524c-1781102956-215474639342002-2395752@outbound.intercom.tradeify.co&quot;, &quot;priority&quot;: &quot;high&quot;, &quot;tags&quot;: [&quot;finance&quot;, &quot;action&quot;], &quot;action&quot;: &quot;Review and reply to the Tradeify support message regarding missing Tradovate accounts.&quot;}, {&quot;account_id&quot;: &quot;gmail1&quot;, &quot;account_label&quot;: &quot;one7rade@gmail.com&quot;, &quot;account_color&quot;: &quot;blue&quot;, &quot;from_name&quot;: &quot;Tradeif.AI from Tradeify&quot;, &quot;from_email&quot;: &quot;help@tradeify.co&quot;, &quot;subject&quot;: &quot;Re: why today only 2 out of 5 of my trdovate accoun shows up in trodavoate&quot;, &quot;snippet&quot;: &quot;&quot;, &quot;time&quot;: &quot;8h ago&quot;, &quot;unread&quot;: false, &quot;gmail_link&quot;: &quot;https://mail.google.com/mail/u/0/#search/rfc822msgid%3Ab522131f-2fea2bb6-1781099117-215474639342002-2395752@outbound.intercom.tradeify.co&quot;, &quot;priority&quot;: &quot;high&quot;, &quot;tags&quot;: [&quot;finance&quot;, &quot;action&quot;], &quot;action&quot;: &quot;Check the follow-up message from Tradeif.AI about your Tradovate accounts.&quot;}, {&quot;account_id&quot;: &quot;gmail1&quot;, &quot;account_label&quot;: &quot;one7rade@gmail.com&quot;, &quot;account_color&quot;: &quot;blue&quot;, &quot;from_name&quot;: &quot;Notion Team&quot;, &quot;from_email&quot;: &quot;notify@updates.notion.so&quot;, &quot;subject&quot;: &quot;A new device logged into your account&quot;, &quot;snippet&quot;: &quot;&lt;!DOCTYPE html PUBLIC \&quot;-//W3C//DTD XHTML 1.0 Strict//EN\&quot; \&quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\&quot;&gt; &lt;html dir=\&quot;ltr\&quot; xmlns=\&quot;http://www.w3.org/1999/xhtm\u2026&quot;, &quot;time&quot;: &quot;8h ago&quot;, &quot;unread&quot;: false, &quot;gmail_link&quot;: &quot;https://mail.google.com/mail/u/0/#search/rfc822msgid%3A20260610134502.e6ffd238c4aaa613@updates.notion.so&quot;, &quot;priority&quot;: &quot;high&quot;, &quot;tags&quot;: [&quot;personal&quot;, &quot;action&quot;], &quot;action&quot;: &quot;Verify if you authorized the new device login on your Notion account.&quot;}, {&quot;account_id&quot;: &quot;gmail1&quot;, &quot;account_label&quot;: &quot;one7rade@gmail.com&quot;, &quot;account_color&quot;: &quot;blue&quot;, &quot;from_name&quot;: &quot;TradingView&quot;, &quot;from_email&quot;: &quot;noreply@tradingview.com&quot;, &quot;subject&quot;: &quot;New device login detected \u2014 was this you?&quot;, &quot;snippet&quot;: &quot;&lt;!DOCTYPE html&gt; &lt;html xmlns=\&quot;http://www.w3.org/1999/xhtml\&quot; xmlns:v=\&quot;urn:schemas-microsoft-com:vml\&quot; xmlns:o=\&quot;urn:schemas-microsoft-com:office:office\&quot;&gt; &lt;head&gt; &lt;ti\u2026&quot;, &quot;time&quot;: &quot;8h ago&quot;, &quot;unread&quot;: false, &quot;gmail_link&quot;: &quot;https://mail.google.com/mail/u/0/#search/rfc822msgid%3A178109798488.11233.17444255944920829209@pmta-int-nlb.xtools.tv&quot;, &quot;priority&quot;: &quot;high&quot;, &quot;tags&quot;: [&quot;personal&quot;, &quot;action&quot;], &quot;action&quot;: &quot;Confirm if you authorized the new device login on your TradingView account.&quot;}, {&quot;account_id&quot;: &quot;gmail2&quot;, &quot;account_label&quot;: &quot;simon432019@gmail.com&quot;, &quot;account_color&quot;: &quot;purple&quot;, &quot;from_name&quot;: &quot;Yahoo&quot;, &quot;from_email&quot;: &quot;no-reply@cc.yahoo.com&quot;, &quot;subject&quot;: &quot;Your app password was used to sign in to a third-party app&quot;, &quot;snippet&quot;: &quot;&lt;html&gt; &lt;head&gt; &lt;meta charset=\&quot;UTF-8\&quot;&gt; &lt;style type=\&quot;text/css\&quot;&gt; html { -webkit-text-size-adjust:none; } body { width:100%; margin:0 auto; padding:0; font-style: no\u2026&quot;, &quot;time&quot;: &quot;16m ago&quot;, &quot;unread&quot;: false, &quot;gmail_link&quot;: &quot;https://mail.google.com/mail/u/0/#search/rfc822msgid%3A58598683.11.1781128632752@api147.oauth.member.bf1.yahoo.com&quot;, &quot;priority&quot;: &quot;high&quot;, &quot;tags&quot;: [&quot;personal&quot;, &quot;action&quot;], &quot;action&quot;: &quot;Verify the third-party app access using your Yahoo app password.&quot;}, {&quot;account_id&quot;: &quot;gmail2&quot;, &quot;account_label&quot;: &quot;simon432019@gmail.com&quot;, &quot;account_color&quot;: &quot;purple&quot;, &quot;from_name&quot;: &quot;Yahoo&quot;, &quot;from_email&quot;: &quot;no-reply@cc.yahoo.com&quot;, &quot;subject&quot;: &quot;An app password was generated for your Yahoo account&quot;, &quot;snippet&quot;: &quot;&lt;html&gt; &lt;head&gt; &lt;meta charset=\&quot;UTF-8\&quot;&gt; &lt;style type=\&quot;text/css\&quot;&gt; html { -webkit-text-size-adjust:none; } body { width:100%; margin:0 auto; padding:0; font-style: no\u2026&quot;, &quot;time&quot;: &quot;47m ago&quot;, &quot;unread&quot;: false, &quot;gmail_link&quot;: &quot;https://mail.google.com/mail/u/0/#search/rfc822msgid%3A363808597.4448.1781126798518@be130.member.bf1.yahoo.com&quot;, &quot;priority&quot;: &quot;high&quot;, &quot;tags&quot;: [&quot;personal&quot;, &quot;action&quot;], &quot;action&quot;: &quot;Confirm if you generated the app password for your Yahoo account.&quot;}, {&quot;account_id&quot;: &quot;gmail2&quot;, &quot;account_label&quot;: &quot;simon432019@gmail.com&quot;, &quot;account_color&quot;: &quot;purple&quot;, &quot;from_name&quot;: &quot;Google&quot;, &quot;from_email&quot;: &quot;no-reply@accounts.google.com&quot;, &quot;subject&quot;: &quot;Security alert&quot;, &quot;snippet&quot;: &quot;[image: Google] App password created to sign in to your account simon432019@gmail.com If you didn&#x27;t generate this password for Daily Debrief, someone might be u\u2026&quot;, &quot;time&quot;: &quot;48m ago&quot;, &quot;unread&quot;: false, &quot;gmail_link&quot;: &quot;https://mail.google.com/mail/u/0/#search/rfc822msgid%3Am9dQ8ehsndiNgVcVFtZC3A@notifications.google.com&quot;, &quot;priority&quot;: &quot;high&quot;, &quot;tags&quot;: [&quot;personal&quot;, &quot;action&quot;], &quot;action&quot;: &quot;Confirm if you authorized the creation of this Google app password.&quot;}, {&quot;account_id&quot;: &quot;gmail2&quot;, &quot;account_label&quot;: &quot;simon432019@gmail.com&quot;, &quot;account_color&quot;: &quot;purple&quot;, &quot;from_name&quot;: &quot;Google&quot;, &quot;from_email&quot;: &quot;no-reply@accounts.google.com&quot;, &quot;subject&quot;: &quot;Security alert for one7rade@gmail.com&quot;, &quot;snippet&quot;: &quot;This is a copy of a security alert sent to one7rade@gmail.com. simon432019@gmail.com is the recovery email for this account. If you don&#x27;t recognize this account\u2026&quot;, &quot;time&quot;: &quot;50m ago&quot;, &quot;unread&quot;: false, &quot;gmail_link&quot;: &quot;https://mail.google.com/mail/u/0/#search/rfc822msgid%3Am2lVDW8etefo-UCOAOZ1OA@notifications.google.com&quot;, &quot;priority&quot;: &quot;high&quot;, &quot;tags&quot;: [&quot;personal&quot;, &quot;action&quot;], &quot;action&quot;: &quot;Check the security alert copy forwarded for one7rade@gmail.com.&quot;}, {&quot;account_id&quot;: &quot;gmail2&quot;, &quot;account_label&quot;: &quot;simon432019@gmail.com&quot;, &quot;account_color&quot;: &quot;purple&quot;, &quot;from_name&quot;: &quot;Ladders&quot;, &quot;from_email&quot;: &quot;jobs@my.theladders.com&quot;, &quot;subject&quot;: &quot;HealthEdge Offering Over $150K for Senior Business Systems Analyst job&quot;, &quot;snippet&quot;: &quot;&lt;!DOCTYPE html PUBLIC \&quot;-//W3C//DTD XHTML 1.0 Strict//EN\&quot; \&quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\&quot;&gt; &lt;html xmlns=\&quot;http://www.w3.org/1999/xhtml\&quot;&gt; &lt;head&gt;\u2026&quot;, &quot;time&quot;: &quot;18h ago&quot;, &quot;unread&quot;: false, &quot;gmail_link&quot;: &quot;https://mail.google.com/mail/u/0/#search/rfc822msgid%3A16.CC.00835.78CD82A6@i-0e3fc891c0ab65317.mta1vrest.sd.prd.sparkpost&quot;, &quot;priority&quot;: &quot;high&quot;, &quot;tags&quot;: [&quot;work&quot;, &quot;action&quot;], &quot;action&quot;: &quot;Review the Senior Business Systems Analyst job opportunity at HealthEdge.&quot;}, {&quot;account_id&quot;: &quot;gmail2&quot;, &quot;account_label&quot;: &quot;simon432019@gmail.com&quot;, &quot;account_color&quot;: &quot;purple&quot;, &quot;from_name&quot;: &quot;Indeed&quot;, &quot;from_email&quot;: &quot;donotreply@jobalert.indeed.com&quot;, &quot;subject&quot;: &quot;VTS is hiring for Senior Technical Solutions Consultant. 19 more Consultant jobs in New York, NY.&quot;, &quot;snippet&quot;: &quot;Indeed Job Alert 20 new Consultant jobs in New York, NY Jobs 1-20 of 20 new jobs See matching results on Indeed: https://www.indeed.com/jobs?q=Consultant&amp;hl=en&amp;\u2026&quot;, &quot;time&quot;: &quot;3h ago&quot;, &quot;unread&quot;: false, &quot;gmail_link&quot;: &quot;https://mail.google.com/mail/u/0/#search/rfc822msgid%3A1jqpdt4p6o1pl800@indeed.com&quot;, &quot;priority&quot;: &quot;high&quot;, &quot;tags&quot;: [&quot;work&quot;, &quot;action&quot;], &quot;action&quot;: &quot;Review the Senior Technical Solutions Consultant and other consultant jobs on Indeed.&quot;}, {&quot;account_id&quot;: &quot;gmail2&quot;, &quot;account_label&quot;: &quot;simon432019@gmail.com&quot;, &quot;account_color&quot;: &quot;purple&quot;, &quot;from_name&quot;: &quot;LinkedIn Job Alerts&quot;, &quot;from_email&quot;: &quot;jobalerts-noreply@linkedin.com&quot;, &quot;subject&quot;: &quot;People Project Manager at Stripe&quot;, &quot;snippet&quot;: &quot;Your job alert for project manager in Florida New jobs match your preferences. Manage alerts: https://www.linkedin.com/comm/jobs/alerts?lipi=urn%3Ali%3Apage%3Ae\u2026&quot;, &quot;time&quot;: &quot;3h ago&quot;, &quot;unread&quot;: false, &quot;gmail_link&quot;: &quot;https://mail.google.com/mail/u/0/#search/rfc822msgid%3A1892511279.2859428.1781115579325@lva2-app63550.prod.linkedin.com&quot;, &quot;priority&quot;: &quot;high&quot;, &quot;tags&quot;: [&quot;work&quot;, &quot;action&quot;], &quot;action&quot;: &quot;Review the People Project Manager job opportunity at Stripe on LinkedIn.&quot;}, {&quot;account_id&quot;: &quot;gmail2&quot;, &quot;account_label&quot;: &quot;simon432019@gmail.com&quot;, &quot;account_color&quot;: &quot;purple&quot;, &quot;from_name&quot;: &quot;Job Alerts from Google&quot;, &quot;from_email&quot;: &quot;notify-noreply@google.com&quot;, &quot;subject&quot;: &quot;10 new jobs for \&quot;life science\&quot; - 1 filter - Jun 10&quot;, &quot;snippet&quot;: &quot;Life science Near New York, NY +1 filter Logo Life Sciences Business Development Manager Schneider Electric New York, NY, United States via LinkedIn Time icon J\u2026&quot;, &quot;time&quot;: &quot;4h ago&quot;, &quot;unread&quot;: false, &quot;gmail_link&quot;: &quot;https://mail.google.com/mail/u/0/#search/rfc822msgid%3AJwDVSybcgd_u5Rnm_QWxLQ@notifications.google.com&quot;, &quot;priority&quot;: &quot;high&quot;, &quot;tags&quot;: [&quot;work&quot;, &quot;action&quot;], &quot;action&quot;: &quot;Review the 10 new &#x27;life science&#x27; job matches in the New York area.&quot;}, {&quot;account_id&quot;: &quot;yahoo&quot;, &quot;account_label&quot;: &quot;simon432019@yahoo.com&quot;, &quot;account_color&quot;: &quot;amber&quot;, &quot;from_name&quot;: &quot;Yahoo&quot;, &quot;from_email&quot;: &quot;no-reply@cc.yahoo.com&quot;, &quot;subject&quot;: &quot;Your app password was used to sign in to a third-party app&quot;, &quot;snippet&quot;: &quot;&lt;html&gt; &lt;head&gt; &lt;meta charset=\&quot;UTF-8\&quot;&gt; &lt;style type=\&quot;text/css\&quot;&gt; html { -webkit-text-size-adjust:none; } body { width:100%; margin:0 auto; padding:0; font-style: no\u2026&quot;, &quot;time&quot;: &quot;16m ago&quot;, &quot;unread&quot;: false, &quot;gmail_link&quot;: &quot;https://mail.yahoo.com/&quot;, &quot;priority&quot;: &quot;high&quot;, &quot;tags&quot;: [&quot;personal&quot;, &quot;action&quot;], &quot;action&quot;: &quot;Verify the third-party app access using your Yahoo app password.&quot;}, {&quot;account_id&quot;: &quot;yahoo&quot;, &quot;account_label&quot;: &quot;simon432019@yahoo.com&quot;, &quot;account_color&quot;: &quot;amber&quot;, &quot;from_name&quot;: &quot;Yahoo&quot;, &quot;from_email&quot;: &quot;no-reply@cc.yahoo.com&quot;, &quot;subject&quot;: &quot;An app password was generated for your Yahoo account&quot;, &quot;snippet&quot;: &quot;&lt;html&gt; &lt;head&gt; &lt;meta charset=\&quot;UTF-8\&quot;&gt; &lt;style type=\&quot;text/css\&quot;&gt; html { -webkit-text-size-adjust:none; } body { width:100%; margin:0 auto; padding:0; font-style: no\u2026&quot;, &quot;time&quot;: &quot;47m ago&quot;, &quot;unread&quot;: false, &quot;gmail_link&quot;: &quot;https://mail.yahoo.com/&quot;, &quot;priority&quot;: &quot;high&quot;, &quot;tags&quot;: [&quot;personal&quot;, &quot;action&quot;], &quot;action&quot;: &quot;Confirm if you generated the app password for your Yahoo account.&quot;}, {&quot;account_id&quot;: &quot;yahoo&quot;, &quot;account_label&quot;: &quot;simon432019@yahoo.com&quot;, &quot;account_color&quot;: &quot;amber&quot;, &quot;from_name&quot;: &quot;Google&quot;, &quot;from_email&quot;: &quot;no-reply@accounts.google.com&quot;, &quot;subject&quot;: &quot;Security alert for simon432019@gmail.com&quot;, &quot;snippet&quot;: &quot;This is a copy of a security alert sent to simon432019@gmail.com. simon432019@yahoo.com is the recovery email for this account. If you don&#x27;t recognize this acco\u2026&quot;, &quot;time&quot;: &quot;49m ago&quot;, &quot;unread&quot;: false, &quot;gmail_link&quot;: &quot;https://mail.yahoo.com/&quot;, &quot;priority&quot;: &quot;high&quot;, &quot;tags&quot;: [&quot;personal&quot;, &quot;action&quot;], &quot;action&quot;: &quot;Check the security alert copy forwarded to your recovery email.&quot;}, {&quot;account_id&quot;: &quot;gmail1&quot;, &quot;account_label&quot;: &quot;one7rade@gmail.com&quot;, &quot;account_color&quot;: &quot;blue&quot;, &quot;from_name&quot;: &quot;one7rade&quot;, &quot;from_email&quot;: &quot;one7rade@gmail.com&quot;, &quot;subject&quot;: &quot;GEX 2026-06-10 | SPY F5/Be6/Bu2 \u00b7 QQQ F3/Be3/Bu0&quot;, &quot;snippet&quot;: &quot;+--------------------------------------------------+ | GEX Daily \u2014 2026-06-10 10:00 PM +--------------------------------------------------+ | SPY CONFLUENCE SCO\u2026&quot;, &quot;time&quot;: &quot;13m ago&quot;, &quot;unread&quot;: false, &quot;gmail_link&quot;: &quot;https://mail.google.com/mail/u/0/#search/rfc822msgid%3A6a29de78.99af2db9.26d43b.4d43@mx.google.com&quot;, &quot;priority&quot;: &quot;medium&quot;, &quot;tags&quot;: [&quot;finance&quot;], &quot;action&quot;: &quot;&quot;}, {&quot;account_id&quot;: &quot;gmail1&quot;, &quot;account_label&quot;: &quot;one7rade@gmail.com&quot;, &quot;account_color&quot;: &quot;blue&quot;, &quot;from_name&quot;: &quot;Google&quot;, &quot;from_email&quot;: &quot;noreply-accounts@google.com&quot;, &quot;subject&quot;: &quot;You shared some Google Account data with Claude&quot;, &quot;snippet&quot;: &quot;Keep track of your Google Account data one7rade@gmail.com &lt;!--[if !mso]&gt;&lt;!--&gt; &lt;!--[if false]&gt;&lt;!--&gt; You&#x27;re receiving this email because you used Sign in with Goo\u2026&quot;, &quot;time&quot;: &quot;43m ago&quot;, &quot;unread&quot;: false, &quot;gmail_link&quot;: &quot;https://mail.google.com/mail/u/0/#search/rfc822msgid%3Ac8100ad5ffcb66d39bedaa32066e66db3ad04296-20376977-337030291@google.com&quot;, &quot;priority&quot;: &quot;medium&quot;, &quot;tags&quot;: [&quot;personal&quot;], &quot;action&quot;: &quot;&quot;}, {&quot;account_id&quot;: &quot;gmail1&quot;, &quot;account_label&quot;: &quot;one7rade@gmail.com&quot;, &quot;account_color&quot;: &quot;blue&quot;, &quot;from_name&quot;: &quot;Google&quot;, &quot;from_email&quot;: &quot;noreply-accounts@google.com&quot;, &quot;subject&quot;: &quot;You shared some Google Account data with Tradeify&quot;, &quot;snippet&quot;: &quot;Keep track of your Google Account data one7rade@gmail.com &lt;!--[if !mso]&gt;&lt;!--&gt; &lt;!--[if false]&gt;&lt;!--&gt; You&#x27;re receiving this email because you used Sign in with Goo\u2026&quot;, &quot;time&quot;: &quot;3h ago&quot;, &quot;unread&quot;: false, &quot;gmail_link&quot;: &quot;https://mail.google.com/mail/u/0/#search/rfc822msgid%3A3a72d19909065200bfcd19edde1f44b10f85064d-20376977-337030291@google.com&quot;, &quot;priority&quot;: &quot;medium&quot;, &quot;tags&quot;: [&quot;personal&quot;], &quot;action&quot;: &quot;&quot;}, {&quot;account_id&quot;: &quot;gmail1&quot;, &quot;account_label&quot;: &quot;one7rade@gmail.com&quot;, &quot;account_color&quot;: &quot;blue&quot;, &quot;from_name&quot;: &quot;Google&quot;, &quot;from_email&quot;: &quot;noreply-accounts@google.com&quot;, &quot;subject&quot;: &quot;You shared some Google Account data with Tradeify&quot;, &quot;snippet&quot;: &quot;Keep track of your Google Account data one7rade@gmail.com &lt;!--[if !mso]&gt;&lt;!--&gt; &lt;!--[if false]&gt;&lt;!--&gt; You&#x27;re receiving this email because you used Sign in with Goo\u2026&quot;, &quot;time&quot;: &quot;5h ago&quot;, &quot;unread&quot;: false, &quot;gmail_link&quot;: &quot;https://mail.google.com/mail/u/0/#search/rfc822msgid%3Aa73c332e83c5d6204b6d24a304f8324b4c421388-20376977-337030291@google.com&quot;, &quot;priority&quot;: &quot;medium&quot;, &quot;tags&quot;: [&quot;personal&quot;], &quot;action&quot;: &quot;&quot;}, {&quot;account_id&quot;: &quot;gmail1&quot;, &quot;account_label&quot;: &quot;one7rade@gmail.com&quot;, &quot;account_color&quot;: &quot;blue&quot;, &quot;from_name&quot;: &quot;Tradeify&quot;, &quot;from_email&quot;: &quot;info@tradeify.co&quot;, &quot;subject&quot;: &quot;Important: An update on today&#x27;s account disruption&quot;, &quot;snippet&quot;: &quot;&lt;!DOCTYPE html PUBLIC \&quot;-//W3C//DTD XHTML 1.0 Transitional//EN\&quot; \&quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\&quot;&gt; &lt;html dir=\&quot;ltr\&quot; lang=\&quot;en\&quot; xmlns:v=\&quot;urn\u2026&quot;, &quot;time&quot;: &quot;7h ago&quot;, &quot;unread&quot;: false, &quot;gmail_link&quot;: &quot;https://mail.google.com/mail/u/0/#search/rfc822msgid%3AAX1_FpY_Q8u3AtccDpMcTQ@geopod-ismtpd-47&quot;, &quot;priority&quot;: &quot;medium&quot;, &quot;tags&quot;: [&quot;finance&quot;], &quot;action&quot;: &quot;&quot;}, {&quot;account_id&quot;: &quot;gmail2&quot;, &quot;account_label&quot;: &quot;simon432019@gmail.com&quot;, &quot;account_color&quot;: &quot;purple&quot;, &quot;from_name&quot;: &quot;Interactive Brokers&quot;, &quot;from_email&quot;: &quot;noresponse@email.interactivebrokers.com&quot;, &quot;subject&quot;: &quot;Market Volatility, World Cup Economics, and Durable Growth\r\n Investing&quot;, &quot;snippet&quot;: &quot;Newsletter From Traders&#x27; Insight | Your Daily Traders&#x27; Insight - June 10, 2026 Copyright &amp;#169; Interactive Brokers Interactive Brokers LLC Message Reference Nu\u2026&quot;, &quot;time&quot;: &quot;51m ago&quot;, &quot;unread&quot;: false, &quot;gmail_link&quot;: &quot;https://mail.google.com/mail/u/0/#search/rfc822msgid%3AAPI.1781126518218.17811265181870923.JavaMail.csprod@ny5ibop3&quot;, &quot;priority&quot;: &quot;medium&quot;, &quot;tags&quot;: [&quot;finance&quot;], &quot;action&quot;: &quot;&quot;}, {&quot;account_id&quot;: &quot;gmail2&quot;, &quot;account_label&quot;: &quot;simon432019@gmail.com&quot;, &quot;account_color&quot;: &quot;purple&quot;, &quot;from_name&quot;: &quot;Discover&quot;, &quot;from_email&quot;: &quot;discover@card-e.em.discover.com&quot;, &quot;subject&quot;: &quot;Exciting account changes arrive in July&quot;, &quot;snippet&quot;: &quot;&lt;!DOCTYPE html PUBLIC \&quot;-//W3C//DTD XHTML 1.0 Transitional//EN\&quot; \&quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\&quot;&gt; &lt;html xmlns=\&quot;http://www.w3.org/1999/xh\u2026&quot;, &quot;time&quot;: &quot;1h ago&quot;, &quot;unread&quot;: false, &quot;gmail_link&quot;: &quot;https://mail.google.com/mail/u/0/#search/rfc822msgid%3A0.1.1D.799.1DCF91C72B29F42.0@omptrans.card-e.em.discover.com&quot;, &quot;priority&quot;: &quot;medium&quot;, &quot;tags&quot;: [&quot;finance&quot;], &quot;action&quot;: &quot;&quot;}, {&quot;account_id&quot;: &quot;gmail2&quot;, &quot;account_label&quot;: &quot;simon432019@gmail.com&quot;, &quot;account_color&quot;: &quot;purple&quot;, &quot;from_name&quot;: &quot;Capital One | Venture X&quot;, &quot;from_email&quot;: &quot;capitalone@notification.capitalone.com&quot;, &quot;subject&quot;: &quot;We&#x27;ve received your payment&quot;, &quot;snippet&quot;: &quot;View your payment details. -- [ [Sign in to your account] [Sign in to your account] ](https://click-notification.capitalone.com/f/a/V_OsgsVQypLdQOspovr3BQ~~/AAA\u2026&quot;, &quot;time&quot;: &quot;2h ago&quot;, &quot;unread&quot;: false, &quot;gmail_link&quot;: &quot;https://mail.google.com/mail/u/0/#search/rfc822msgid%3A0E.CA.29756.47CB92A6@i-0960891294fa5ba3d.mta6vrest.sd.prd.sparkpost&quot;, &quot;priority&quot;: &quot;medium&quot;, &quot;tags&quot;: [&quot;finance&quot;], &quot;action&quot;: &quot;&quot;}, {&quot;account_id&quot;: &quot;gmail2&quot;, &quot;account_label&quot;: &quot;simon432019@gmail.com&quot;, &quot;account_color&quot;: &quot;purple&quot;, &quot;from_name&quot;: &quot;CTA SmartBrief&quot;, &quot;from_email&quot;: &quot;cta@smartbrief.com&quot;, &quot;subject&quot;: &quot;OnePlus 15 adds cross-platform AirDrop file sharing&quot;, &quot;snippet&quot;: &quot;Consumer Technology Association SmartBrief June 10, 2026 https://r.smartbrief.com/resp/vhbCCVzobaDIaplyCigWonBWcNmaWb TODAY&#x27;S HEADLINES TODAY&#x27;S DIGITAL PULSE * \u2026&quot;, &quot;time&quot;: &quot;3h ago&quot;, &quot;unread&quot;: false, &quot;gmail_link&quot;: &quot;https://mail.google.com/mail/u/0/#search/rfc822msgid%3Abounce--kgmi9rfasarx42dw@send.smartbrief.com&quot;, &quot;priority&quot;: &quot;medium&quot;, &quot;tags&quot;: [&quot;work&quot;], &quot;action&quot;: &quot;&quot;}, {&quot;account_id&quot;: &quot;gmail1&quot;, &quot;account_label&quot;: &quot;one7rade@gmail.com&quot;, &quot;account_color&quot;: &quot;blue&quot;, &quot;from_name&quot;: &quot;Cryptotwits by Stocktwits&quot;, &quot;from_email&quot;: &quot;newsletter@cryptotwits.stocktwits.com&quot;, &quot;subject&quot;: &quot;Local Altcoin Volunteers To Go First So The Rest Can Watch What Happens  \ud83d\udc77&quot;, &quot;snippet&quot;: &quot;---------- ## **OVERVIEW** # **Local Altcoin Volunteers To Go First So The Rest Can Watch What Happens **\ud83d\udc77 #### **Here\u2019s What\u2019s Happening **\ud83d\udc47\ufe0f Today\u2019s top trend\u2026&quot;, &quot;time&quot;: &quot;45m ago&quot;, &quot;unread&quot;: false, &quot;gmail_link&quot;: &quot;https://mail.google.com/mail/u/0/#search/rfc822msgid%3AsnEEIqgrTiOFug_oNGMEiA@geopod-ismtpd-13&quot;, &quot;priority&quot;: &quot;low&quot;, &quot;tags&quot;: [&quot;promo&quot;, &quot;finance&quot;], &quot;action&quot;: &quot;&quot;}, {&quot;account_id&quot;: &quot;gmail1&quot;, &quot;account_label&quot;: &quot;one7rade@gmail.com&quot;, &quot;account_color&quot;: &quot;blue&quot;, &quot;from_name&quot;: &quot;Take Profit Trader&quot;, &quot;from_email&quot;: &quot;team@takeprofittrader.com&quot;, &quot;subject&quot;: &quot;\u26bd World Cup PRO Account Giveaway!&quot;, &quot;snippet&quot;: &quot;Rep your country for a chance to win\u2026Traders, The World Cup kicks off tomorrow (literally) and your country is about to take the stage. So we want to have some \u2026&quot;, &quot;time&quot;: &quot;1h ago&quot;, &quot;unread&quot;: false, &quot;gmail_link&quot;: &quot;https://mail.google.com/mail/u/0/#search/rfc822msgid%3A1709128608.115741.1781123162882@cell-1-7bd46c9c6f-ttgjd&quot;, &quot;priority&quot;: &quot;low&quot;, &quot;tags&quot;: [&quot;promo&quot;], &quot;action&quot;: &quot;&quot;}, {&quot;account_id&quot;: &quot;gmail1&quot;, &quot;account_label&quot;: &quot;one7rade@gmail.com&quot;, &quot;account_color&quot;: &quot;blue&quot;, &quot;from_name&quot;: &quot;ClickUpdates 4.05&quot;, &quot;from_email&quot;: &quot;clickupdates@mail.clickup.com&quot;, &quot;subject&quot;: &quot;What\u2019s new in ClickUp: AI meetings, Outlook context, smarter agents and more!&quot;, &quot;snippet&quot;: &quot;ClickUp EmailYour meetings, inbox, and agent workflows just got a whole lot more useful. \ufeff\u034f \ufeff\u034f \ufeff\u034f \ufeff\u034f \ufeff\u034f \ufeff\u034f \ufeff\u034f \ufeff\u034f \ufeff\u034f \ufeff\u034f \ufeff\u034f \ufeff\u034f \ufeff\u034f \ufeff\u034f \ufeff\u034f \ufeff\u034f \ufeff\u034f \ufeff\u034f \ufeff\u034f \ufeff\u034f \ufeff\u034f \ufeff\u034f \ufeff\u034f \ufeff\u034f\u2026&quot;, &quot;time&quot;: &quot;3h ago&quot;, &quot;unread&quot;: false, &quot;gmail_link&quot;: &quot;https://mail.google.com/mail/u/0/#search/rfc822msgid%3A39.53.53907.C35B92A6@i-057b46139e5ea27cd.mta1vrest.sd.prd.sparkpost&quot;, &quot;priority&quot;: &quot;low&quot;, &quot;tags&quot;: [&quot;promo&quot;], &quot;action&quot;: &quot;&quot;}, {&quot;account_id&quot;: &quot;gmail1&quot;, &quot;account_label&quot;: &quot;one7rade@gmail.com&quot;, &quot;account_color&quot;: &quot;blue&quot;, &quot;from_name&quot;: &quot;Tradecopia&quot;, &quot;from_email&quot;: &quot;info@tradecopia.com&quot;, &quot;subject&quot;: &quot;Welcome to the team! - Tradecopia&quot;, &quot;snippet&quot;: &quot;Tradecopia [https://assets.cdn.filesafe.space/h0WS8uiKJiZOzcz7ULIk/media/69c2f962eaed064756a64ee7.png] Welcome Aboard WELCOME TO THE TEAM, LEAVE A QUICK REVIEW \u2026&quot;, &quot;time&quot;: &quot;4h ago&quot;, &quot;unread&quot;: false, &quot;gmail_link&quot;: &quot;https://mail.google.com/mail/u/0/#search/rfc822msgid%3A20260610172723.5f27b88fca46c9e7@lc.tradecopia.com&quot;, &quot;priority&quot;: &quot;low&quot;, &quot;tags&quot;: [&quot;promo&quot;], &quot;action&quot;: &quot;&quot;}, {&quot;account_id&quot;: &quot;gmail1&quot;, &quot;account_label&quot;: &quot;one7rade@gmail.com&quot;, &quot;account_color&quot;: &quot;blue&quot;, &quot;from_name&quot;: &quot;Honey&quot;, &quot;from_email&quot;: &quot;insiderdeals@my.joinhoney.com&quot;, &quot;subject&quot;: &quot;The forecast \ud83c\udf24\ufe0f calls for savings on hot styles \ud83d\ude0e&quot;, &quot;snippet&quot;: &quot;Honey Deals to heat up your closet without burning your budget \u034f \u034f \u034f \u034f \u034f \u034f \u034f\u034f \u034f \u034f \u034f \u034f \u034f \u034f\u034f \u034f \u034f \u034f \u034f \u034f \u034f\u034f \u034f \u034f \u034f \u034f \u034f \u034f\u034f \u034f \u034f \u034f \u034f \u034f \u034f\u034f \u034f \u034f \u034f \u034f \u034f \u034f\u034f \u034f \u034f \u034f \u034f \u034f \u034f\u034f \u034f \u034f \u2026&quot;, &quot;time&quot;: &quot;5h ago&quot;, &quot;unread&quot;: false, &quot;gmail_link&quot;: &quot;https://mail.google.com/mail/u/0/#search/rfc822msgid%3A81.A8.20180.F29992A6@i-0bcc15373a4ae2ef8.mta1vrest.sd.prd.sparkpost&quot;, &quot;priority&quot;: &quot;low&quot;, &quot;tags&quot;: [&quot;promo&quot;], &quot;action&quot;: &quot;&quot;}, {&quot;account_id&quot;: &quot;gmail1&quot;, &quot;account_label&quot;: &quot;one7rade@gmail.com&quot;, &quot;account_color&quot;: &quot;blue&quot;, &quot;from_name&quot;: &quot;Notion Team&quot;, &quot;from_email&quot;: &quot;team@mail.notion.so&quot;, &quot;subject&quot;: &quot;A helpful teammate, built into Notion&quot;, &quot;snippet&quot;: &quot;Agent completes tasks so you can focus on the important parts. You assign the tasks. Agent does the work for you. Bug Tracking Dashboard ( https://www.notion.so\u2026&quot;, &quot;time&quot;: &quot;8h ago&quot;, &quot;unread&quot;: false, &quot;gmail_link&quot;: &quot;https://mail.google.com/mail/u/0/#search/rfc822msgid%3AdgTv2AUBAPzzkUT785FEAZ6x1ayXn_8kHX_fnyifbw.1781100095@mail.notion.so&quot;, &quot;priority&quot;: &quot;low&quot;, &quot;tags&quot;: [&quot;promo&quot;], &quot;action&quot;: &quot;&quot;}, {&quot;account_id&quot;: &quot;gmail1&quot;, &quot;account_label&quot;: &quot;one7rade@gmail.com&quot;, &quot;account_color&quot;: &quot;blue&quot;, &quot;from_name&quot;: &quot;Polymarket&quot;, &quot;from_email&quot;: &quot;noreply@polymarket.com&quot;, &quot;subject&quot;: &quot;$35m helicopter vs $20k drone&quot;, &quot;snippet&quot;: &quot;Polygraph by PolymarketPolygraph by Polymarket ( https://poly.market/0d7VvzI )June 10th, 2026Unsubscribe ( https://track.customer.io/manage_subscription_prefere\u2026&quot;, &quot;time&quot;: &quot;10h ago&quot;, &quot;unread&quot;: false, &quot;gmail_link&quot;: &quot;https://mail.google.com/mail/u/0/#search/rfc822msgid%3A20260610120132.349908ceffe2da9d@cio129328.polymarket.com&quot;, &quot;priority&quot;: &quot;low&quot;, &quot;tags&quot;: [&quot;promo&quot;], &quot;action&quot;: &quot;&quot;}, {&quot;account_id&quot;: &quot;gmail1&quot;, &quot;account_label&quot;: &quot;one7rade@gmail.com&quot;, &quot;account_color&quot;: &quot;blue&quot;, &quot;from_name&quot;: &quot;Take Profit Trader&quot;, &quot;from_email&quot;: &quot;team@takeprofittrader.com&quot;, &quot;subject&quot;: &quot;\u26a1 40% Off + No Activation Fee&quot;, &quot;snippet&quot;: &quot;Back for a limited time\u2026Traders, With summer now in full swing\u2026 We\u2019ve decided to bring back our popular NOFEE40 deal http://takeprofittrader.com?he=one7rade@gma\u2026&quot;, &quot;time&quot;: &quot;10h ago&quot;, &quot;unread&quot;: false, &quot;gmail_link&quot;: &quot;https://mail.google.com/mail/u/0/#search/rfc822msgid%3A815334057.7475148.1781090167259@cell-1-68ddb94b59-7z2sk&quot;, &quot;priority&quot;: &quot;low&quot;, &quot;tags&quot;: [&quot;promo&quot;], &quot;action&quot;: &quot;&quot;}, {&quot;account_id&quot;: &quot;gmail1&quot;, &quot;account_label&quot;: &quot;one7rade@gmail.com&quot;, &quot;account_color&quot;: &quot;blue&quot;, &quot;from_name&quot;: &quot;Claude Team&quot;, &quot;from_email&quot;: &quot;no-reply@email.claude.com&quot;, &quot;subject&quot;: &quot;Claude Fable 5 is here&quot;, &quot;snippet&quot;: &quot;Hand off large migrations, complex implementations, and multi-day autonomous sessions. \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f\u2026&quot;, &quot;time&quot;: &quot;19h ago&quot;, &quot;unread&quot;: false, &quot;gmail_link&quot;: &quot;https://mail.google.com/mail/u/0/#search/rfc822msgid%3A20260610030024.2efaf990309ebb6c@email.claude.com&quot;, &quot;priority&quot;: &quot;low&quot;, &quot;tags&quot;: [&quot;promo&quot;], &quot;action&quot;: &quot;&quot;}, {&quot;account_id&quot;: &quot;gmail2&quot;, &quot;account_label&quot;: &quot;simon432019@gmail.com&quot;, &quot;account_color&quot;: &quot;purple&quot;, &quot;from_name&quot;: &quot;YMCA South Florida&quot;, &quot;from_email&quot;: &quot;marketing@ymcasouthflorida.org&quot;, &quot;subject&quot;: &quot;Come in Style. Stay for the Impact.&quot;, &quot;snippet&quot;: &quot;10-Year Anniversary Beach Ball Gala \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u2026&quot;, &quot;time&quot;: &quot;33m ago&quot;, &quot;unread&quot;: false, &quot;gmail_link&quot;: &quot;https://mail.google.com/mail/u/0/#search/rfc822msgid%3A37cc27d4-87c9-4b96-a3f1-d088505e8894@atl1s11mta93.xt.local&quot;, &quot;priority&quot;: &quot;low&quot;, &quot;tags&quot;: [&quot;promo&quot;, &quot;event&quot;], &quot;action&quot;: &quot;&quot;}, {&quot;account_id&quot;: &quot;gmail2&quot;, &quot;account_label&quot;: &quot;simon432019@gmail.com&quot;, &quot;account_color&quot;: &quot;purple&quot;, &quot;from_name&quot;: &quot;Temu&quot;, &quot;from_email&quot;: &quot;email@news.temuemail.com&quot;, &quot;subject&quot;: &quot;Please Confirm Your 2026 Gift!&quot;, &quot;snippet&quot;: &quot;----------------------------------------------------------------------- Temu ----------------------------------------------------------------------- To properly\u2026&quot;, &quot;time&quot;: &quot;1h ago&quot;, &quot;unread&quot;: false, &quot;gmail_link&quot;: &quot;https://mail.google.com/mail/u/0/#search/rfc822msgid%3A20260610205730.f2dd143c59f1a037@news.temuemail.com&quot;, &quot;priority&quot;: &quot;low&quot;, &quot;tags&quot;: [&quot;spam&quot;], &quot;action&quot;: &quot;&quot;}, {&quot;account_id&quot;: &quot;gmail2&quot;, &quot;account_label&quot;: &quot;simon432019@gmail.com&quot;, &quot;account_color&quot;: &quot;purple&quot;, &quot;from_name&quot;: &quot;University of San Francisco, Data Institute&quot;, &quot;from_email&quot;: &quot;datainstitute@usfca.edu&quot;, &quot;subject&quot;: &quot;Summer &amp; Fall at the Data Institute!&quot;, &quot;snippet&quot;: &quot;Advance Your Skills and Achieve Your Goals Dear Simon, At the University of San Francisco Data Institute &lt;https://www.usfca.edu/data-institute&gt;, our certificate\u2026&quot;, &quot;time&quot;: &quot;1h ago&quot;, &quot;unread&quot;: false, &quot;gmail_link&quot;: &quot;https://mail.google.com/mail/u/0/#search/rfc822msgid%3A97c115a0-2109-4344-94fe-4e233e58bb1c@technolutions.net&quot;, &quot;priority&quot;: &quot;low&quot;, &quot;tags&quot;: [&quot;promo&quot;], &quot;action&quot;: &quot;&quot;}, {&quot;account_id&quot;: &quot;gmail2&quot;, &quot;account_label&quot;: &quot;simon432019@gmail.com&quot;, &quot;account_color&quot;: &quot;purple&quot;, &quot;from_name&quot;: &quot;Zillow&quot;, &quot;from_email&quot;: &quot;zmail@zmail.zillow.com&quot;, &quot;subject&quot;: &quot;What APR means for your mortgage&quot;, &quot;snippet&quot;: &quot;And how it\u2019s calculated. Zillow table, td, tr, div, font, p, li { font-family: Helvetica, Arial, sans-serif !important; mso-hyphenate: none; } a { text-decorati\u2026&quot;, &quot;time&quot;: &quot;3h ago&quot;, &quot;unread&quot;: false, &quot;gmail_link&quot;: &quot;https://mail.google.com/mail/u/0/#search/rfc822msgid%3A0100019eb2c572ae-3517eecb-1e77-4bfd-8ab9-5db40c6f341b-000000@email.amazonses.com&quot;, &quot;priority&quot;: &quot;low&quot;, &quot;tags&quot;: [&quot;promo&quot;], &quot;action&quot;: &quot;&quot;}, {&quot;account_id&quot;: &quot;gmail2&quot;, &quot;account_label&quot;: &quot;simon432019@gmail.com&quot;, &quot;account_color&quot;: &quot;purple&quot;, &quot;from_name&quot;: &quot;Casper&quot;, &quot;from_email&quot;: &quot;support@e.casper.com&quot;, &quot;subject&quot;: &quot;Early Access to 4th of July savings&quot;, &quot;snippet&quot;: &quot;*SHOP* [https://cdn.us1.exponea.com/casper-prod/e/.eJwTUrj8jiNu1V3Ddx8f9H30Tc27y-z55OnEspz9Edw5i3b8tbkjJZxRUlJQbKWvn5xYXJBapJecn6tveL7J-VZm1y1HKwEuptJiIa6knPz83\u2026&quot;, &quot;time&quot;: &quot;4h ago&quot;, &quot;unread&quot;: false, &quot;gmail_link&quot;: &quot;https://mail.google.com/mail/u/0/#search/rfc822msgid%3A20260610180529.b992dad4afedca85@e.casper.com&quot;, &quot;priority&quot;: &quot;low&quot;, &quot;tags&quot;: [&quot;promo&quot;], &quot;action&quot;: &quot;&quot;}, {&quot;account_id&quot;: &quot;gmail2&quot;, &quot;account_label&quot;: &quot;simon432019@gmail.com&quot;, &quot;account_color&quot;: &quot;purple&quot;, &quot;from_name&quot;: &quot;Ladders&quot;, &quot;from_email&quot;: &quot;jobs@my.theladders.com&quot;, &quot;subject&quot;: &quot;Transform Your Career with $100K+ Job Access&quot;, &quot;snippet&quot;: &quot;[https://multimedia.jobs.theladders.com/ladders-B/photos/4ff98279-60c5-4548-baa8-994c07b8e22c.png] [https://multimedia.jobs.theladders.com/ladders-B/photos/b88e\u2026&quot;, &quot;time&quot;: &quot;4h ago&quot;, &quot;unread&quot;: false, &quot;gmail_link&quot;: &quot;https://mail.google.com/mail/u/0/#search/rfc822msgid%3Aladders.xserial.s56eec/4aciA+eAQsJjBjrvyA2zN/wKX72oNFxJZqv4/fCfJVJRR8+oNNiG9qf7Edm8hRgY+7RZRLzKznr7vcxHd4mUrkJSlzW8zZF1Hlsm/mRseBQJCt9t9iOBELkAZoCDx@jobs.theladders.com&quot;, &quot;priority&quot;: &quot;low&quot;, &quot;tags&quot;: [&quot;promo&quot;], &quot;action&quot;: &quot;&quot;}, {&quot;account_id&quot;: &quot;gmail2&quot;, &quot;account_label&quot;: &quot;simon432019@gmail.com&quot;, &quot;account_color&quot;: &quot;purple&quot;, &quot;from_name&quot;: &quot;ASOS&quot;, &quot;from_email&quot;: &quot;hello@official.asos.com&quot;, &quot;subject&quot;: &quot;New arrivals&quot;, &quot;snippet&quot;: &quot;Shop what&#x27;s just landed at ASOS \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u2026&quot;, &quot;time&quot;: &quot;4h ago&quot;, &quot;unread&quot;: false, &quot;gmail_link&quot;: &quot;https://mail.google.com/mail/u/0/#search/rfc822msgid%3A21.09.02925.8AC992A6@i-0c19b7dfcaaac5dd7.mta3vrest.sd.prd.sparkpost&quot;, &quot;priority&quot;: &quot;low&quot;, &quot;tags&quot;: [&quot;promo&quot;], &quot;action&quot;: &quot;&quot;}, {&quot;account_id&quot;: &quot;gmail2&quot;, &quot;account_label&quot;: &quot;simon432019@gmail.com&quot;, &quot;account_color&quot;: &quot;purple&quot;, &quot;from_name&quot;: &quot;Ladders&quot;, &quot;from_email&quot;: &quot;jobs@my.theladders.com&quot;, &quot;subject&quot;: &quot;Make Every Job Application Count with a Custom Cover Letter&quot;, &quot;snippet&quot;: &quot;&lt;!DOCTYPE html PUBLIC \&quot;-//W3C//DTD XHTML 1.0 Strict//EN\&quot; \&quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\&quot;&gt; &lt;html xmlns=\&quot;http://www.w3.org/1999/xhtml\&quot; lang=\&quot;e\u2026&quot;, &quot;time&quot;: &quot;18h ago&quot;, &quot;unread&quot;: false, &quot;gmail_link&quot;: &quot;https://mail.google.com/mail/u/0/#search/rfc822msgid%3A55.C5.44088.C48D82A6@i-0964f9b6be0144a00.mta1vrest.sd.prd.sparkpost&quot;, &quot;priority&quot;: &quot;low&quot;, &quot;tags&quot;: [&quot;promo&quot;], &quot;action&quot;: &quot;&quot;}, {&quot;account_id&quot;: &quot;yahoo&quot;, &quot;account_label&quot;: &quot;simon432019@yahoo.com&quot;, &quot;account_color&quot;: &quot;amber&quot;, &quot;from_name&quot;: &quot;Mazda&quot;, &quot;from_email&quot;: &quot;mazda@email-mazdausa.com&quot;, &quot;subject&quot;: &quot;Simon, interested in the Safest New-Car Brand according to Consumer Reports?&quot;, &quot;snippet&quot;: &quot;Mazda Plus, see which film starring the Mazda CX-5 was voted audience favorite. &amp;zwnj; &amp;zwnj; &amp;zwnj; &amp;zwnj; &amp;zwnj; &amp;zwnj; &amp;zwnj; &amp;zwnj; &amp;zwnj;&amp;nbsp &amp;zwnj; &amp;zwnj\u2026&quot;, &quot;time&quot;: &quot;6m ago&quot;, &quot;unread&quot;: false, &quot;gmail_link&quot;: &quot;https://mail.yahoo.com/&quot;, &quot;priority&quot;: &quot;low&quot;, &quot;tags&quot;: [&quot;promo&quot;], &quot;action&quot;: &quot;&quot;}, {&quot;account_id&quot;: &quot;yahoo&quot;, &quot;account_label&quot;: &quot;simon432019@yahoo.com&quot;, &quot;account_color&quot;: &quot;amber&quot;, &quot;from_name&quot;: &quot;Lovehoney&quot;, &quot;from_email&quot;: &quot;news@mail.lovehoney.com&quot;, &quot;subject&quot;: &quot;Happy Hour is ON \ud83c\udf78 3 hours ONLY&quot;, &quot;snippet&quot;: &quot;Unlock your secret discount now \ud83d\udd13 &lt;https://www.lovehoney.com/&gt; Sex Toys &lt;https://www.lovehoney.com/sex-toys/&gt; Lingerie &lt;https://www.lovehoney.com/lingerie/&gt; Ess\u2026&quot;, &quot;time&quot;: &quot;6m ago&quot;, &quot;unread&quot;: false, &quot;gmail_link&quot;: &quot;https://mail.yahoo.com/&quot;, &quot;priority&quot;: &quot;low&quot;, &quot;tags&quot;: [&quot;promo&quot;], &quot;action&quot;: &quot;&quot;}, {&quot;account_id&quot;: &quot;yahoo&quot;, &quot;account_label&quot;: &quot;simon432019@yahoo.com&quot;, &quot;account_color&quot;: &quot;amber&quot;, &quot;from_name&quot;: &quot;Dermstore&quot;, &quot;from_email&quot;: &quot;info@n.dermstore.com&quot;, &quot;subject&quot;: &quot;Your SkinCeuticals P-TIOX Routine, Now 15% Off&quot;, &quot;snippet&quot;: &quot;Skin Care &lt;https://links.n.dermstore.com/ls/click?upn=u001.KPLE93ZPpPLWrbpy7BH0ifHcjj-2FFxwRGfJcfqwzyB6-2BvrcyTrv1xG-2FMna64yAMetmDrNtSKluohNdgNWMelM0HUsZ5McuVj\u2026&quot;, &quot;time&quot;: &quot;8m ago&quot;, &quot;unread&quot;: false, &quot;gmail_link&quot;: &quot;https://mail.yahoo.com/&quot;, &quot;priority&quot;: &quot;low&quot;, &quot;tags&quot;: [&quot;promo&quot;], &quot;action&quot;: &quot;&quot;}, {&quot;account_id&quot;: &quot;yahoo&quot;, &quot;account_label&quot;: &quot;simon432019@yahoo.com&quot;, &quot;account_color&quot;: &quot;amber&quot;, &quot;from_name&quot;: &quot;Sol de Janeiro&quot;, &quot;from_email&quot;: &quot;ola@soldejaneiro.com&quot;, &quot;subject&quot;: &quot;Cue the hair flip \u2728 New Milky Leave-In Conditioner&quot;, &quot;snippet&quot;: &quot;[View this email in your browser](https://manage.kmail-lists.com/subscripti= ons/web-view?a=3DTYbRmA&amp;c=3D01JHMH7BPGB24283BAW9RTMZ66&amp;k=3Da012f317188e3585= 4c9707\u2026&quot;, &quot;time&quot;: &quot;13m ago&quot;, &quot;unread&quot;: false, &quot;gmail_link&quot;: &quot;https://mail.yahoo.com/&quot;, &quot;priority&quot;: &quot;low&quot;, &quot;tags&quot;: [&quot;promo&quot;], &quot;action&quot;: &quot;&quot;}, {&quot;account_id&quot;: &quot;yahoo&quot;, &quot;account_label&quot;: &quot;simon432019@yahoo.com&quot;, &quot;account_color&quot;: &quot;amber&quot;, &quot;from_name&quot;: &quot;GasBuddy&quot;, &quot;from_email&quot;: &quot;et-reply@email.gasbuddy.com&quot;, &quot;subject&quot;: &quot;Combat high gas prices with 10\u00a2/gal extra \u26fd&quot;, &quot;snippet&quot;: &quot;https://click.email.gasbuddy.com/?qs=ABB7InYiOjEsImQiOjQ5MDN9AAwAAAAAARxMIV1-4wYOoLBJY5l5_6mSQPWYPDYeJD5tJywpIV9Z0clcgFTcaptP-9geAcrCQM6WDfrKDSE9S0N9uL4oN2rh0i8\u2026&quot;, &quot;time&quot;: &quot;15m ago&quot;, &quot;unread&quot;: false, &quot;gmail_link&quot;: &quot;https://mail.yahoo.com/&quot;, &quot;priority&quot;: &quot;low&quot;, &quot;tags&quot;: [&quot;promo&quot;], &quot;action&quot;: &quot;&quot;}, {&quot;account_id&quot;: &quot;yahoo&quot;, &quot;account_label&quot;: &quot;simon432019@yahoo.com&quot;, &quot;account_color&quot;: &quot;amber&quot;, &quot;from_name&quot;: &quot;JetBlue Vacations&quot;, &quot;from_email&quot;: &quot;jetblueairways@marketing.jetblue.com&quot;, &quot;subject&quot;: &quot;Up to $300 off is up for grabs. \ud83d\udc40&quot;, &quot;snippet&quot;: &quot;Save big on flight + hotel packages for summer travel and beyond. Save big on flight + hotel packages for summer travel and beyond. JetBlue Vacations JetBlue Va\u2026&quot;, &quot;time&quot;: &quot;16m ago&quot;, &quot;unread&quot;: false, &quot;gmail_link&quot;: &quot;https://mail.yahoo.com/&quot;, &quot;priority&quot;: &quot;low&quot;, &quot;tags&quot;: [&quot;promo&quot;], &quot;action&quot;: &quot;&quot;}, {&quot;account_id&quot;: &quot;yahoo&quot;, &quot;account_label&quot;: &quot;simon432019@yahoo.com&quot;, &quot;account_color&quot;: &quot;amber&quot;, &quot;from_name&quot;: &quot;VacationsToGo.com&quot;, &quot;from_email&quot;: &quot;vtgmail@list.vacationstogo.com&quot;, &quot;subject&quot;: &quot;Special Offer for Past Guests of Princess, Carnival, Cunard, Holland America &amp; Seabourn!&quot;, &quot;snippet&quot;: &quot;This message was sent in HTML format. Either your email client does not support this format or the message was altered during delivery to you. Please click on t\u2026&quot;, &quot;time&quot;: &quot;18m ago&quot;, &quot;unread&quot;: false, &quot;gmail_link&quot;: &quot;https://mail.yahoo.com/&quot;, &quot;priority&quot;: &quot;low&quot;, &quot;tags&quot;: [&quot;promo&quot;], &quot;action&quot;: &quot;&quot;}, {&quot;account_id&quot;: &quot;yahoo&quot;, &quot;account_label&quot;: &quot;simon432019@yahoo.com&quot;, &quot;account_color&quot;: &quot;amber&quot;, &quot;from_name&quot;: &quot;\udb40\udc01Y\udb40\udc01r\udb40\udc01ef\udb40\udc01y \udb40\udc01I\udb40\udc01n\udb40\udc01f\udb40\udc01o&quot;, &quot;from_email&quot;: &quot;usanfjmxkliqwoeis@fotos-top.com&quot;, &quot;subject&quot;: &quot;\udb40\udc01S\udb40\udc01t\udb40\udc01r\udb40\udc01ug\udb40\udc01g\udb40\udc01li\udb40\udc01n\udb40\udc01g\udb40\udc01 w\udb40\udc01i\udb40\udc01t\udb40\udc01h \udb40\udc01pr\udb40\udc01i\udb40\udc01va\udb40\udc01t\udb40\udc01e\udb40\udc01 s\udb40\udc01t\udb40\udc01ud\udb40\udc01en\udb40\udc01t\udb40\udc01 l\udb40\udc01oa\udb40\udc01ns\udb40\udc01?\udb40\udc01 \udb40\udc01Y\udb40\udc01ou\udb40\udc01 h\udb40\udc01av\udb40\udc01e \udb40\udc01o\udb40\udc01pt\udb40\udc01io\udb40\udc01ns\udb40\udc01.&quot;, &quot;snippet&quot;: &quot;&lt;!DOCTYPE HTML PUBLIC \&quot;-//W3C//DTD HTML 4.01 Transitional//EN\&quot; \&quot;http://www.w3.org/TR/html4/loose.dtd\&quot;&gt; &lt;html&gt; &lt;head&gt; &lt;style data-id=\&quot;imagecarouselblock\&quot; type=\&quot;t\u2026&quot;, &quot;time&quot;: &quot;19m ago&quot;, &quot;unread&quot;: false, &quot;gmail_link&quot;: &quot;https://mail.yahoo.com/&quot;, &quot;priority&quot;: &quot;low&quot;, &quot;tags&quot;: [&quot;spam&quot;], &quot;action&quot;: &quot;&quot;}, {&quot;account_id&quot;: &quot;yahoo&quot;, &quot;account_label&quot;: &quot;simon432019@yahoo.com&quot;, &quot;account_color&quot;: &quot;amber&quot;, &quot;from_name&quot;: &quot;Hims | Affiliate&quot;, &quot;from_email&quot;: &quot;info@mortgagemattersnews.com&quot;, &quot;subject&quot;: &quot;Rx meds delivered straight to your door for free if prescribed. start\r\n your free consultation.&quot;, &quot;snippet&quot;: &quot;&quot;, &quot;time&quot;: &quot;32m ago&quot;, &quot;unread&quot;: false, &quot;gmail_link&quot;: &quot;https://mail.yahoo.com/&quot;, &quot;priority&quot;: &quot;low&quot;, &quot;tags&quot;: [&quot;spam&quot;], &quot;action&quot;: &quot;&quot;}, {&quot;account_id&quot;: &quot;yahoo&quot;, &quot;account_label&quot;: &quot;simon432019@yahoo.com&quot;, &quot;account_color&quot;: &quot;amber&quot;, &quot;from_name&quot;: &quot;Your Flooring Experts&quot;, &quot;from_email&quot;: &quot;info@theshelfspotlight.com&quot;, &quot;subject&quot;: &quot;Explore Carpet and Flooring Styles for Your Home&quot;, &quot;snippet&quot;: &quot;&quot;, &quot;time&quot;: &quot;7h ago&quot;, &quot;unread&quot;: false, &quot;gmail_link&quot;: &quot;https://mail.yahoo.com/&quot;, &quot;priority&quot;: &quot;low&quot;, &quot;tags&quot;: [&quot;spam&quot;], &quot;action&quot;: &quot;&quot;}, {&quot;account_id&quot;: &quot;yahoo&quot;, &quot;account_label&quot;: &quot;simon432019@yahoo.com&quot;, &quot;account_color&quot;: &quot;amber&quot;, &quot;from_name&quot;: &quot;Insurify Auto Quotes&quot;, &quot;from_email&quot;: &quot;info@purrandpawpapers.com&quot;, &quot;subject&quot;: &quot;Cheap quotes from car insurance companies as low as $29/month&quot;, &quot;snippet&quot;: &quot;&quot;, &quot;time&quot;: &quot;3h ago&quot;, &quot;unread&quot;: false, &quot;gmail_link&quot;: &quot;https://mail.yahoo.com/&quot;, &quot;priority&quot;: &quot;low&quot;, &quot;tags&quot;: [&quot;spam&quot;], &quot;action&quot;: &quot;&quot;}, {&quot;account_id&quot;: &quot;yahoo&quot;, &quot;account_label&quot;: &quot;simon432019@yahoo.com&quot;, &quot;account_color&quot;: &quot;amber&quot;, &quot;from_name&quot;: &quot;CycleBar - NoMad&quot;, &quot;from_email&quot;: &quot;nomad@cyclebar.com&quot;, &quot;subject&quot;: &quot;Knicks Pregame: Buy 5, Get 2 FREE  \ud83e\udde1\ud83d\udc99&quot;, &quot;snippet&quot;: &quot;( https://www.cyclebar.com/ ) ******************* *\ud83c\udfc0 GO KNICKS \u26f9\ufe0f\u200d\u2642\ufe0f* ******************* *BUY 5, GET 2 FREE* We&#x27;re celebrating KNICKS game-day with another FIN\u2026&quot;, &quot;time&quot;: &quot;49m ago&quot;, &quot;unread&quot;: false, &quot;gmail_link&quot;: &quot;https://mail.yahoo.com/&quot;, &quot;priority&quot;: &quot;low&quot;, &quot;tags&quot;: [&quot;promo&quot;], &quot;action&quot;: &quot;&quot;}, {&quot;account_id&quot;: &quot;yahoo&quot;, &quot;account_label&quot;: &quot;simon432019@yahoo.com&quot;, &quot;account_color&quot;: &quot;amber&quot;, &quot;from_name&quot;: &quot;New Balance&quot;, &quot;from_email&quot;: &quot;newbalance@email.newbalance.com&quot;, &quot;subject&quot;: &quot;Footwear favorites&quot;, &quot;snippet&quot;: &quot;This month&#x27;s top styles. \u034f\u200c \u034f\u200c \u034f\u200c \u034f\u200c \u034f\u200c \u034f\u200c \u034f\u200c \u034f\u200c \u034f\u200c \u034f\u200c \u034f\u200c \u034f\u200c \u034f\u200c \u034f\u200c \u034f\u200c \u034f\u200c \u034f\u200c \u034f\u200c \u034f\u200c \u034f\u200c \u034f\u200c \u034f\u200c \u034f\u200c \u034f\u200c \u034f\u200c \u034f\u200c \u034f\u200c \u034f\u200c \u034f\u200c \u034f\u200c \u034f\u200c \u034f\u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c\u2026&quot;, &quot;time&quot;: &quot;51m ago&quot;, &quot;unread&quot;: false, &quot;gmail_link&quot;: &quot;https://mail.yahoo.com/&quot;, &quot;priority&quot;: &quot;low&quot;, &quot;tags&quot;: [&quot;promo&quot;], &quot;action&quot;: &quot;&quot;}, {&quot;account_id&quot;: &quot;yahoo&quot;, &quot;account_label&quot;: &quot;simon432019@yahoo.com&quot;, &quot;account_color&quot;: &quot;amber&quot;, &quot;from_name&quot;: &quot;JG Wentworth | Financial Solutions&quot;, &quot;from_email&quot;: &quot;info@culinarycompassnews.com&quot;, &quot;subject&quot;: &quot;Is Your Credit Card Balance Overwhelming?&quot;, &quot;snippet&quot;: &quot;&quot;, &quot;time&quot;: &quot;2h ago&quot;, &quot;unread&quot;: false, &quot;gmail_link&quot;: &quot;https://mail.yahoo.com/&quot;, &quot;priority&quot;: &quot;low&quot;, &quot;tags&quot;: [&quot;spam&quot;], &quot;action&quot;: &quot;&quot;}, {&quot;account_id&quot;: &quot;yahoo&quot;, &quot;account_label&quot;: &quot;simon432019@yahoo.com&quot;, &quot;account_color&quot;: &quot;amber&quot;, &quot;from_name&quot;: &quot;Bloomingdale&#x27;s Loyallist&quot;, &quot;from_email&quot;: &quot;bloomingdalesloyallist@loyallist.bloomingdales.com&quot;, &quot;subject&quot;: &quot;Wedding-ready lab-grown diamonds&quot;, &quot;snippet&quot;: &quot;Bloomingdale&#x27;s From the Bloomingdale\u2019s Fine Collection. &amp;zwnj; &amp;zwnj; &amp;zwnj; &amp;zwnj; &amp;zwnj; &amp;zwnj; &amp;zwnj; &amp;zwnj; &amp;zwnj; &amp;zwnj; &amp;zwnj; &amp;zwnj; &amp;zwnj; &amp;zwnj; &amp;zwnj;\u2026&quot;, &quot;time&quot;: &quot;1h ago&quot;, &quot;unread&quot;: false, &quot;gmail_link&quot;: &quot;https://mail.yahoo.com/&quot;, &quot;priority&quot;: &quot;low&quot;, &quot;tags&quot;: [&quot;promo&quot;], &quot;action&quot;: &quot;&quot;}, {&quot;account_id&quot;: &quot;yahoo&quot;, &quot;account_label&quot;: &quot;simon432019@yahoo.com&quot;, &quot;account_color&quot;: &quot;amber&quot;, &quot;from_name&quot;: &quot;Scarface Trades&quot;, &quot;from_email&quot;: &quot;tony@scarfacetrades.com&quot;, &quot;subject&quot;: &quot;I&#x27;m going LIVE for 2 days&quot;, &quot;snippet&quot;: &quot;Simon, I&#x27;m doing something I&#x27;ve never done before. \u200b On June 16 and 17, I&#x27;m going LIVE for a two-day Masterclass. And here&#x27;s the part that matters\u2026 \u200b It&#x27;s free \u2026&quot;, &quot;time&quot;: &quot;1h ago&quot;, &quot;unread&quot;: false, &quot;gmail_link&quot;: &quot;https://mail.yahoo.com/&quot;, &quot;priority&quot;: &quot;low&quot;, &quot;tags&quot;: [&quot;promo&quot;], &quot;action&quot;: &quot;&quot;}, {&quot;account_id&quot;: &quot;yahoo&quot;, &quot;account_label&quot;: &quot;simon432019@yahoo.com&quot;, &quot;account_color&quot;: &quot;amber&quot;, &quot;from_name&quot;: &quot;Auto Insurance&quot;, &quot;from_email&quot;: &quot;info@carculturechronicle.com&quot;, &quot;subject&quot;: &quot;Car Insurance For As Low As $29/Month with Insurify!&quot;, &quot;snippet&quot;: &quot;&quot;, &quot;time&quot;: &quot;2h ago&quot;, &quot;unread&quot;: false, &quot;gmail_link&quot;: &quot;https://mail.yahoo.com/&quot;, &quot;priority&quot;: &quot;low&quot;, &quot;tags&quot;: [&quot;spam&quot;], &quot;action&quot;: &quot;&quot;}]"><div class="sec-lbl"><i class="ti ti-alert-circle"></i>Action needed<span class="sc red">17</span></div><div class="elist"><a class="email-card high" href="https://mail.google.com/mail/u/0/#search/rfc822msgid%3A5ApKvjVAB8Dmq0DOC7tmfA@notifications.google.com" target="_blank" rel="noopener">
+          <div class="avatar av-red">GO</div>
+          <div class="email-body">
+            <div class="ef">Google</div>
+            <div class="ea">no-reply@accounts.google.com</div>
+            <div class="es">Security alert</div>
+            <div class="ep">[image: Google] App password created to sign in to your account one7rade@gmail.com If you didn&#x27;t generate this password for Daily Debrief, someone might be usin…</div>
+            <div class="email-action"><i class="ti ti-arrow-right"></i>Confirm if you authorized the creation of this Google app password.</div>
+            <div class="etags"><span class="tag tag-personal">personal</span><span class="tag tag-action">action</span></div>
+          </div>
+          <div class="email-right">
+            <div class="etime">50m ago</div>
+            <div class="eopen"><i class="ti ti-external-link"></i> Open</div>
+          </div>
+        </a><a class="email-card high" href="https://mail.google.com/mail/u/0/#search/rfc822msgid%3Aone7rade-byte/daily-debrief/check-suites/CS_kwDOS24uVs8AAAARF45Lzg/1781125827@github.com" target="_blank" rel="noopener">
+          <div class="avatar av-red">ON</div>
+          <div class="email-body">
+            <div class="ef">one7rade-byte</div>
+            <div class="ea">notifications@github.com</div>
+            <div class="es">[one7rade-byte/daily-debrief] Run failed:
+ .github/workflows/debrief.yml -  (a96d235)</div>
+            <div class="ep">[one7rade-byte/daily-debrief] .github/workflows/debrief.yml workflow run Repository: one7rade-byte/daily-debrief Workflow: .github/workflows/debrief.yml Duratio…</div>
+            <div class="email-action"><i class="ti ti-arrow-right"></i>Troubleshoot and resolve the failed debrief.yml GitHub workflow run.</div>
+            <div class="etags"><span class="tag tag-work">work</span><span class="tag tag-action">action</span></div>
+          </div>
+          <div class="email-right">
+            <div class="etime">1h ago</div>
+            <div class="eopen"><i class="ti ti-external-link"></i> Open</div>
+          </div>
+        </a><a class="email-card high" href="https://mail.google.com/mail/u/0/#search/rfc822msgid%3A37a7f620-c087524c-1781102956-215474639342002-2395752@outbound.intercom.tradeify.co" target="_blank" rel="noopener">
+          <div class="avatar av-red">AT</div>
+          <div class="email-body">
+            <div class="ef">Amir from Tradeify</div>
+            <div class="ea">help@tradeify.co</div>
+            <div class="es">Re: why today only 2 out of 5 of my trdovate accoun shows up in trodavoate</div>
+            <div class="ep">Hi Simon, Thanks for reaching out, and apologies for the disruption you experienced this morning. Earlier today we had a system fault that caused Tradovate trad…</div>
+            <div class="email-action"><i class="ti ti-arrow-right"></i>Review and reply to the Tradeify support message regarding missing Tradovate accounts.</div>
+            <div class="etags"><span class="tag tag-finance">finance</span><span class="tag tag-action">action</span></div>
+          </div>
+          <div class="email-right">
+            <div class="etime">7h ago</div>
+            <div class="eopen"><i class="ti ti-external-link"></i> Open</div>
+          </div>
+        </a><a class="email-card high" href="https://mail.google.com/mail/u/0/#search/rfc822msgid%3Ab522131f-2fea2bb6-1781099117-215474639342002-2395752@outbound.intercom.tradeify.co" target="_blank" rel="noopener">
+          <div class="avatar av-red">TT</div>
+          <div class="email-body">
+            <div class="ef">Tradeif.AI from Tradeify</div>
+            <div class="ea">help@tradeify.co</div>
+            <div class="es">Re: why today only 2 out of 5 of my trdovate accoun shows up in trodavoate</div>
+            <div class="ep"></div>
+            <div class="email-action"><i class="ti ti-arrow-right"></i>Check the follow-up message from Tradeif.AI about your Tradovate accounts.</div>
+            <div class="etags"><span class="tag tag-finance">finance</span><span class="tag tag-action">action</span></div>
+          </div>
+          <div class="email-right">
+            <div class="etime">8h ago</div>
+            <div class="eopen"><i class="ti ti-external-link"></i> Open</div>
+          </div>
+        </a><a class="email-card high" href="https://mail.google.com/mail/u/0/#search/rfc822msgid%3A20260610134502.e6ffd238c4aaa613@updates.notion.so" target="_blank" rel="noopener">
+          <div class="avatar av-red">NT</div>
+          <div class="email-body">
+            <div class="ef">Notion Team</div>
+            <div class="ea">notify@updates.notion.so</div>
+            <div class="es">A new device logged into your account</div>
+            <div class="ep">&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Strict//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd&quot;&gt; &lt;html dir=&quot;ltr&quot; xmlns=&quot;http://www.w3.org/1999/xhtm…</div>
+            <div class="email-action"><i class="ti ti-arrow-right"></i>Verify if you authorized the new device login on your Notion account.</div>
+            <div class="etags"><span class="tag tag-personal">personal</span><span class="tag tag-action">action</span></div>
+          </div>
+          <div class="email-right">
+            <div class="etime">8h ago</div>
+            <div class="eopen"><i class="ti ti-external-link"></i> Open</div>
+          </div>
+        </a><a class="email-card high" href="https://mail.google.com/mail/u/0/#search/rfc822msgid%3A178109798488.11233.17444255944920829209@pmta-int-nlb.xtools.tv" target="_blank" rel="noopener">
+          <div class="avatar av-red">TR</div>
+          <div class="email-body">
+            <div class="ef">TradingView</div>
+            <div class="ea">noreply@tradingview.com</div>
+            <div class="es">New device login detected — was this you?</div>
+            <div class="ep">&lt;!DOCTYPE html&gt; &lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot;&gt; &lt;head&gt; &lt;ti…</div>
+            <div class="email-action"><i class="ti ti-arrow-right"></i>Confirm if you authorized the new device login on your TradingView account.</div>
+            <div class="etags"><span class="tag tag-personal">personal</span><span class="tag tag-action">action</span></div>
+          </div>
+          <div class="email-right">
+            <div class="etime">8h ago</div>
+            <div class="eopen"><i class="ti ti-external-link"></i> Open</div>
+          </div>
+        </a><a class="email-card high" href="https://mail.google.com/mail/u/0/#search/rfc822msgid%3A58598683.11.1781128632752@api147.oauth.member.bf1.yahoo.com" target="_blank" rel="noopener">
+          <div class="avatar av-red">YA</div>
+          <div class="email-body">
+            <div class="ef">Yahoo</div>
+            <div class="ea">no-reply@cc.yahoo.com</div>
+            <div class="es">Your app password was used to sign in to a third-party app</div>
+            <div class="ep">&lt;html&gt; &lt;head&gt; &lt;meta charset=&quot;UTF-8&quot;&gt; &lt;style type=&quot;text/css&quot;&gt; html { -webkit-text-size-adjust:none; } body { width:100%; margin:0 auto; padding:0; font-style: no…</div>
+            <div class="email-action"><i class="ti ti-arrow-right"></i>Verify the third-party app access using your Yahoo app password.</div>
+            <div class="etags"><span class="tag tag-personal">personal</span><span class="tag tag-action">action</span></div>
+          </div>
+          <div class="email-right">
+            <div class="etime">16m ago</div>
+            <div class="eopen"><i class="ti ti-external-link"></i> Open</div>
+          </div>
+        </a><a class="email-card high" href="https://mail.google.com/mail/u/0/#search/rfc822msgid%3A363808597.4448.1781126798518@be130.member.bf1.yahoo.com" target="_blank" rel="noopener">
+          <div class="avatar av-red">YA</div>
+          <div class="email-body">
+            <div class="ef">Yahoo</div>
+            <div class="ea">no-reply@cc.yahoo.com</div>
+            <div class="es">An app password was generated for your Yahoo account</div>
+            <div class="ep">&lt;html&gt; &lt;head&gt; &lt;meta charset=&quot;UTF-8&quot;&gt; &lt;style type=&quot;text/css&quot;&gt; html { -webkit-text-size-adjust:none; } body { width:100%; margin:0 auto; padding:0; font-style: no…</div>
+            <div class="email-action"><i class="ti ti-arrow-right"></i>Confirm if you generated the app password for your Yahoo account.</div>
+            <div class="etags"><span class="tag tag-personal">personal</span><span class="tag tag-action">action</span></div>
+          </div>
+          <div class="email-right">
+            <div class="etime">47m ago</div>
+            <div class="eopen"><i class="ti ti-external-link"></i> Open</div>
+          </div>
+        </a><a class="email-card high" href="https://mail.google.com/mail/u/0/#search/rfc822msgid%3Am9dQ8ehsndiNgVcVFtZC3A@notifications.google.com" target="_blank" rel="noopener">
+          <div class="avatar av-red">GO</div>
+          <div class="email-body">
+            <div class="ef">Google</div>
+            <div class="ea">no-reply@accounts.google.com</div>
+            <div class="es">Security alert</div>
+            <div class="ep">[image: Google] App password created to sign in to your account simon432019@gmail.com If you didn&#x27;t generate this password for Daily Debrief, someone might be u…</div>
+            <div class="email-action"><i class="ti ti-arrow-right"></i>Confirm if you authorized the creation of this Google app password.</div>
+            <div class="etags"><span class="tag tag-personal">personal</span><span class="tag tag-action">action</span></div>
+          </div>
+          <div class="email-right">
+            <div class="etime">48m ago</div>
+            <div class="eopen"><i class="ti ti-external-link"></i> Open</div>
+          </div>
+        </a><a class="email-card high" href="https://mail.google.com/mail/u/0/#search/rfc822msgid%3Am2lVDW8etefo-UCOAOZ1OA@notifications.google.com" target="_blank" rel="noopener">
+          <div class="avatar av-red">GO</div>
+          <div class="email-body">
+            <div class="ef">Google</div>
+            <div class="ea">no-reply@accounts.google.com</div>
+            <div class="es">Security alert for one7rade@gmail.com</div>
+            <div class="ep">This is a copy of a security alert sent to one7rade@gmail.com. simon432019@gmail.com is the recovery email for this account. If you don&#x27;t recognize this account…</div>
+            <div class="email-action"><i class="ti ti-arrow-right"></i>Check the security alert copy forwarded for one7rade@gmail.com.</div>
+            <div class="etags"><span class="tag tag-personal">personal</span><span class="tag tag-action">action</span></div>
+          </div>
+          <div class="email-right">
+            <div class="etime">50m ago</div>
+            <div class="eopen"><i class="ti ti-external-link"></i> Open</div>
+          </div>
+        </a><a class="email-card high" href="https://mail.google.com/mail/u/0/#search/rfc822msgid%3A16.CC.00835.78CD82A6@i-0e3fc891c0ab65317.mta1vrest.sd.prd.sparkpost" target="_blank" rel="noopener">
+          <div class="avatar av-red">LA</div>
+          <div class="email-body">
+            <div class="ef">Ladders</div>
+            <div class="ea">jobs@my.theladders.com</div>
+            <div class="es">HealthEdge Offering Over $150K for Senior Business Systems Analyst job</div>
+            <div class="ep">&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Strict//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd&quot;&gt; &lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt; &lt;head&gt;…</div>
+            <div class="email-action"><i class="ti ti-arrow-right"></i>Review the Senior Business Systems Analyst job opportunity at HealthEdge.</div>
+            <div class="etags"><span class="tag tag-work">work</span><span class="tag tag-action">action</span></div>
+          </div>
+          <div class="email-right">
+            <div class="etime">18h ago</div>
+            <div class="eopen"><i class="ti ti-external-link"></i> Open</div>
+          </div>
+        </a><a class="email-card high" href="https://mail.google.com/mail/u/0/#search/rfc822msgid%3A1jqpdt4p6o1pl800@indeed.com" target="_blank" rel="noopener">
+          <div class="avatar av-red">IN</div>
+          <div class="email-body">
+            <div class="ef">Indeed</div>
+            <div class="ea">donotreply@jobalert.indeed.com</div>
+            <div class="es">VTS is hiring for Senior Technical Solutions Consultant. 19 more Consultant jobs in New York, NY.</div>
+            <div class="ep">Indeed Job Alert 20 new Consultant jobs in New York, NY Jobs 1-20 of 20 new jobs See matching results on Indeed: https://www.indeed.com/jobs?q=Consultant&amp;hl=en&amp;…</div>
+            <div class="email-action"><i class="ti ti-arrow-right"></i>Review the Senior Technical Solutions Consultant and other consultant jobs on Indeed.</div>
+            <div class="etags"><span class="tag tag-work">work</span><span class="tag tag-action">action</span></div>
+          </div>
+          <div class="email-right">
+            <div class="etime">3h ago</div>
+            <div class="eopen"><i class="ti ti-external-link"></i> Open</div>
+          </div>
+        </a><a class="email-card high" href="https://mail.google.com/mail/u/0/#search/rfc822msgid%3A1892511279.2859428.1781115579325@lva2-app63550.prod.linkedin.com" target="_blank" rel="noopener">
+          <div class="avatar av-red">LA</div>
+          <div class="email-body">
+            <div class="ef">LinkedIn Job Alerts</div>
+            <div class="ea">jobalerts-noreply@linkedin.com</div>
+            <div class="es">People Project Manager at Stripe</div>
+            <div class="ep">Your job alert for project manager in Florida New jobs match your preferences. Manage alerts: https://www.linkedin.com/comm/jobs/alerts?lipi=urn%3Ali%3Apage%3Ae…</div>
+            <div class="email-action"><i class="ti ti-arrow-right"></i>Review the People Project Manager job opportunity at Stripe on LinkedIn.</div>
+            <div class="etags"><span class="tag tag-work">work</span><span class="tag tag-action">action</span></div>
+          </div>
+          <div class="email-right">
+            <div class="etime">3h ago</div>
+            <div class="eopen"><i class="ti ti-external-link"></i> Open</div>
+          </div>
+        </a><a class="email-card high" href="https://mail.google.com/mail/u/0/#search/rfc822msgid%3AJwDVSybcgd_u5Rnm_QWxLQ@notifications.google.com" target="_blank" rel="noopener">
+          <div class="avatar av-red">JG</div>
+          <div class="email-body">
+            <div class="ef">Job Alerts from Google</div>
+            <div class="ea">notify-noreply@google.com</div>
+            <div class="es">10 new jobs for &quot;life science&quot; - 1 filter - Jun 10</div>
+            <div class="ep">Life science Near New York, NY +1 filter Logo Life Sciences Business Development Manager Schneider Electric New York, NY, United States via LinkedIn Time icon J…</div>
+            <div class="email-action"><i class="ti ti-arrow-right"></i>Review the 10 new &#x27;life science&#x27; job matches in the New York area.</div>
+            <div class="etags"><span class="tag tag-work">work</span><span class="tag tag-action">action</span></div>
+          </div>
+          <div class="email-right">
+            <div class="etime">4h ago</div>
+            <div class="eopen"><i class="ti ti-external-link"></i> Open</div>
+          </div>
+        </a><a class="email-card high" href="https://mail.yahoo.com/" target="_blank" rel="noopener">
+          <div class="avatar av-red">YA</div>
+          <div class="email-body">
+            <div class="ef">Yahoo</div>
+            <div class="ea">no-reply@cc.yahoo.com</div>
+            <div class="es">Your app password was used to sign in to a third-party app</div>
+            <div class="ep">&lt;html&gt; &lt;head&gt; &lt;meta charset=&quot;UTF-8&quot;&gt; &lt;style type=&quot;text/css&quot;&gt; html { -webkit-text-size-adjust:none; } body { width:100%; margin:0 auto; padding:0; font-style: no…</div>
+            <div class="email-action"><i class="ti ti-arrow-right"></i>Verify the third-party app access using your Yahoo app password.</div>
+            <div class="etags"><span class="tag tag-personal">personal</span><span class="tag tag-action">action</span></div>
+          </div>
+          <div class="email-right">
+            <div class="etime">16m ago</div>
+            <div class="eopen"><i class="ti ti-external-link"></i> Open</div>
+          </div>
+        </a><a class="email-card high" href="https://mail.yahoo.com/" target="_blank" rel="noopener">
+          <div class="avatar av-red">YA</div>
+          <div class="email-body">
+            <div class="ef">Yahoo</div>
+            <div class="ea">no-reply@cc.yahoo.com</div>
+            <div class="es">An app password was generated for your Yahoo account</div>
+            <div class="ep">&lt;html&gt; &lt;head&gt; &lt;meta charset=&quot;UTF-8&quot;&gt; &lt;style type=&quot;text/css&quot;&gt; html { -webkit-text-size-adjust:none; } body { width:100%; margin:0 auto; padding:0; font-style: no…</div>
+            <div class="email-action"><i class="ti ti-arrow-right"></i>Confirm if you generated the app password for your Yahoo account.</div>
+            <div class="etags"><span class="tag tag-personal">personal</span><span class="tag tag-action">action</span></div>
+          </div>
+          <div class="email-right">
+            <div class="etime">47m ago</div>
+            <div class="eopen"><i class="ti ti-external-link"></i> Open</div>
+          </div>
+        </a><a class="email-card high" href="https://mail.yahoo.com/" target="_blank" rel="noopener">
+          <div class="avatar av-red">GO</div>
+          <div class="email-body">
+            <div class="ef">Google</div>
+            <div class="ea">no-reply@accounts.google.com</div>
+            <div class="es">Security alert for simon432019@gmail.com</div>
+            <div class="ep">This is a copy of a security alert sent to simon432019@gmail.com. simon432019@yahoo.com is the recovery email for this account. If you don&#x27;t recognize this acco…</div>
+            <div class="email-action"><i class="ti ti-arrow-right"></i>Check the security alert copy forwarded to your recovery email.</div>
+            <div class="etags"><span class="tag tag-personal">personal</span><span class="tag tag-action">action</span></div>
+          </div>
+          <div class="email-right">
+            <div class="etime">49m ago</div>
+            <div class="eopen"><i class="ti ti-external-link"></i> Open</div>
+          </div>
+        </a></div><div class="sec-lbl"><i class="ti ti-eye"></i>Keep an eye on<span class="sc amber">9</span></div><div class="elist"><a class="email-card medium" href="https://mail.google.com/mail/u/0/#search/rfc822msgid%3A6a29de78.99af2db9.26d43b.4d43@mx.google.com" target="_blank" rel="noopener">
+          <div class="avatar av-amber">ON</div>
+          <div class="email-body">
+            <div class="ef">one7rade</div>
+            <div class="ea">one7rade@gmail.com</div>
+            <div class="es">GEX 2026-06-10 | SPY F5/Be6/Bu2 · QQQ F3/Be3/Bu0</div>
+            <div class="ep">+--------------------------------------------------+ | GEX Daily — 2026-06-10 10:00 PM +--------------------------------------------------+ | SPY CONFLUENCE SCO…</div>
+            
+            <div class="etags"><span class="tag tag-finance">finance</span></div>
+          </div>
+          <div class="email-right">
+            <div class="etime">13m ago</div>
+            <div class="eopen"><i class="ti ti-external-link"></i> Open</div>
+          </div>
+        </a><a class="email-card medium" href="https://mail.google.com/mail/u/0/#search/rfc822msgid%3Ac8100ad5ffcb66d39bedaa32066e66db3ad04296-20376977-337030291@google.com" target="_blank" rel="noopener">
+          <div class="avatar av-amber">GO</div>
+          <div class="email-body">
+            <div class="ef">Google</div>
+            <div class="ea">noreply-accounts@google.com</div>
+            <div class="es">You shared some Google Account data with Claude</div>
+            <div class="ep">Keep track of your Google Account data one7rade@gmail.com &lt;!--[if !mso]&gt;&lt;!--&gt; &lt;!--[if false]&gt;&lt;!--&gt; You&#x27;re receiving this email because you used Sign in with Goo…</div>
+            
+            <div class="etags"><span class="tag tag-personal">personal</span></div>
+          </div>
+          <div class="email-right">
+            <div class="etime">43m ago</div>
+            <div class="eopen"><i class="ti ti-external-link"></i> Open</div>
+          </div>
+        </a><a class="email-card medium" href="https://mail.google.com/mail/u/0/#search/rfc822msgid%3A3a72d19909065200bfcd19edde1f44b10f85064d-20376977-337030291@google.com" target="_blank" rel="noopener">
+          <div class="avatar av-amber">GO</div>
+          <div class="email-body">
+            <div class="ef">Google</div>
+            <div class="ea">noreply-accounts@google.com</div>
+            <div class="es">You shared some Google Account data with Tradeify</div>
+            <div class="ep">Keep track of your Google Account data one7rade@gmail.com &lt;!--[if !mso]&gt;&lt;!--&gt; &lt;!--[if false]&gt;&lt;!--&gt; You&#x27;re receiving this email because you used Sign in with Goo…</div>
+            
+            <div class="etags"><span class="tag tag-personal">personal</span></div>
+          </div>
+          <div class="email-right">
+            <div class="etime">3h ago</div>
+            <div class="eopen"><i class="ti ti-external-link"></i> Open</div>
+          </div>
+        </a><a class="email-card medium" href="https://mail.google.com/mail/u/0/#search/rfc822msgid%3Aa73c332e83c5d6204b6d24a304f8324b4c421388-20376977-337030291@google.com" target="_blank" rel="noopener">
+          <div class="avatar av-amber">GO</div>
+          <div class="email-body">
+            <div class="ef">Google</div>
+            <div class="ea">noreply-accounts@google.com</div>
+            <div class="es">You shared some Google Account data with Tradeify</div>
+            <div class="ep">Keep track of your Google Account data one7rade@gmail.com &lt;!--[if !mso]&gt;&lt;!--&gt; &lt;!--[if false]&gt;&lt;!--&gt; You&#x27;re receiving this email because you used Sign in with Goo…</div>
+            
+            <div class="etags"><span class="tag tag-personal">personal</span></div>
+          </div>
+          <div class="email-right">
+            <div class="etime">5h ago</div>
+            <div class="eopen"><i class="ti ti-external-link"></i> Open</div>
+          </div>
+        </a><a class="email-card medium" href="https://mail.google.com/mail/u/0/#search/rfc822msgid%3AAX1_FpY_Q8u3AtccDpMcTQ@geopod-ismtpd-47" target="_blank" rel="noopener">
+          <div class="avatar av-amber">TR</div>
+          <div class="email-body">
+            <div class="ef">Tradeify</div>
+            <div class="ea">info@tradeify.co</div>
+            <div class="es">Important: An update on today&#x27;s account disruption</div>
+            <div class="ep">&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt; &lt;html dir=&quot;ltr&quot; lang=&quot;en&quot; xmlns:v=&quot;urn…</div>
+            
+            <div class="etags"><span class="tag tag-finance">finance</span></div>
+          </div>
+          <div class="email-right">
+            <div class="etime">7h ago</div>
+            <div class="eopen"><i class="ti ti-external-link"></i> Open</div>
+          </div>
+        </a><a class="email-card medium" href="https://mail.google.com/mail/u/0/#search/rfc822msgid%3AAPI.1781126518218.17811265181870923.JavaMail.csprod@ny5ibop3" target="_blank" rel="noopener">
+          <div class="avatar av-amber">IB</div>
+          <div class="email-body">
+            <div class="ef">Interactive Brokers</div>
+            <div class="ea">noresponse@email.interactivebrokers.com</div>
+            <div class="es">Market Volatility, World Cup Economics, and Durable Growth
+ Investing</div>
+            <div class="ep">Newsletter From Traders&#x27; Insight | Your Daily Traders&#x27; Insight - June 10, 2026 Copyright &amp;#169; Interactive Brokers Interactive Brokers LLC Message Reference Nu…</div>
+            
+            <div class="etags"><span class="tag tag-finance">finance</span></div>
+          </div>
+          <div class="email-right">
+            <div class="etime">51m ago</div>
+            <div class="eopen"><i class="ti ti-external-link"></i> Open</div>
+          </div>
+        </a><a class="email-card medium" href="https://mail.google.com/mail/u/0/#search/rfc822msgid%3A0.1.1D.799.1DCF91C72B29F42.0@omptrans.card-e.em.discover.com" target="_blank" rel="noopener">
+          <div class="avatar av-amber">DI</div>
+          <div class="email-body">
+            <div class="ef">Discover</div>
+            <div class="ea">discover@card-e.em.discover.com</div>
+            <div class="es">Exciting account changes arrive in July</div>
+            <div class="ep">&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt; &lt;html xmlns=&quot;http://www.w3.org/1999/xh…</div>
+            
+            <div class="etags"><span class="tag tag-finance">finance</span></div>
+          </div>
+          <div class="email-right">
+            <div class="etime">1h ago</div>
+            <div class="eopen"><i class="ti ti-external-link"></i> Open</div>
+          </div>
+        </a><a class="email-card medium" href="https://mail.google.com/mail/u/0/#search/rfc822msgid%3A0E.CA.29756.47CB92A6@i-0960891294fa5ba3d.mta6vrest.sd.prd.sparkpost" target="_blank" rel="noopener">
+          <div class="avatar av-amber">CX</div>
+          <div class="email-body">
+            <div class="ef">Capital One | Venture X</div>
+            <div class="ea">capitalone@notification.capitalone.com</div>
+            <div class="es">We&#x27;ve received your payment</div>
+            <div class="ep">View your payment details. -- [ [Sign in to your account] [Sign in to your account] ](https://click-notification.capitalone.com/f/a/V_OsgsVQypLdQOspovr3BQ~~/AAA…</div>
+            
+            <div class="etags"><span class="tag tag-finance">finance</span></div>
+          </div>
+          <div class="email-right">
+            <div class="etime">2h ago</div>
+            <div class="eopen"><i class="ti ti-external-link"></i> Open</div>
+          </div>
+        </a><a class="email-card medium" href="https://mail.google.com/mail/u/0/#search/rfc822msgid%3Abounce--kgmi9rfasarx42dw@send.smartbrief.com" target="_blank" rel="noopener">
+          <div class="avatar av-amber">CS</div>
+          <div class="email-body">
+            <div class="ef">CTA SmartBrief</div>
+            <div class="ea">cta@smartbrief.com</div>
+            <div class="es">OnePlus 15 adds cross-platform AirDrop file sharing</div>
+            <div class="ep">Consumer Technology Association SmartBrief June 10, 2026 https://r.smartbrief.com/resp/vhbCCVzobaDIaplyCigWonBWcNmaWb TODAY&#x27;S HEADLINES TODAY&#x27;S DIGITAL PULSE * …</div>
+            
+            <div class="etags"><span class="tag tag-work">work</span></div>
+          </div>
+          <div class="email-right">
+            <div class="etime">3h ago</div>
+            <div class="eopen"><i class="ti ti-external-link"></i> Open</div>
+          </div>
+        </a></div><div class="sec-lbl"><i class="ti ti-inbox"></i>Low priority<span class="sc muted">34</span></div><div class="elist"><a class="email-card low" href="https://mail.google.com/mail/u/0/#search/rfc822msgid%3AsnEEIqgrTiOFug_oNGMEiA@geopod-ismtpd-13" target="_blank" rel="noopener">
+          <div class="avatar av-blue">CS</div>
+          <div class="email-body">
+            <div class="ef">Cryptotwits by Stocktwits</div>
+            <div class="ea">newsletter@cryptotwits.stocktwits.com</div>
+            <div class="es">Local Altcoin Volunteers To Go First So The Rest Can Watch What Happens  👷</div>
+            <div class="ep">---------- ## **OVERVIEW** # **Local Altcoin Volunteers To Go First So The Rest Can Watch What Happens **👷 #### **Here’s What’s Happening **👇️ Today’s top trend…</div>
+            
+            <div class="etags"><span class="tag tag-promo">promo</span><span class="tag tag-finance">finance</span></div>
+          </div>
+          <div class="email-right">
+            <div class="etime">45m ago</div>
+            <div class="eopen"><i class="ti ti-external-link"></i> Open</div>
+          </div>
+        </a><a class="email-card low" href="https://mail.google.com/mail/u/0/#search/rfc822msgid%3A1709128608.115741.1781123162882@cell-1-7bd46c9c6f-ttgjd" target="_blank" rel="noopener">
+          <div class="avatar av-blue">TT</div>
+          <div class="email-body">
+            <div class="ef">Take Profit Trader</div>
+            <div class="ea">team@takeprofittrader.com</div>
+            <div class="es">⚽ World Cup PRO Account Giveaway!</div>
+            <div class="ep">Rep your country for a chance to win…Traders, The World Cup kicks off tomorrow (literally) and your country is about to take the stage. So we want to have some …</div>
+            
+            <div class="etags"><span class="tag tag-promo">promo</span></div>
+          </div>
+          <div class="email-right">
+            <div class="etime">1h ago</div>
+            <div class="eopen"><i class="ti ti-external-link"></i> Open</div>
+          </div>
+        </a><a class="email-card low" href="https://mail.google.com/mail/u/0/#search/rfc822msgid%3A39.53.53907.C35B92A6@i-057b46139e5ea27cd.mta1vrest.sd.prd.sparkpost" target="_blank" rel="noopener">
+          <div class="avatar av-blue">C4</div>
+          <div class="email-body">
+            <div class="ef">ClickUpdates 4.05</div>
+            <div class="ea">clickupdates@mail.clickup.com</div>
+            <div class="es">What’s new in ClickUp: AI meetings, Outlook context, smarter agents and more!</div>
+            <div class="ep">ClickUp EmailYour meetings, inbox, and agent workflows just got a whole lot more useful. ﻿͏ ﻿͏ ﻿͏ ﻿͏ ﻿͏ ﻿͏ ﻿͏ ﻿͏ ﻿͏ ﻿͏ ﻿͏ ﻿͏ ﻿͏ ﻿͏ ﻿͏ ﻿͏ ﻿͏ ﻿͏ ﻿͏ ﻿͏ ﻿͏ ﻿͏ ﻿͏ ﻿͏…</div>
+            
+            <div class="etags"><span class="tag tag-promo">promo</span></div>
+          </div>
+          <div class="email-right">
+            <div class="etime">3h ago</div>
+            <div class="eopen"><i class="ti ti-external-link"></i> Open</div>
+          </div>
+        </a><a class="email-card low" href="https://mail.google.com/mail/u/0/#search/rfc822msgid%3A20260610172723.5f27b88fca46c9e7@lc.tradecopia.com" target="_blank" rel="noopener">
+          <div class="avatar av-blue">TR</div>
+          <div class="email-body">
+            <div class="ef">Tradecopia</div>
+            <div class="ea">info@tradecopia.com</div>
+            <div class="es">Welcome to the team! - Tradecopia</div>
+            <div class="ep">Tradecopia [https://assets.cdn.filesafe.space/h0WS8uiKJiZOzcz7ULIk/media/69c2f962eaed064756a64ee7.png] Welcome Aboard WELCOME TO THE TEAM, LEAVE A QUICK REVIEW …</div>
+            
+            <div class="etags"><span class="tag tag-promo">promo</span></div>
+          </div>
+          <div class="email-right">
+            <div class="etime">4h ago</div>
+            <div class="eopen"><i class="ti ti-external-link"></i> Open</div>
+          </div>
+        </a><a class="email-card low" href="https://mail.google.com/mail/u/0/#search/rfc822msgid%3A81.A8.20180.F29992A6@i-0bcc15373a4ae2ef8.mta1vrest.sd.prd.sparkpost" target="_blank" rel="noopener">
+          <div class="avatar av-blue">HO</div>
+          <div class="email-body">
+            <div class="ef">Honey</div>
+            <div class="ea">insiderdeals@my.joinhoney.com</div>
+            <div class="es">The forecast 🌤️ calls for savings on hot styles 😎</div>
+            <div class="ep">Honey Deals to heat up your closet without burning your budget ͏ ͏ ͏ ͏ ͏ ͏ ͏͏ ͏ ͏ ͏ ͏ ͏ ͏͏ ͏ ͏ ͏ ͏ ͏ ͏͏ ͏ ͏ ͏ ͏ ͏ ͏͏ ͏ ͏ ͏ ͏ ͏ ͏͏ ͏ ͏ ͏ ͏ ͏ ͏͏ ͏ ͏ ͏ ͏ ͏ ͏͏ ͏ ͏ …</div>
+            
+            <div class="etags"><span class="tag tag-promo">promo</span></div>
+          </div>
+          <div class="email-right">
+            <div class="etime">5h ago</div>
+            <div class="eopen"><i class="ti ti-external-link"></i> Open</div>
+          </div>
+        </a><a class="email-card low" href="https://mail.google.com/mail/u/0/#search/rfc822msgid%3AdgTv2AUBAPzzkUT785FEAZ6x1ayXn_8kHX_fnyifbw.1781100095@mail.notion.so" target="_blank" rel="noopener">
+          <div class="avatar av-blue">NT</div>
+          <div class="email-body">
+            <div class="ef">Notion Team</div>
+            <div class="ea">team@mail.notion.so</div>
+            <div class="es">A helpful teammate, built into Notion</div>
+            <div class="ep">Agent completes tasks so you can focus on the important parts. You assign the tasks. Agent does the work for you. Bug Tracking Dashboard ( https://www.notion.so…</div>
+            
+            <div class="etags"><span class="tag tag-promo">promo</span></div>
+          </div>
+          <div class="email-right">
+            <div class="etime">8h ago</div>
+            <div class="eopen"><i class="ti ti-external-link"></i> Open</div>
+          </div>
+        </a><a class="email-card low" href="https://mail.google.com/mail/u/0/#search/rfc822msgid%3A20260610120132.349908ceffe2da9d@cio129328.polymarket.com" target="_blank" rel="noopener">
+          <div class="avatar av-blue">PO</div>
+          <div class="email-body">
+            <div class="ef">Polymarket</div>
+            <div class="ea">noreply@polymarket.com</div>
+            <div class="es">$35m helicopter vs $20k drone</div>
+            <div class="ep">Polygraph by PolymarketPolygraph by Polymarket ( https://poly.market/0d7VvzI )June 10th, 2026Unsubscribe ( https://track.customer.io/manage_subscription_prefere…</div>
+            
+            <div class="etags"><span class="tag tag-promo">promo</span></div>
+          </div>
+          <div class="email-right">
+            <div class="etime">10h ago</div>
+            <div class="eopen"><i class="ti ti-external-link"></i> Open</div>
+          </div>
+        </a><a class="email-card low" href="https://mail.google.com/mail/u/0/#search/rfc822msgid%3A815334057.7475148.1781090167259@cell-1-68ddb94b59-7z2sk" target="_blank" rel="noopener">
+          <div class="avatar av-blue">TT</div>
+          <div class="email-body">
+            <div class="ef">Take Profit Trader</div>
+            <div class="ea">team@takeprofittrader.com</div>
+            <div class="es">⚡ 40% Off + No Activation Fee</div>
+            <div class="ep">Back for a limited time…Traders, With summer now in full swing… We’ve decided to bring back our popular NOFEE40 deal http://takeprofittrader.com?he=one7rade@gma…</div>
+            
+            <div class="etags"><span class="tag tag-promo">promo</span></div>
+          </div>
+          <div class="email-right">
+            <div class="etime">10h ago</div>
+            <div class="eopen"><i class="ti ti-external-link"></i> Open</div>
+          </div>
+        </a><a class="email-card low" href="https://mail.google.com/mail/u/0/#search/rfc822msgid%3A20260610030024.2efaf990309ebb6c@email.claude.com" target="_blank" rel="noopener">
+          <div class="avatar av-blue">CT</div>
+          <div class="email-body">
+            <div class="ef">Claude Team</div>
+            <div class="ea">no-reply@email.claude.com</div>
+            <div class="es">Claude Fable 5 is here</div>
+            <div class="ep">Hand off large migrations, complex implementations, and multi-day autonomous sessions. ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏…</div>
+            
+            <div class="etags"><span class="tag tag-promo">promo</span></div>
+          </div>
+          <div class="email-right">
+            <div class="etime">19h ago</div>
+            <div class="eopen"><i class="ti ti-external-link"></i> Open</div>
+          </div>
+        </a><a class="email-card low" href="https://mail.google.com/mail/u/0/#search/rfc822msgid%3A37cc27d4-87c9-4b96-a3f1-d088505e8894@atl1s11mta93.xt.local" target="_blank" rel="noopener">
+          <div class="avatar av-blue">YF</div>
+          <div class="email-body">
+            <div class="ef">YMCA South Florida</div>
+            <div class="ea">marketing@ymcasouthflorida.org</div>
+            <div class="es">Come in Style. Stay for the Impact.</div>
+            <div class="ep">10-Year Anniversary Beach Ball Gala ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ …</div>
+            
+            <div class="etags"><span class="tag tag-promo">promo</span><span class="tag tag-event">event</span></div>
+          </div>
+          <div class="email-right">
+            <div class="etime">33m ago</div>
+            <div class="eopen"><i class="ti ti-external-link"></i> Open</div>
+          </div>
+        </a><a class="email-card low" href="https://mail.google.com/mail/u/0/#search/rfc822msgid%3A20260610205730.f2dd143c59f1a037@news.temuemail.com" target="_blank" rel="noopener">
+          <div class="avatar av-blue">TE</div>
+          <div class="email-body">
+            <div class="ef">Temu</div>
+            <div class="ea">email@news.temuemail.com</div>
+            <div class="es">Please Confirm Your 2026 Gift!</div>
+            <div class="ep">----------------------------------------------------------------------- Temu ----------------------------------------------------------------------- To properly…</div>
+            
+            <div class="etags"><span class="tag tag-spam">spam</span></div>
+          </div>
+          <div class="email-right">
+            <div class="etime">1h ago</div>
+            <div class="eopen"><i class="ti ti-external-link"></i> Open</div>
+          </div>
+        </a><a class="email-card low" href="https://mail.google.com/mail/u/0/#search/rfc822msgid%3A97c115a0-2109-4344-94fe-4e233e58bb1c@technolutions.net" target="_blank" rel="noopener">
+          <div class="avatar av-blue">UI</div>
+          <div class="email-body">
+            <div class="ef">University of San Francisco, Data Institute</div>
+            <div class="ea">datainstitute@usfca.edu</div>
+            <div class="es">Summer &amp; Fall at the Data Institute!</div>
+            <div class="ep">Advance Your Skills and Achieve Your Goals Dear Simon, At the University of San Francisco Data Institute &lt;https://www.usfca.edu/data-institute&gt;, our certificate…</div>
+            
+            <div class="etags"><span class="tag tag-promo">promo</span></div>
+          </div>
+          <div class="email-right">
+            <div class="etime">1h ago</div>
+            <div class="eopen"><i class="ti ti-external-link"></i> Open</div>
+          </div>
+        </a><a class="email-card low" href="https://mail.google.com/mail/u/0/#search/rfc822msgid%3A0100019eb2c572ae-3517eecb-1e77-4bfd-8ab9-5db40c6f341b-000000@email.amazonses.com" target="_blank" rel="noopener">
+          <div class="avatar av-blue">ZI</div>
+          <div class="email-body">
+            <div class="ef">Zillow</div>
+            <div class="ea">zmail@zmail.zillow.com</div>
+            <div class="es">What APR means for your mortgage</div>
+            <div class="ep">And how it’s calculated. Zillow table, td, tr, div, font, p, li { font-family: Helvetica, Arial, sans-serif !important; mso-hyphenate: none; } a { text-decorati…</div>
+            
+            <div class="etags"><span class="tag tag-promo">promo</span></div>
+          </div>
+          <div class="email-right">
+            <div class="etime">3h ago</div>
+            <div class="eopen"><i class="ti ti-external-link"></i> Open</div>
+          </div>
+        </a><a class="email-card low" href="https://mail.google.com/mail/u/0/#search/rfc822msgid%3A20260610180529.b992dad4afedca85@e.casper.com" target="_blank" rel="noopener">
+          <div class="avatar av-blue">CA</div>
+          <div class="email-body">
+            <div class="ef">Casper</div>
+            <div class="ea">support@e.casper.com</div>
+            <div class="es">Early Access to 4th of July savings</div>
+            <div class="ep">*SHOP* [https://cdn.us1.exponea.com/casper-prod/e/.eJwTUrj8jiNu1V3Ddx8f9H30Tc27y-z55OnEspz9Edw5i3b8tbkjJZxRUlJQbKWvn5xYXJBapJecn6tveL7J-VZm1y1HKwEuptJiIa6knPz83…</div>
+            
+            <div class="etags"><span class="tag tag-promo">promo</span></div>
+          </div>
+          <div class="email-right">
+            <div class="etime">4h ago</div>
+            <div class="eopen"><i class="ti ti-external-link"></i> Open</div>
+          </div>
+        </a><a class="email-card low" href="https://mail.google.com/mail/u/0/#search/rfc822msgid%3Aladders.xserial.s56eec/4aciA+eAQsJjBjrvyA2zN/wKX72oNFxJZqv4/fCfJVJRR8+oNNiG9qf7Edm8hRgY+7RZRLzKznr7vcxHd4mUrkJSlzW8zZF1Hlsm/mRseBQJCt9t9iOBELkAZoCDx@jobs.theladders.com" target="_blank" rel="noopener">
+          <div class="avatar av-blue">LA</div>
+          <div class="email-body">
+            <div class="ef">Ladders</div>
+            <div class="ea">jobs@my.theladders.com</div>
+            <div class="es">Transform Your Career with $100K+ Job Access</div>
+            <div class="ep">[https://multimedia.jobs.theladders.com/ladders-B/photos/4ff98279-60c5-4548-baa8-994c07b8e22c.png] [https://multimedia.jobs.theladders.com/ladders-B/photos/b88e…</div>
+            
+            <div class="etags"><span class="tag tag-promo">promo</span></div>
+          </div>
+          <div class="email-right">
+            <div class="etime">4h ago</div>
+            <div class="eopen"><i class="ti ti-external-link"></i> Open</div>
+          </div>
+        </a><a class="email-card low" href="https://mail.google.com/mail/u/0/#search/rfc822msgid%3A21.09.02925.8AC992A6@i-0c19b7dfcaaac5dd7.mta3vrest.sd.prd.sparkpost" target="_blank" rel="noopener">
+          <div class="avatar av-blue">AS</div>
+          <div class="email-body">
+            <div class="ef">ASOS</div>
+            <div class="ea">hello@official.asos.com</div>
+            <div class="es">New arrivals</div>
+            <div class="ep">Shop what&#x27;s just landed at ASOS ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ …</div>
+            
+            <div class="etags"><span class="tag tag-promo">promo</span></div>
+          </div>
+          <div class="email-right">
+            <div class="etime">4h ago</div>
+            <div class="eopen"><i class="ti ti-external-link"></i> Open</div>
+          </div>
+        </a><a class="email-card low" href="https://mail.google.com/mail/u/0/#search/rfc822msgid%3A55.C5.44088.C48D82A6@i-0964f9b6be0144a00.mta1vrest.sd.prd.sparkpost" target="_blank" rel="noopener">
+          <div class="avatar av-blue">LA</div>
+          <div class="email-body">
+            <div class="ef">Ladders</div>
+            <div class="ea">jobs@my.theladders.com</div>
+            <div class="es">Make Every Job Application Count with a Custom Cover Letter</div>
+            <div class="ep">&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Strict//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd&quot;&gt; &lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot; lang=&quot;e…</div>
+            
+            <div class="etags"><span class="tag tag-promo">promo</span></div>
+          </div>
+          <div class="email-right">
+            <div class="etime">18h ago</div>
+            <div class="eopen"><i class="ti ti-external-link"></i> Open</div>
+          </div>
+        </a><a class="email-card low" href="https://mail.yahoo.com/" target="_blank" rel="noopener">
+          <div class="avatar av-blue">MA</div>
+          <div class="email-body">
+            <div class="ef">Mazda</div>
+            <div class="ea">mazda@email-mazdausa.com</div>
+            <div class="es">Simon, interested in the Safest New-Car Brand according to Consumer Reports?</div>
+            <div class="ep">Mazda Plus, see which film starring the Mazda CX-5 was voted audience favorite. &amp;zwnj; &amp;zwnj; &amp;zwnj; &amp;zwnj; &amp;zwnj; &amp;zwnj; &amp;zwnj; &amp;zwnj; &amp;zwnj;&amp;nbsp &amp;zwnj; &amp;zwnj…</div>
+            
+            <div class="etags"><span class="tag tag-promo">promo</span></div>
+          </div>
+          <div class="email-right">
+            <div class="etime">6m ago</div>
+            <div class="eopen"><i class="ti ti-external-link"></i> Open</div>
+          </div>
+        </a><a class="email-card low" href="https://mail.yahoo.com/" target="_blank" rel="noopener">
+          <div class="avatar av-blue">LO</div>
+          <div class="email-body">
+            <div class="ef">Lovehoney</div>
+            <div class="ea">news@mail.lovehoney.com</div>
+            <div class="es">Happy Hour is ON 🍸 3 hours ONLY</div>
+            <div class="ep">Unlock your secret discount now 🔓 &lt;https://www.lovehoney.com/&gt; Sex Toys &lt;https://www.lovehoney.com/sex-toys/&gt; Lingerie &lt;https://www.lovehoney.com/lingerie/&gt; Ess…</div>
+            
+            <div class="etags"><span class="tag tag-promo">promo</span></div>
+          </div>
+          <div class="email-right">
+            <div class="etime">6m ago</div>
+            <div class="eopen"><i class="ti ti-external-link"></i> Open</div>
+          </div>
+        </a><a class="email-card low" href="https://mail.yahoo.com/" target="_blank" rel="noopener">
+          <div class="avatar av-blue">DE</div>
+          <div class="email-body">
+            <div class="ef">Dermstore</div>
+            <div class="ea">info@n.dermstore.com</div>
+            <div class="es">Your SkinCeuticals P-TIOX Routine, Now 15% Off</div>
+            <div class="ep">Skin Care &lt;https://links.n.dermstore.com/ls/click?upn=u001.KPLE93ZPpPLWrbpy7BH0ifHcjj-2FFxwRGfJcfqwzyB6-2BvrcyTrv1xG-2FMna64yAMetmDrNtSKluohNdgNWMelM0HUsZ5McuVj…</div>
+            
+            <div class="etags"><span class="tag tag-promo">promo</span></div>
+          </div>
+          <div class="email-right">
+            <div class="etime">8m ago</div>
+            <div class="eopen"><i class="ti ti-external-link"></i> Open</div>
+          </div>
+        </a><a class="email-card low" href="https://mail.yahoo.com/" target="_blank" rel="noopener">
+          <div class="avatar av-blue">SJ</div>
+          <div class="email-body">
+            <div class="ef">Sol de Janeiro</div>
+            <div class="ea">ola@soldejaneiro.com</div>
+            <div class="es">Cue the hair flip ✨ New Milky Leave-In Conditioner</div>
+            <div class="ep">[View this email in your browser](https://manage.kmail-lists.com/subscripti= ons/web-view?a=3DTYbRmA&amp;c=3D01JHMH7BPGB24283BAW9RTMZ66&amp;k=3Da012f317188e3585= 4c9707…</div>
+            
+            <div class="etags"><span class="tag tag-promo">promo</span></div>
+          </div>
+          <div class="email-right">
+            <div class="etime">13m ago</div>
+            <div class="eopen"><i class="ti ti-external-link"></i> Open</div>
+          </div>
+        </a><a class="email-card low" href="https://mail.yahoo.com/" target="_blank" rel="noopener">
+          <div class="avatar av-blue">GA</div>
+          <div class="email-body">
+            <div class="ef">GasBuddy</div>
+            <div class="ea">et-reply@email.gasbuddy.com</div>
+            <div class="es">Combat high gas prices with 10¢/gal extra ⛽</div>
+            <div class="ep">https://click.email.gasbuddy.com/?qs=ABB7InYiOjEsImQiOjQ5MDN9AAwAAAAAARxMIV1-4wYOoLBJY5l5_6mSQPWYPDYeJD5tJywpIV9Z0clcgFTcaptP-9geAcrCQM6WDfrKDSE9S0N9uL4oN2rh0i8…</div>
+            
+            <div class="etags"><span class="tag tag-promo">promo</span></div>
+          </div>
+          <div class="email-right">
+            <div class="etime">15m ago</div>
+            <div class="eopen"><i class="ti ti-external-link"></i> Open</div>
+          </div>
+        </a><a class="email-card low" href="https://mail.yahoo.com/" target="_blank" rel="noopener">
+          <div class="avatar av-blue">JV</div>
+          <div class="email-body">
+            <div class="ef">JetBlue Vacations</div>
+            <div class="ea">jetblueairways@marketing.jetblue.com</div>
+            <div class="es">Up to $300 off is up for grabs. 👀</div>
+            <div class="ep">Save big on flight + hotel packages for summer travel and beyond. Save big on flight + hotel packages for summer travel and beyond. JetBlue Vacations JetBlue Va…</div>
+            
+            <div class="etags"><span class="tag tag-promo">promo</span></div>
+          </div>
+          <div class="email-right">
+            <div class="etime">16m ago</div>
+            <div class="eopen"><i class="ti ti-external-link"></i> Open</div>
+          </div>
+        </a><a class="email-card low" href="https://mail.yahoo.com/" target="_blank" rel="noopener">
+          <div class="avatar av-blue">VA</div>
+          <div class="email-body">
+            <div class="ef">VacationsToGo.com</div>
+            <div class="ea">vtgmail@list.vacationstogo.com</div>
+            <div class="es">Special Offer for Past Guests of Princess, Carnival, Cunard, Holland America &amp; Seabourn!</div>
+            <div class="ep">This message was sent in HTML format. Either your email client does not support this format or the message was altered during delivery to you. Please click on t…</div>
+            
+            <div class="etags"><span class="tag tag-promo">promo</span></div>
+          </div>
+          <div class="email-right">
+            <div class="etime">18m ago</div>
+            <div class="eopen"><i class="ti ti-external-link"></i> Open</div>
+          </div>
+        </a><a class="email-card low" href="https://mail.yahoo.com/" target="_blank" rel="noopener">
+          <div class="avatar av-blue">󠀁󠀁</div>
+          <div class="email-body">
+            <div class="ef">󠀁Y󠀁r󠀁ef󠀁y 󠀁I󠀁n󠀁f󠀁o</div>
+            <div class="ea">usanfjmxkliqwoeis@fotos-top.com</div>
+            <div class="es">󠀁S󠀁t󠀁r󠀁ug󠀁g󠀁li󠀁n󠀁g󠀁 w󠀁i󠀁t󠀁h 󠀁pr󠀁i󠀁va󠀁t󠀁e󠀁 s󠀁t󠀁ud󠀁en󠀁t󠀁 l󠀁oa󠀁ns󠀁?󠀁 󠀁Y󠀁ou󠀁 h󠀁av󠀁e 󠀁o󠀁pt󠀁io󠀁ns󠀁.</div>
+            <div class="ep">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot; &quot;http://www.w3.org/TR/html4/loose.dtd&quot;&gt; &lt;html&gt; &lt;head&gt; &lt;style data-id=&quot;imagecarouselblock&quot; type=&quot;t…</div>
+            
+            <div class="etags"><span class="tag tag-spam">spam</span></div>
+          </div>
+          <div class="email-right">
+            <div class="etime">19m ago</div>
+            <div class="eopen"><i class="ti ti-external-link"></i> Open</div>
+          </div>
+        </a><a class="email-card low" href="https://mail.yahoo.com/" target="_blank" rel="noopener">
+          <div class="avatar av-blue">HA</div>
+          <div class="email-body">
+            <div class="ef">Hims | Affiliate</div>
+            <div class="ea">info@mortgagemattersnews.com</div>
+            <div class="es">Rx meds delivered straight to your door for free if prescribed. start
+ your free consultation.</div>
+            <div class="ep"></div>
+            
+            <div class="etags"><span class="tag tag-spam">spam</span></div>
+          </div>
+          <div class="email-right">
+            <div class="etime">32m ago</div>
+            <div class="eopen"><i class="ti ti-external-link"></i> Open</div>
+          </div>
+        </a><a class="email-card low" href="https://mail.yahoo.com/" target="_blank" rel="noopener">
+          <div class="avatar av-blue">YE</div>
+          <div class="email-body">
+            <div class="ef">Your Flooring Experts</div>
+            <div class="ea">info@theshelfspotlight.com</div>
+            <div class="es">Explore Carpet and Flooring Styles for Your Home</div>
+            <div class="ep"></div>
+            
+            <div class="etags"><span class="tag tag-spam">spam</span></div>
+          </div>
+          <div class="email-right">
+            <div class="etime">7h ago</div>
+            <div class="eopen"><i class="ti ti-external-link"></i> Open</div>
+          </div>
+        </a><a class="email-card low" href="https://mail.yahoo.com/" target="_blank" rel="noopener">
+          <div class="avatar av-blue">IQ</div>
+          <div class="email-body">
+            <div class="ef">Insurify Auto Quotes</div>
+            <div class="ea">info@purrandpawpapers.com</div>
+            <div class="es">Cheap quotes from car insurance companies as low as $29/month</div>
+            <div class="ep"></div>
+            
+            <div class="etags"><span class="tag tag-spam">spam</span></div>
+          </div>
+          <div class="email-right">
+            <div class="etime">3h ago</div>
+            <div class="eopen"><i class="ti ti-external-link"></i> Open</div>
+          </div>
+        </a><a class="email-card low" href="https://mail.yahoo.com/" target="_blank" rel="noopener">
+          <div class="avatar av-blue">CN</div>
+          <div class="email-body">
+            <div class="ef">CycleBar - NoMad</div>
+            <div class="ea">nomad@cyclebar.com</div>
+            <div class="es">Knicks Pregame: Buy 5, Get 2 FREE  🧡💙</div>
+            <div class="ep">( https://www.cyclebar.com/ ) ******************* *🏀 GO KNICKS ⛹️‍♂️* ******************* *BUY 5, GET 2 FREE* We&#x27;re celebrating KNICKS game-day with another FIN…</div>
+            
+            <div class="etags"><span class="tag tag-promo">promo</span></div>
+          </div>
+          <div class="email-right">
+            <div class="etime">49m ago</div>
+            <div class="eopen"><i class="ti ti-external-link"></i> Open</div>
+          </div>
+        </a><a class="email-card low" href="https://mail.yahoo.com/" target="_blank" rel="noopener">
+          <div class="avatar av-blue">NB</div>
+          <div class="email-body">
+            <div class="ef">New Balance</div>
+            <div class="ea">newbalance@email.newbalance.com</div>
+            <div class="es">Footwear favorites</div>
+            <div class="ep">This month&#x27;s top styles. ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌…</div>
+            
+            <div class="etags"><span class="tag tag-promo">promo</span></div>
+          </div>
+          <div class="email-right">
+            <div class="etime">51m ago</div>
+            <div class="eopen"><i class="ti ti-external-link"></i> Open</div>
+          </div>
+        </a><a class="email-card low" href="https://mail.yahoo.com/" target="_blank" rel="noopener">
+          <div class="avatar av-blue">JS</div>
+          <div class="email-body">
+            <div class="ef">JG Wentworth | Financial Solutions</div>
+            <div class="ea">info@culinarycompassnews.com</div>
+            <div class="es">Is Your Credit Card Balance Overwhelming?</div>
+            <div class="ep"></div>
+            
+            <div class="etags"><span class="tag tag-spam">spam</span></div>
+          </div>
+          <div class="email-right">
+            <div class="etime">2h ago</div>
+            <div class="eopen"><i class="ti ti-external-link"></i> Open</div>
+          </div>
+        </a><a class="email-card low" href="https://mail.yahoo.com/" target="_blank" rel="noopener">
+          <div class="avatar av-blue">BL</div>
+          <div class="email-body">
+            <div class="ef">Bloomingdale&#x27;s Loyallist</div>
+            <div class="ea">bloomingdalesloyallist@loyallist.bloomingdales.com</div>
+            <div class="es">Wedding-ready lab-grown diamonds</div>
+            <div class="ep">Bloomingdale&#x27;s From the Bloomingdale’s Fine Collection. &amp;zwnj; &amp;zwnj; &amp;zwnj; &amp;zwnj; &amp;zwnj; &amp;zwnj; &amp;zwnj; &amp;zwnj; &amp;zwnj; &amp;zwnj; &amp;zwnj; &amp;zwnj; &amp;zwnj; &amp;zwnj; &amp;zwnj;…</div>
+            
+            <div class="etags"><span class="tag tag-promo">promo</span></div>
+          </div>
+          <div class="email-right">
+            <div class="etime">1h ago</div>
+            <div class="eopen"><i class="ti ti-external-link"></i> Open</div>
+          </div>
+        </a><a class="email-card low" href="https://mail.yahoo.com/" target="_blank" rel="noopener">
+          <div class="avatar av-blue">ST</div>
+          <div class="email-body">
+            <div class="ef">Scarface Trades</div>
+            <div class="ea">tony@scarfacetrades.com</div>
+            <div class="es">I&#x27;m going LIVE for 2 days</div>
+            <div class="ep">Simon, I&#x27;m doing something I&#x27;ve never done before. ​ On June 16 and 17, I&#x27;m going LIVE for a two-day Masterclass. And here&#x27;s the part that matters… ​ It&#x27;s free …</div>
+            
+            <div class="etags"><span class="tag tag-promo">promo</span></div>
+          </div>
+          <div class="email-right">
+            <div class="etime">1h ago</div>
+            <div class="eopen"><i class="ti ti-external-link"></i> Open</div>
+          </div>
+        </a><a class="email-card low" href="https://mail.yahoo.com/" target="_blank" rel="noopener">
+          <div class="avatar av-blue">AI</div>
+          <div class="email-body">
+            <div class="ef">Auto Insurance</div>
+            <div class="ea">info@carculturechronicle.com</div>
+            <div class="es">Car Insurance For As Low As $29/Month with Insurify!</div>
+            <div class="ep"></div>
+            
+            <div class="etags"><span class="tag tag-spam">spam</span></div>
+          </div>
+          <div class="email-right">
+            <div class="etime">2h ago</div>
+            <div class="eopen"><i class="ti ti-external-link"></i> Open</div>
+          </div>
+        </a></div></div></div></section><section class="mod-section" id="section-stocks"><div class="mod-body"><div class="mod-meta"><span class="market-closed">Market closed</span> · as of 10:14 PM ET</div><div class="ticker-grid"><div class="ticker-tile">
           <div class="tt-label">S&amp;P 500</div>
           <div class="tt-val">$725.43</div>
           <div class="tt-chg down"><i class="ti ti-trending-down"></i>-1.58%</div>
@@ -155,8 +1009,8 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,sa
           <div class="tt-chg down"><i class="ti ti-trending-down"></i>-2.00%</div>
         </div><div class="ticker-tile">
           <div class="tt-label">Bitcoin</div>
-          <div class="tt-val">$61,233</div>
-          <div class="tt-chg down"><i class="ti ti-trending-down"></i>-0.67%</div>
+          <div class="tt-val">$61,182</div>
+          <div class="tt-chg down"><i class="ti ti-trending-down"></i>-0.75%</div>
         </div><div class="ticker-tile">
           <div class="tt-label">10Y Yield</div>
           <div class="tt-val">4.54%</div>
@@ -169,12 +1023,12 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,sa
           <div class="tt-label">Gold</div>
           <div class="tt-val">$374.58</div>
           <div class="tt-chg down"><i class="ti ti-trending-down"></i>-4.15%</div>
-        </div></div></div></section><section class="mod-section" id="section-news"><div class="mod-body"><div class="module-empty error"><i class="ti ti-alert-circle"></i> HTTP Error 404: Not Found</div></div></section>
+        </div></div></div></section><section class="mod-section" id="section-news"><div class="mod-body"><div class="module-empty error"><i class="ti ti-alert-circle"></i> HTTP Error 503: Service Unavailable</div></div></section>
   </main>
 </div>
 
 <script>
-
+const EMAIL_DATA = [{"account_id": "gmail1", "account_label": "one7rade@gmail.com", "account_color": "blue", "from_name": "Google", "from_email": "no-reply@accounts.google.com", "subject": "Security alert", "snippet": "[image: Google] App password created to sign in to your account one7rade@gmail.com If you didn't generate this password for Daily Debrief, someone might be usin\u2026", "time": "50m ago", "unread": false, "gmail_link": "https://mail.google.com/mail/u/0/#search/rfc822msgid%3A5ApKvjVAB8Dmq0DOC7tmfA@notifications.google.com", "priority": "high", "tags": ["personal", "action"], "action": "Confirm if you authorized the creation of this Google app password."}, {"account_id": "gmail1", "account_label": "one7rade@gmail.com", "account_color": "blue", "from_name": "one7rade-byte", "from_email": "notifications@github.com", "subject": "[one7rade-byte/daily-debrief] Run failed:\r\n .github/workflows/debrief.yml -  (a96d235)", "snippet": "[one7rade-byte/daily-debrief] .github/workflows/debrief.yml workflow run Repository: one7rade-byte/daily-debrief Workflow: .github/workflows/debrief.yml Duratio\u2026", "time": "1h ago", "unread": false, "gmail_link": "https://mail.google.com/mail/u/0/#search/rfc822msgid%3Aone7rade-byte/daily-debrief/check-suites/CS_kwDOS24uVs8AAAARF45Lzg/1781125827@github.com", "priority": "high", "tags": ["work", "action"], "action": "Troubleshoot and resolve the failed debrief.yml GitHub workflow run."}, {"account_id": "gmail1", "account_label": "one7rade@gmail.com", "account_color": "blue", "from_name": "Amir from Tradeify", "from_email": "help@tradeify.co", "subject": "Re: why today only 2 out of 5 of my trdovate accoun shows up in trodavoate", "snippet": "Hi Simon, Thanks for reaching out, and apologies for the disruption you experienced this morning. Earlier today we had a system fault that caused Tradovate trad\u2026", "time": "7h ago", "unread": false, "gmail_link": "https://mail.google.com/mail/u/0/#search/rfc822msgid%3A37a7f620-c087524c-1781102956-215474639342002-2395752@outbound.intercom.tradeify.co", "priority": "high", "tags": ["finance", "action"], "action": "Review and reply to the Tradeify support message regarding missing Tradovate accounts."}, {"account_id": "gmail1", "account_label": "one7rade@gmail.com", "account_color": "blue", "from_name": "Tradeif.AI from Tradeify", "from_email": "help@tradeify.co", "subject": "Re: why today only 2 out of 5 of my trdovate accoun shows up in trodavoate", "snippet": "", "time": "8h ago", "unread": false, "gmail_link": "https://mail.google.com/mail/u/0/#search/rfc822msgid%3Ab522131f-2fea2bb6-1781099117-215474639342002-2395752@outbound.intercom.tradeify.co", "priority": "high", "tags": ["finance", "action"], "action": "Check the follow-up message from Tradeif.AI about your Tradovate accounts."}, {"account_id": "gmail1", "account_label": "one7rade@gmail.com", "account_color": "blue", "from_name": "Notion Team", "from_email": "notify@updates.notion.so", "subject": "A new device logged into your account", "snippet": "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\"> <html dir=\"ltr\" xmlns=\"http://www.w3.org/1999/xhtm\u2026", "time": "8h ago", "unread": false, "gmail_link": "https://mail.google.com/mail/u/0/#search/rfc822msgid%3A20260610134502.e6ffd238c4aaa613@updates.notion.so", "priority": "high", "tags": ["personal", "action"], "action": "Verify if you authorized the new device login on your Notion account."}, {"account_id": "gmail1", "account_label": "one7rade@gmail.com", "account_color": "blue", "from_name": "TradingView", "from_email": "noreply@tradingview.com", "subject": "New device login detected \u2014 was this you?", "snippet": "<!DOCTYPE html> <html xmlns=\"http://www.w3.org/1999/xhtml\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:o=\"urn:schemas-microsoft-com:office:office\"> <head> <ti\u2026", "time": "8h ago", "unread": false, "gmail_link": "https://mail.google.com/mail/u/0/#search/rfc822msgid%3A178109798488.11233.17444255944920829209@pmta-int-nlb.xtools.tv", "priority": "high", "tags": ["personal", "action"], "action": "Confirm if you authorized the new device login on your TradingView account."}, {"account_id": "gmail2", "account_label": "simon432019@gmail.com", "account_color": "purple", "from_name": "Yahoo", "from_email": "no-reply@cc.yahoo.com", "subject": "Your app password was used to sign in to a third-party app", "snippet": "<html> <head> <meta charset=\"UTF-8\"> <style type=\"text/css\"> html { -webkit-text-size-adjust:none; } body { width:100%; margin:0 auto; padding:0; font-style: no\u2026", "time": "16m ago", "unread": false, "gmail_link": "https://mail.google.com/mail/u/0/#search/rfc822msgid%3A58598683.11.1781128632752@api147.oauth.member.bf1.yahoo.com", "priority": "high", "tags": ["personal", "action"], "action": "Verify the third-party app access using your Yahoo app password."}, {"account_id": "gmail2", "account_label": "simon432019@gmail.com", "account_color": "purple", "from_name": "Yahoo", "from_email": "no-reply@cc.yahoo.com", "subject": "An app password was generated for your Yahoo account", "snippet": "<html> <head> <meta charset=\"UTF-8\"> <style type=\"text/css\"> html { -webkit-text-size-adjust:none; } body { width:100%; margin:0 auto; padding:0; font-style: no\u2026", "time": "47m ago", "unread": false, "gmail_link": "https://mail.google.com/mail/u/0/#search/rfc822msgid%3A363808597.4448.1781126798518@be130.member.bf1.yahoo.com", "priority": "high", "tags": ["personal", "action"], "action": "Confirm if you generated the app password for your Yahoo account."}, {"account_id": "gmail2", "account_label": "simon432019@gmail.com", "account_color": "purple", "from_name": "Google", "from_email": "no-reply@accounts.google.com", "subject": "Security alert", "snippet": "[image: Google] App password created to sign in to your account simon432019@gmail.com If you didn't generate this password for Daily Debrief, someone might be u\u2026", "time": "48m ago", "unread": false, "gmail_link": "https://mail.google.com/mail/u/0/#search/rfc822msgid%3Am9dQ8ehsndiNgVcVFtZC3A@notifications.google.com", "priority": "high", "tags": ["personal", "action"], "action": "Confirm if you authorized the creation of this Google app password."}, {"account_id": "gmail2", "account_label": "simon432019@gmail.com", "account_color": "purple", "from_name": "Google", "from_email": "no-reply@accounts.google.com", "subject": "Security alert for one7rade@gmail.com", "snippet": "This is a copy of a security alert sent to one7rade@gmail.com. simon432019@gmail.com is the recovery email for this account. If you don't recognize this account\u2026", "time": "50m ago", "unread": false, "gmail_link": "https://mail.google.com/mail/u/0/#search/rfc822msgid%3Am2lVDW8etefo-UCOAOZ1OA@notifications.google.com", "priority": "high", "tags": ["personal", "action"], "action": "Check the security alert copy forwarded for one7rade@gmail.com."}, {"account_id": "gmail2", "account_label": "simon432019@gmail.com", "account_color": "purple", "from_name": "Ladders", "from_email": "jobs@my.theladders.com", "subject": "HealthEdge Offering Over $150K for Senior Business Systems Analyst job", "snippet": "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\"> <html xmlns=\"http://www.w3.org/1999/xhtml\"> <head>\u2026", "time": "18h ago", "unread": false, "gmail_link": "https://mail.google.com/mail/u/0/#search/rfc822msgid%3A16.CC.00835.78CD82A6@i-0e3fc891c0ab65317.mta1vrest.sd.prd.sparkpost", "priority": "high", "tags": ["work", "action"], "action": "Review the Senior Business Systems Analyst job opportunity at HealthEdge."}, {"account_id": "gmail2", "account_label": "simon432019@gmail.com", "account_color": "purple", "from_name": "Indeed", "from_email": "donotreply@jobalert.indeed.com", "subject": "VTS is hiring for Senior Technical Solutions Consultant. 19 more Consultant jobs in New York, NY.", "snippet": "Indeed Job Alert 20 new Consultant jobs in New York, NY Jobs 1-20 of 20 new jobs See matching results on Indeed: https://www.indeed.com/jobs?q=Consultant&hl=en&\u2026", "time": "3h ago", "unread": false, "gmail_link": "https://mail.google.com/mail/u/0/#search/rfc822msgid%3A1jqpdt4p6o1pl800@indeed.com", "priority": "high", "tags": ["work", "action"], "action": "Review the Senior Technical Solutions Consultant and other consultant jobs on Indeed."}, {"account_id": "gmail2", "account_label": "simon432019@gmail.com", "account_color": "purple", "from_name": "LinkedIn Job Alerts", "from_email": "jobalerts-noreply@linkedin.com", "subject": "People Project Manager at Stripe", "snippet": "Your job alert for project manager in Florida New jobs match your preferences. Manage alerts: https://www.linkedin.com/comm/jobs/alerts?lipi=urn%3Ali%3Apage%3Ae\u2026", "time": "3h ago", "unread": false, "gmail_link": "https://mail.google.com/mail/u/0/#search/rfc822msgid%3A1892511279.2859428.1781115579325@lva2-app63550.prod.linkedin.com", "priority": "high", "tags": ["work", "action"], "action": "Review the People Project Manager job opportunity at Stripe on LinkedIn."}, {"account_id": "gmail2", "account_label": "simon432019@gmail.com", "account_color": "purple", "from_name": "Job Alerts from Google", "from_email": "notify-noreply@google.com", "subject": "10 new jobs for \"life science\" - 1 filter - Jun 10", "snippet": "Life science Near New York, NY +1 filter Logo Life Sciences Business Development Manager Schneider Electric New York, NY, United States via LinkedIn Time icon J\u2026", "time": "4h ago", "unread": false, "gmail_link": "https://mail.google.com/mail/u/0/#search/rfc822msgid%3AJwDVSybcgd_u5Rnm_QWxLQ@notifications.google.com", "priority": "high", "tags": ["work", "action"], "action": "Review the 10 new 'life science' job matches in the New York area."}, {"account_id": "yahoo", "account_label": "simon432019@yahoo.com", "account_color": "amber", "from_name": "Yahoo", "from_email": "no-reply@cc.yahoo.com", "subject": "Your app password was used to sign in to a third-party app", "snippet": "<html> <head> <meta charset=\"UTF-8\"> <style type=\"text/css\"> html { -webkit-text-size-adjust:none; } body { width:100%; margin:0 auto; padding:0; font-style: no\u2026", "time": "16m ago", "unread": false, "gmail_link": "https://mail.yahoo.com/", "priority": "high", "tags": ["personal", "action"], "action": "Verify the third-party app access using your Yahoo app password."}, {"account_id": "yahoo", "account_label": "simon432019@yahoo.com", "account_color": "amber", "from_name": "Yahoo", "from_email": "no-reply@cc.yahoo.com", "subject": "An app password was generated for your Yahoo account", "snippet": "<html> <head> <meta charset=\"UTF-8\"> <style type=\"text/css\"> html { -webkit-text-size-adjust:none; } body { width:100%; margin:0 auto; padding:0; font-style: no\u2026", "time": "47m ago", "unread": false, "gmail_link": "https://mail.yahoo.com/", "priority": "high", "tags": ["personal", "action"], "action": "Confirm if you generated the app password for your Yahoo account."}, {"account_id": "yahoo", "account_label": "simon432019@yahoo.com", "account_color": "amber", "from_name": "Google", "from_email": "no-reply@accounts.google.com", "subject": "Security alert for simon432019@gmail.com", "snippet": "This is a copy of a security alert sent to simon432019@gmail.com. simon432019@yahoo.com is the recovery email for this account. If you don't recognize this acco\u2026", "time": "49m ago", "unread": false, "gmail_link": "https://mail.yahoo.com/", "priority": "high", "tags": ["personal", "action"], "action": "Check the security alert copy forwarded to your recovery email."}, {"account_id": "gmail1", "account_label": "one7rade@gmail.com", "account_color": "blue", "from_name": "one7rade", "from_email": "one7rade@gmail.com", "subject": "GEX 2026-06-10 | SPY F5/Be6/Bu2 \u00b7 QQQ F3/Be3/Bu0", "snippet": "+--------------------------------------------------+ | GEX Daily \u2014 2026-06-10 10:00 PM +--------------------------------------------------+ | SPY CONFLUENCE SCO\u2026", "time": "13m ago", "unread": false, "gmail_link": "https://mail.google.com/mail/u/0/#search/rfc822msgid%3A6a29de78.99af2db9.26d43b.4d43@mx.google.com", "priority": "medium", "tags": ["finance"], "action": ""}, {"account_id": "gmail1", "account_label": "one7rade@gmail.com", "account_color": "blue", "from_name": "Google", "from_email": "noreply-accounts@google.com", "subject": "You shared some Google Account data with Claude", "snippet": "Keep track of your Google Account data one7rade@gmail.com <!--[if !mso]><!--> <!--[if false]><!--> You're receiving this email because you used Sign in with Goo\u2026", "time": "43m ago", "unread": false, "gmail_link": "https://mail.google.com/mail/u/0/#search/rfc822msgid%3Ac8100ad5ffcb66d39bedaa32066e66db3ad04296-20376977-337030291@google.com", "priority": "medium", "tags": ["personal"], "action": ""}, {"account_id": "gmail1", "account_label": "one7rade@gmail.com", "account_color": "blue", "from_name": "Google", "from_email": "noreply-accounts@google.com", "subject": "You shared some Google Account data with Tradeify", "snippet": "Keep track of your Google Account data one7rade@gmail.com <!--[if !mso]><!--> <!--[if false]><!--> You're receiving this email because you used Sign in with Goo\u2026", "time": "3h ago", "unread": false, "gmail_link": "https://mail.google.com/mail/u/0/#search/rfc822msgid%3A3a72d19909065200bfcd19edde1f44b10f85064d-20376977-337030291@google.com", "priority": "medium", "tags": ["personal"], "action": ""}, {"account_id": "gmail1", "account_label": "one7rade@gmail.com", "account_color": "blue", "from_name": "Google", "from_email": "noreply-accounts@google.com", "subject": "You shared some Google Account data with Tradeify", "snippet": "Keep track of your Google Account data one7rade@gmail.com <!--[if !mso]><!--> <!--[if false]><!--> You're receiving this email because you used Sign in with Goo\u2026", "time": "5h ago", "unread": false, "gmail_link": "https://mail.google.com/mail/u/0/#search/rfc822msgid%3Aa73c332e83c5d6204b6d24a304f8324b4c421388-20376977-337030291@google.com", "priority": "medium", "tags": ["personal"], "action": ""}, {"account_id": "gmail1", "account_label": "one7rade@gmail.com", "account_color": "blue", "from_name": "Tradeify", "from_email": "info@tradeify.co", "subject": "Important: An update on today's account disruption", "snippet": "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\"> <html dir=\"ltr\" lang=\"en\" xmlns:v=\"urn\u2026", "time": "7h ago", "unread": false, "gmail_link": "https://mail.google.com/mail/u/0/#search/rfc822msgid%3AAX1_FpY_Q8u3AtccDpMcTQ@geopod-ismtpd-47", "priority": "medium", "tags": ["finance"], "action": ""}, {"account_id": "gmail2", "account_label": "simon432019@gmail.com", "account_color": "purple", "from_name": "Interactive Brokers", "from_email": "noresponse@email.interactivebrokers.com", "subject": "Market Volatility, World Cup Economics, and Durable Growth\r\n Investing", "snippet": "Newsletter From Traders' Insight | Your Daily Traders' Insight - June 10, 2026 Copyright &#169; Interactive Brokers Interactive Brokers LLC Message Reference Nu\u2026", "time": "51m ago", "unread": false, "gmail_link": "https://mail.google.com/mail/u/0/#search/rfc822msgid%3AAPI.1781126518218.17811265181870923.JavaMail.csprod@ny5ibop3", "priority": "medium", "tags": ["finance"], "action": ""}, {"account_id": "gmail2", "account_label": "simon432019@gmail.com", "account_color": "purple", "from_name": "Discover", "from_email": "discover@card-e.em.discover.com", "subject": "Exciting account changes arrive in July", "snippet": "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\"> <html xmlns=\"http://www.w3.org/1999/xh\u2026", "time": "1h ago", "unread": false, "gmail_link": "https://mail.google.com/mail/u/0/#search/rfc822msgid%3A0.1.1D.799.1DCF91C72B29F42.0@omptrans.card-e.em.discover.com", "priority": "medium", "tags": ["finance"], "action": ""}, {"account_id": "gmail2", "account_label": "simon432019@gmail.com", "account_color": "purple", "from_name": "Capital One | Venture X", "from_email": "capitalone@notification.capitalone.com", "subject": "We've received your payment", "snippet": "View your payment details. -- [ [Sign in to your account] [Sign in to your account] ](https://click-notification.capitalone.com/f/a/V_OsgsVQypLdQOspovr3BQ~~/AAA\u2026", "time": "2h ago", "unread": false, "gmail_link": "https://mail.google.com/mail/u/0/#search/rfc822msgid%3A0E.CA.29756.47CB92A6@i-0960891294fa5ba3d.mta6vrest.sd.prd.sparkpost", "priority": "medium", "tags": ["finance"], "action": ""}, {"account_id": "gmail2", "account_label": "simon432019@gmail.com", "account_color": "purple", "from_name": "CTA SmartBrief", "from_email": "cta@smartbrief.com", "subject": "OnePlus 15 adds cross-platform AirDrop file sharing", "snippet": "Consumer Technology Association SmartBrief June 10, 2026 https://r.smartbrief.com/resp/vhbCCVzobaDIaplyCigWonBWcNmaWb TODAY'S HEADLINES TODAY'S DIGITAL PULSE * \u2026", "time": "3h ago", "unread": false, "gmail_link": "https://mail.google.com/mail/u/0/#search/rfc822msgid%3Abounce--kgmi9rfasarx42dw@send.smartbrief.com", "priority": "medium", "tags": ["work"], "action": ""}, {"account_id": "gmail1", "account_label": "one7rade@gmail.com", "account_color": "blue", "from_name": "Cryptotwits by Stocktwits", "from_email": "newsletter@cryptotwits.stocktwits.com", "subject": "Local Altcoin Volunteers To Go First So The Rest Can Watch What Happens  \ud83d\udc77", "snippet": "---------- ## **OVERVIEW** # **Local Altcoin Volunteers To Go First So The Rest Can Watch What Happens **\ud83d\udc77 #### **Here\u2019s What\u2019s Happening **\ud83d\udc47\ufe0f Today\u2019s top trend\u2026", "time": "45m ago", "unread": false, "gmail_link": "https://mail.google.com/mail/u/0/#search/rfc822msgid%3AsnEEIqgrTiOFug_oNGMEiA@geopod-ismtpd-13", "priority": "low", "tags": ["promo", "finance"], "action": ""}, {"account_id": "gmail1", "account_label": "one7rade@gmail.com", "account_color": "blue", "from_name": "Take Profit Trader", "from_email": "team@takeprofittrader.com", "subject": "\u26bd World Cup PRO Account Giveaway!", "snippet": "Rep your country for a chance to win\u2026Traders, The World Cup kicks off tomorrow (literally) and your country is about to take the stage. So we want to have some \u2026", "time": "1h ago", "unread": false, "gmail_link": "https://mail.google.com/mail/u/0/#search/rfc822msgid%3A1709128608.115741.1781123162882@cell-1-7bd46c9c6f-ttgjd", "priority": "low", "tags": ["promo"], "action": ""}, {"account_id": "gmail1", "account_label": "one7rade@gmail.com", "account_color": "blue", "from_name": "ClickUpdates 4.05", "from_email": "clickupdates@mail.clickup.com", "subject": "What\u2019s new in ClickUp: AI meetings, Outlook context, smarter agents and more!", "snippet": "ClickUp EmailYour meetings, inbox, and agent workflows just got a whole lot more useful. \ufeff\u034f \ufeff\u034f \ufeff\u034f \ufeff\u034f \ufeff\u034f \ufeff\u034f \ufeff\u034f \ufeff\u034f \ufeff\u034f \ufeff\u034f \ufeff\u034f \ufeff\u034f \ufeff\u034f \ufeff\u034f \ufeff\u034f \ufeff\u034f \ufeff\u034f \ufeff\u034f \ufeff\u034f \ufeff\u034f \ufeff\u034f \ufeff\u034f \ufeff\u034f \ufeff\u034f\u2026", "time": "3h ago", "unread": false, "gmail_link": "https://mail.google.com/mail/u/0/#search/rfc822msgid%3A39.53.53907.C35B92A6@i-057b46139e5ea27cd.mta1vrest.sd.prd.sparkpost", "priority": "low", "tags": ["promo"], "action": ""}, {"account_id": "gmail1", "account_label": "one7rade@gmail.com", "account_color": "blue", "from_name": "Tradecopia", "from_email": "info@tradecopia.com", "subject": "Welcome to the team! - Tradecopia", "snippet": "Tradecopia [https://assets.cdn.filesafe.space/h0WS8uiKJiZOzcz7ULIk/media/69c2f962eaed064756a64ee7.png] Welcome Aboard WELCOME TO THE TEAM, LEAVE A QUICK REVIEW \u2026", "time": "4h ago", "unread": false, "gmail_link": "https://mail.google.com/mail/u/0/#search/rfc822msgid%3A20260610172723.5f27b88fca46c9e7@lc.tradecopia.com", "priority": "low", "tags": ["promo"], "action": ""}, {"account_id": "gmail1", "account_label": "one7rade@gmail.com", "account_color": "blue", "from_name": "Honey", "from_email": "insiderdeals@my.joinhoney.com", "subject": "The forecast \ud83c\udf24\ufe0f calls for savings on hot styles \ud83d\ude0e", "snippet": "Honey Deals to heat up your closet without burning your budget \u034f \u034f \u034f \u034f \u034f \u034f \u034f\u034f \u034f \u034f \u034f \u034f \u034f \u034f\u034f \u034f \u034f \u034f \u034f \u034f \u034f\u034f \u034f \u034f \u034f \u034f \u034f \u034f\u034f \u034f \u034f \u034f \u034f \u034f \u034f\u034f \u034f \u034f \u034f \u034f \u034f \u034f\u034f \u034f \u034f \u034f \u034f \u034f \u034f\u034f \u034f \u034f \u2026", "time": "5h ago", "unread": false, "gmail_link": "https://mail.google.com/mail/u/0/#search/rfc822msgid%3A81.A8.20180.F29992A6@i-0bcc15373a4ae2ef8.mta1vrest.sd.prd.sparkpost", "priority": "low", "tags": ["promo"], "action": ""}, {"account_id": "gmail1", "account_label": "one7rade@gmail.com", "account_color": "blue", "from_name": "Notion Team", "from_email": "team@mail.notion.so", "subject": "A helpful teammate, built into Notion", "snippet": "Agent completes tasks so you can focus on the important parts. You assign the tasks. Agent does the work for you. Bug Tracking Dashboard ( https://www.notion.so\u2026", "time": "8h ago", "unread": false, "gmail_link": "https://mail.google.com/mail/u/0/#search/rfc822msgid%3AdgTv2AUBAPzzkUT785FEAZ6x1ayXn_8kHX_fnyifbw.1781100095@mail.notion.so", "priority": "low", "tags": ["promo"], "action": ""}, {"account_id": "gmail1", "account_label": "one7rade@gmail.com", "account_color": "blue", "from_name": "Polymarket", "from_email": "noreply@polymarket.com", "subject": "$35m helicopter vs $20k drone", "snippet": "Polygraph by PolymarketPolygraph by Polymarket ( https://poly.market/0d7VvzI )June 10th, 2026Unsubscribe ( https://track.customer.io/manage_subscription_prefere\u2026", "time": "10h ago", "unread": false, "gmail_link": "https://mail.google.com/mail/u/0/#search/rfc822msgid%3A20260610120132.349908ceffe2da9d@cio129328.polymarket.com", "priority": "low", "tags": ["promo"], "action": ""}, {"account_id": "gmail1", "account_label": "one7rade@gmail.com", "account_color": "blue", "from_name": "Take Profit Trader", "from_email": "team@takeprofittrader.com", "subject": "\u26a1 40% Off + No Activation Fee", "snippet": "Back for a limited time\u2026Traders, With summer now in full swing\u2026 We\u2019ve decided to bring back our popular NOFEE40 deal http://takeprofittrader.com?he=one7rade@gma\u2026", "time": "10h ago", "unread": false, "gmail_link": "https://mail.google.com/mail/u/0/#search/rfc822msgid%3A815334057.7475148.1781090167259@cell-1-68ddb94b59-7z2sk", "priority": "low", "tags": ["promo"], "action": ""}, {"account_id": "gmail1", "account_label": "one7rade@gmail.com", "account_color": "blue", "from_name": "Claude Team", "from_email": "no-reply@email.claude.com", "subject": "Claude Fable 5 is here", "snippet": "Hand off large migrations, complex implementations, and multi-day autonomous sessions. \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f \u034f\u2026", "time": "19h ago", "unread": false, "gmail_link": "https://mail.google.com/mail/u/0/#search/rfc822msgid%3A20260610030024.2efaf990309ebb6c@email.claude.com", "priority": "low", "tags": ["promo"], "action": ""}, {"account_id": "gmail2", "account_label": "simon432019@gmail.com", "account_color": "purple", "from_name": "YMCA South Florida", "from_email": "marketing@ymcasouthflorida.org", "subject": "Come in Style. Stay for the Impact.", "snippet": "10-Year Anniversary Beach Ball Gala \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u2026", "time": "33m ago", "unread": false, "gmail_link": "https://mail.google.com/mail/u/0/#search/rfc822msgid%3A37cc27d4-87c9-4b96-a3f1-d088505e8894@atl1s11mta93.xt.local", "priority": "low", "tags": ["promo", "event"], "action": ""}, {"account_id": "gmail2", "account_label": "simon432019@gmail.com", "account_color": "purple", "from_name": "Temu", "from_email": "email@news.temuemail.com", "subject": "Please Confirm Your 2026 Gift!", "snippet": "----------------------------------------------------------------------- Temu ----------------------------------------------------------------------- To properly\u2026", "time": "1h ago", "unread": false, "gmail_link": "https://mail.google.com/mail/u/0/#search/rfc822msgid%3A20260610205730.f2dd143c59f1a037@news.temuemail.com", "priority": "low", "tags": ["spam"], "action": ""}, {"account_id": "gmail2", "account_label": "simon432019@gmail.com", "account_color": "purple", "from_name": "University of San Francisco, Data Institute", "from_email": "datainstitute@usfca.edu", "subject": "Summer & Fall at the Data Institute!", "snippet": "Advance Your Skills and Achieve Your Goals Dear Simon, At the University of San Francisco Data Institute <https://www.usfca.edu/data-institute>, our certificate\u2026", "time": "1h ago", "unread": false, "gmail_link": "https://mail.google.com/mail/u/0/#search/rfc822msgid%3A97c115a0-2109-4344-94fe-4e233e58bb1c@technolutions.net", "priority": "low", "tags": ["promo"], "action": ""}, {"account_id": "gmail2", "account_label": "simon432019@gmail.com", "account_color": "purple", "from_name": "Zillow", "from_email": "zmail@zmail.zillow.com", "subject": "What APR means for your mortgage", "snippet": "And how it\u2019s calculated. Zillow table, td, tr, div, font, p, li { font-family: Helvetica, Arial, sans-serif !important; mso-hyphenate: none; } a { text-decorati\u2026", "time": "3h ago", "unread": false, "gmail_link": "https://mail.google.com/mail/u/0/#search/rfc822msgid%3A0100019eb2c572ae-3517eecb-1e77-4bfd-8ab9-5db40c6f341b-000000@email.amazonses.com", "priority": "low", "tags": ["promo"], "action": ""}, {"account_id": "gmail2", "account_label": "simon432019@gmail.com", "account_color": "purple", "from_name": "Casper", "from_email": "support@e.casper.com", "subject": "Early Access to 4th of July savings", "snippet": "*SHOP* [https://cdn.us1.exponea.com/casper-prod/e/.eJwTUrj8jiNu1V3Ddx8f9H30Tc27y-z55OnEspz9Edw5i3b8tbkjJZxRUlJQbKWvn5xYXJBapJecn6tveL7J-VZm1y1HKwEuptJiIa6knPz83\u2026", "time": "4h ago", "unread": false, "gmail_link": "https://mail.google.com/mail/u/0/#search/rfc822msgid%3A20260610180529.b992dad4afedca85@e.casper.com", "priority": "low", "tags": ["promo"], "action": ""}, {"account_id": "gmail2", "account_label": "simon432019@gmail.com", "account_color": "purple", "from_name": "Ladders", "from_email": "jobs@my.theladders.com", "subject": "Transform Your Career with $100K+ Job Access", "snippet": "[https://multimedia.jobs.theladders.com/ladders-B/photos/4ff98279-60c5-4548-baa8-994c07b8e22c.png] [https://multimedia.jobs.theladders.com/ladders-B/photos/b88e\u2026", "time": "4h ago", "unread": false, "gmail_link": "https://mail.google.com/mail/u/0/#search/rfc822msgid%3Aladders.xserial.s56eec/4aciA+eAQsJjBjrvyA2zN/wKX72oNFxJZqv4/fCfJVJRR8+oNNiG9qf7Edm8hRgY+7RZRLzKznr7vcxHd4mUrkJSlzW8zZF1Hlsm/mRseBQJCt9t9iOBELkAZoCDx@jobs.theladders.com", "priority": "low", "tags": ["promo"], "action": ""}, {"account_id": "gmail2", "account_label": "simon432019@gmail.com", "account_color": "purple", "from_name": "ASOS", "from_email": "hello@official.asos.com", "subject": "New arrivals", "snippet": "Shop what's just landed at ASOS \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u2026", "time": "4h ago", "unread": false, "gmail_link": "https://mail.google.com/mail/u/0/#search/rfc822msgid%3A21.09.02925.8AC992A6@i-0c19b7dfcaaac5dd7.mta3vrest.sd.prd.sparkpost", "priority": "low", "tags": ["promo"], "action": ""}, {"account_id": "gmail2", "account_label": "simon432019@gmail.com", "account_color": "purple", "from_name": "Ladders", "from_email": "jobs@my.theladders.com", "subject": "Make Every Job Application Count with a Custom Cover Letter", "snippet": "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\"> <html xmlns=\"http://www.w3.org/1999/xhtml\" lang=\"e\u2026", "time": "18h ago", "unread": false, "gmail_link": "https://mail.google.com/mail/u/0/#search/rfc822msgid%3A55.C5.44088.C48D82A6@i-0964f9b6be0144a00.mta1vrest.sd.prd.sparkpost", "priority": "low", "tags": ["promo"], "action": ""}, {"account_id": "yahoo", "account_label": "simon432019@yahoo.com", "account_color": "amber", "from_name": "Mazda", "from_email": "mazda@email-mazdausa.com", "subject": "Simon, interested in the Safest New-Car Brand according to Consumer Reports?", "snippet": "Mazda Plus, see which film starring the Mazda CX-5 was voted audience favorite. &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj;&nbsp &zwnj; &zwnj\u2026", "time": "6m ago", "unread": false, "gmail_link": "https://mail.yahoo.com/", "priority": "low", "tags": ["promo"], "action": ""}, {"account_id": "yahoo", "account_label": "simon432019@yahoo.com", "account_color": "amber", "from_name": "Lovehoney", "from_email": "news@mail.lovehoney.com", "subject": "Happy Hour is ON \ud83c\udf78 3 hours ONLY", "snippet": "Unlock your secret discount now \ud83d\udd13 <https://www.lovehoney.com/> Sex Toys <https://www.lovehoney.com/sex-toys/> Lingerie <https://www.lovehoney.com/lingerie/> Ess\u2026", "time": "6m ago", "unread": false, "gmail_link": "https://mail.yahoo.com/", "priority": "low", "tags": ["promo"], "action": ""}, {"account_id": "yahoo", "account_label": "simon432019@yahoo.com", "account_color": "amber", "from_name": "Dermstore", "from_email": "info@n.dermstore.com", "subject": "Your SkinCeuticals P-TIOX Routine, Now 15% Off", "snippet": "Skin Care <https://links.n.dermstore.com/ls/click?upn=u001.KPLE93ZPpPLWrbpy7BH0ifHcjj-2FFxwRGfJcfqwzyB6-2BvrcyTrv1xG-2FMna64yAMetmDrNtSKluohNdgNWMelM0HUsZ5McuVj\u2026", "time": "8m ago", "unread": false, "gmail_link": "https://mail.yahoo.com/", "priority": "low", "tags": ["promo"], "action": ""}, {"account_id": "yahoo", "account_label": "simon432019@yahoo.com", "account_color": "amber", "from_name": "Sol de Janeiro", "from_email": "ola@soldejaneiro.com", "subject": "Cue the hair flip \u2728 New Milky Leave-In Conditioner", "snippet": "[View this email in your browser](https://manage.kmail-lists.com/subscripti= ons/web-view?a=3DTYbRmA&c=3D01JHMH7BPGB24283BAW9RTMZ66&k=3Da012f317188e3585= 4c9707\u2026", "time": "13m ago", "unread": false, "gmail_link": "https://mail.yahoo.com/", "priority": "low", "tags": ["promo"], "action": ""}, {"account_id": "yahoo", "account_label": "simon432019@yahoo.com", "account_color": "amber", "from_name": "GasBuddy", "from_email": "et-reply@email.gasbuddy.com", "subject": "Combat high gas prices with 10\u00a2/gal extra \u26fd", "snippet": "https://click.email.gasbuddy.com/?qs=ABB7InYiOjEsImQiOjQ5MDN9AAwAAAAAARxMIV1-4wYOoLBJY5l5_6mSQPWYPDYeJD5tJywpIV9Z0clcgFTcaptP-9geAcrCQM6WDfrKDSE9S0N9uL4oN2rh0i8\u2026", "time": "15m ago", "unread": false, "gmail_link": "https://mail.yahoo.com/", "priority": "low", "tags": ["promo"], "action": ""}, {"account_id": "yahoo", "account_label": "simon432019@yahoo.com", "account_color": "amber", "from_name": "JetBlue Vacations", "from_email": "jetblueairways@marketing.jetblue.com", "subject": "Up to $300 off is up for grabs. \ud83d\udc40", "snippet": "Save big on flight + hotel packages for summer travel and beyond. Save big on flight + hotel packages for summer travel and beyond. JetBlue Vacations JetBlue Va\u2026", "time": "16m ago", "unread": false, "gmail_link": "https://mail.yahoo.com/", "priority": "low", "tags": ["promo"], "action": ""}, {"account_id": "yahoo", "account_label": "simon432019@yahoo.com", "account_color": "amber", "from_name": "VacationsToGo.com", "from_email": "vtgmail@list.vacationstogo.com", "subject": "Special Offer for Past Guests of Princess, Carnival, Cunard, Holland America & Seabourn!", "snippet": "This message was sent in HTML format. Either your email client does not support this format or the message was altered during delivery to you. Please click on t\u2026", "time": "18m ago", "unread": false, "gmail_link": "https://mail.yahoo.com/", "priority": "low", "tags": ["promo"], "action": ""}, {"account_id": "yahoo", "account_label": "simon432019@yahoo.com", "account_color": "amber", "from_name": "\udb40\udc01Y\udb40\udc01r\udb40\udc01ef\udb40\udc01y \udb40\udc01I\udb40\udc01n\udb40\udc01f\udb40\udc01o", "from_email": "usanfjmxkliqwoeis@fotos-top.com", "subject": "\udb40\udc01S\udb40\udc01t\udb40\udc01r\udb40\udc01ug\udb40\udc01g\udb40\udc01li\udb40\udc01n\udb40\udc01g\udb40\udc01 w\udb40\udc01i\udb40\udc01t\udb40\udc01h \udb40\udc01pr\udb40\udc01i\udb40\udc01va\udb40\udc01t\udb40\udc01e\udb40\udc01 s\udb40\udc01t\udb40\udc01ud\udb40\udc01en\udb40\udc01t\udb40\udc01 l\udb40\udc01oa\udb40\udc01ns\udb40\udc01?\udb40\udc01 \udb40\udc01Y\udb40\udc01ou\udb40\udc01 h\udb40\udc01av\udb40\udc01e \udb40\udc01o\udb40\udc01pt\udb40\udc01io\udb40\udc01ns\udb40\udc01.", "snippet": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\"> <html> <head> <style data-id=\"imagecarouselblock\" type=\"t\u2026", "time": "19m ago", "unread": false, "gmail_link": "https://mail.yahoo.com/", "priority": "low", "tags": ["spam"], "action": ""}, {"account_id": "yahoo", "account_label": "simon432019@yahoo.com", "account_color": "amber", "from_name": "Hims | Affiliate", "from_email": "info@mortgagemattersnews.com", "subject": "Rx meds delivered straight to your door for free if prescribed. start\r\n your free consultation.", "snippet": "", "time": "32m ago", "unread": false, "gmail_link": "https://mail.yahoo.com/", "priority": "low", "tags": ["spam"], "action": ""}, {"account_id": "yahoo", "account_label": "simon432019@yahoo.com", "account_color": "amber", "from_name": "Your Flooring Experts", "from_email": "info@theshelfspotlight.com", "subject": "Explore Carpet and Flooring Styles for Your Home", "snippet": "", "time": "7h ago", "unread": false, "gmail_link": "https://mail.yahoo.com/", "priority": "low", "tags": ["spam"], "action": ""}, {"account_id": "yahoo", "account_label": "simon432019@yahoo.com", "account_color": "amber", "from_name": "Insurify Auto Quotes", "from_email": "info@purrandpawpapers.com", "subject": "Cheap quotes from car insurance companies as low as $29/month", "snippet": "", "time": "3h ago", "unread": false, "gmail_link": "https://mail.yahoo.com/", "priority": "low", "tags": ["spam"], "action": ""}, {"account_id": "yahoo", "account_label": "simon432019@yahoo.com", "account_color": "amber", "from_name": "CycleBar - NoMad", "from_email": "nomad@cyclebar.com", "subject": "Knicks Pregame: Buy 5, Get 2 FREE  \ud83e\udde1\ud83d\udc99", "snippet": "( https://www.cyclebar.com/ ) ******************* *\ud83c\udfc0 GO KNICKS \u26f9\ufe0f\u200d\u2642\ufe0f* ******************* *BUY 5, GET 2 FREE* We're celebrating KNICKS game-day with another FIN\u2026", "time": "49m ago", "unread": false, "gmail_link": "https://mail.yahoo.com/", "priority": "low", "tags": ["promo"], "action": ""}, {"account_id": "yahoo", "account_label": "simon432019@yahoo.com", "account_color": "amber", "from_name": "New Balance", "from_email": "newbalance@email.newbalance.com", "subject": "Footwear favorites", "snippet": "This month's top styles. \u034f\u200c \u034f\u200c \u034f\u200c \u034f\u200c \u034f\u200c \u034f\u200c \u034f\u200c \u034f\u200c \u034f\u200c \u034f\u200c \u034f\u200c \u034f\u200c \u034f\u200c \u034f\u200c \u034f\u200c \u034f\u200c \u034f\u200c \u034f\u200c \u034f\u200c \u034f\u200c \u034f\u200c \u034f\u200c \u034f\u200c \u034f\u200c \u034f\u200c \u034f\u200c \u034f\u200c \u034f\u200c \u034f\u200c \u034f\u200c \u034f\u200c \u034f\u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c \u200c\u2026", "time": "51m ago", "unread": false, "gmail_link": "https://mail.yahoo.com/", "priority": "low", "tags": ["promo"], "action": ""}, {"account_id": "yahoo", "account_label": "simon432019@yahoo.com", "account_color": "amber", "from_name": "JG Wentworth | Financial Solutions", "from_email": "info@culinarycompassnews.com", "subject": "Is Your Credit Card Balance Overwhelming?", "snippet": "", "time": "2h ago", "unread": false, "gmail_link": "https://mail.yahoo.com/", "priority": "low", "tags": ["spam"], "action": ""}, {"account_id": "yahoo", "account_label": "simon432019@yahoo.com", "account_color": "amber", "from_name": "Bloomingdale's Loyallist", "from_email": "bloomingdalesloyallist@loyallist.bloomingdales.com", "subject": "Wedding-ready lab-grown diamonds", "snippet": "Bloomingdale's From the Bloomingdale\u2019s Fine Collection. &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj;\u2026", "time": "1h ago", "unread": false, "gmail_link": "https://mail.yahoo.com/", "priority": "low", "tags": ["promo"], "action": ""}, {"account_id": "yahoo", "account_label": "simon432019@yahoo.com", "account_color": "amber", "from_name": "Scarface Trades", "from_email": "tony@scarfacetrades.com", "subject": "I'm going LIVE for 2 days", "snippet": "Simon, I'm doing something I've never done before. \u200b On June 16 and 17, I'm going LIVE for a two-day Masterclass. And here's the part that matters\u2026 \u200b It's free \u2026", "time": "1h ago", "unread": false, "gmail_link": "https://mail.yahoo.com/", "priority": "low", "tags": ["promo"], "action": ""}, {"account_id": "yahoo", "account_label": "simon432019@yahoo.com", "account_color": "amber", "from_name": "Auto Insurance", "from_email": "info@carculturechronicle.com", "subject": "Car Insurance For As Low As $29/Month with Insurify!", "snippet": "", "time": "2h ago", "unread": false, "gmail_link": "https://mail.yahoo.com/", "priority": "low", "tags": ["spam"], "action": ""}];
 
 function showSection(id, el) {
   document.querySelectorAll('.mod-section').forEach(s => s.classList.remove('visible'));
