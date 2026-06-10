@@ -1,15 +1,14 @@
 """
 Email module — fetches from 3 inboxes (2 Gmail + Yahoo IMAP),
-triages all together with Claude, labels each email by account.
+triages all together with Gemini (free), labels each email by account.
 """
 
 import imaplib, email, os, json, re
+import urllib.request
 from email.header import decode_header
 from email.utils import parsedate_to_datetime
 from datetime import datetime, timezone
-import anthropic
 
-ANTHROPIC_KEY = os.environ["ANTHROPIC_API_KEY"]
 MAX_PER_INBOX = 20
 
 
@@ -156,17 +155,28 @@ def fetch_from_account(account):
     return emails
 
 
+def gemini(prompt):
+    api_key = os.environ["GEMINI_API_KEY"]
+    payload = json.dumps({
+        "contents": [{"parts": [{"text": prompt}]}]
+    }).encode()
+    url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={api_key}"
+    req = urllib.request.Request(
+        url, data=payload, headers={"Content-Type": "application/json"}
+    )
+    with urllib.request.urlopen(req, timeout=60) as resp:
+        result = json.loads(resp.read())
+    raw = result["candidates"][0]["content"]["parts"][0]["text"]
+    return re.sub(r"```json|```", "", raw).strip()
+
+
 def triage(all_emails):
-    client = anthropic.Anthropic(api_key=ANTHROPIC_KEY)
     listing = "\n".join(
         f"[{i}] [{e['account_label']}] FROM: {e['from_name']} <{e['from_email']}> "
         f"| SUBJECT: {e['subject']} | SNIPPET: {e['snippet']}"
         for i, e in enumerate(all_emails)
     )
-    msg = client.messages.create(
-        model="claude-opus-4-5",
-        max_tokens=4000,
-        messages=[{"role": "user", "content": f"""Triage emails across 3 inboxes.
+    prompt = f"""Triage emails across 3 inboxes.
 
 Priority:
 - high: needs action — interviews, event confirmations, payments, real people waiting, job opportunities
@@ -179,10 +189,9 @@ Emails:
 {listing}
 
 Return ONLY valid JSON, no markdown fences:
-{{"summary":"2-3 sentence overview across all inboxes mentioning most urgent items","classifications":[{{"index":0,"priority":"high","tags":["action"],"action":"one line what to do"}}]}}"""}]
-    )
-    raw = re.sub(r"```json|```", "", msg.content[0].text).strip()
-    return json.loads(raw)
+{{"summary":"2-3 sentence overview across all inboxes mentioning most urgent items","classifications":[{{"index":0,"priority":"high","tags":["action"],"action":"one line what to do"}}]}}"""
+
+    return json.loads(gemini(prompt))
 
 
 def fetch():
@@ -193,8 +202,8 @@ def fetch():
 
     if not all_emails:
         return {
-            "summary": "No emails found across any inbox.",
-            "emails":  [],
+            "summary":  "No emails found across any inbox.",
+            "emails":   [],
             "accounts": [],
         }
 
