@@ -1,1 +1,42 @@
+name: Daily Debrief — Hourly
 
+on:
+  schedule:
+    - cron: '0 * * * *'      # every hour on the hour
+  workflow_dispatch:           # manual trigger anytime
+
+permissions:
+  contents: write
+
+jobs:
+  run-debrief:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install anthropic yfinance requests
+
+      - name: Run debrief
+        env:
+          GMAIL_USER:        ${{ secrets.GMAIL_USER }}
+          GMAIL_PASS:        ${{ secrets.GMAIL_PASS }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python main.py
+
+      - name: Commit and push index.html
+        run: |
+          git config user.name  "Debrief Bot"
+          git config user.email "${{ secrets.GMAIL_USER }}"
+          git add index.html
+          git diff --staged --quiet || git commit -m "Debrief update $(date +'%Y-%m-%d %H:%M UTC')"
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
