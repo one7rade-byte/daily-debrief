@@ -2,8 +2,8 @@ name: Daily Debrief — Hourly
 
 on:
   schedule:
-    - cron: '0 * * * *'      # every hour on the hour
-  workflow_dispatch:           # manual trigger anytime
+    - cron: '0 * * * *'
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -28,15 +28,19 @@ jobs:
 
       - name: Run debrief
         env:
-          GMAIL_USER:        ${{ secrets.GMAIL_USER }}
-          GMAIL_PASS:        ${{ secrets.GMAIL_PASS }}
+          GMAIL_USER_1:      ${{ secrets.GMAIL_USER_1 }}
+          GMAIL_PASS_1:      ${{ secrets.GMAIL_PASS_1 }}
+          GMAIL_USER_2:      ${{ secrets.GMAIL_USER_2 }}
+          GMAIL_PASS_2:      ${{ secrets.GMAIL_PASS_2 }}
+          YAHOO_USER:        ${{ secrets.YAHOO_USER }}
+          YAHOO_PASS:        ${{ secrets.YAHOO_PASS }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: python main.py
 
       - name: Commit and push index.html
         run: |
           git config user.name  "Debrief Bot"
-          git config user.email "${{ secrets.GMAIL_USER }}"
+          git config user.email "bot@debrief.local"
           git add index.html
           git diff --staged --quiet || git commit -m "Debrief update $(date +'%Y-%m-%d %H:%M UTC')"
           git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
