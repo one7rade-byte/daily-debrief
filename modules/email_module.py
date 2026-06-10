@@ -1,15 +1,16 @@
 """
 Email module — fetches from 3 inboxes (2 Gmail + Yahoo IMAP),
 triages all together with Gemini (free), labels each email by account.
+Last 24 hours only, sorted latest to oldest per category.
 """
 
 import imaplib, email, os, json, re
 import urllib.request
 from email.header import decode_header
 from email.utils import parsedate_to_datetime
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 
-MAX_PER_INBOX = 20
+MAX_PER_INBOX = 50
 
 
 def get_accounts():
@@ -63,8 +64,7 @@ def relative_time(dt):
     if s < 60:     return "just now"
     if s < 3600:   return f"{s // 60}m ago"
     if s < 86400:  return f"{s // 3600}h ago"
-    if s < 604800: return f"{s // 86400}d ago"
-    return dt.strftime("%b %d")
+    return dt.strftime("%b %d %I:%M %p")
 
 
 def get_snippet(msg, max_len=160):
@@ -96,16 +96,20 @@ def get_snippet(msg, max_len=160):
 def fetch_from_account(account):
     emails = []
     print(f"  Connecting to {account['user']}...")
+    cutoff = datetime.now(timezone.utc) - timedelta(hours=24)
+    # IMAP date search (SINCE = midnight of that date, good enough)
+    since_str = cutoff.strftime("%d-%b-%Y")
+
     try:
         imap = imaplib.IMAP4_SSL(account["host"])
         imap.login(account["user"], account["pass"])
         imap.select("INBOX")
 
-        _, data = imap.search(None, "ALL")
+        # Search only last 24h using IMAP SINCE
+        _, data = imap.search(None, f'SINCE "{since_str}"')
         all_ids = data[0].split()
-        ids = list(
-            reversed(all_ids[-MAX_PER_INBOX:] if len(all_ids) > MAX_PER_INBOX else all_ids)
-        )
+        # Reverse so newest first
+        ids = list(reversed(all_ids[-MAX_PER_INBOX:] if len(all_ids) > MAX_PER_INBOX else all_ids))
 
         _, unread_data = imap.search(None, "UNSEEN")
         unread_ids = set(unread_data[0].split())
@@ -124,9 +128,27 @@ def fetch_from_account(account):
                 except Exception:
                     dt = None
 
-                mid = msg.get("Message-ID", "").strip("<>")
-                if "gmail" in account["host"] and mid:
-                    link = f"https://mail.google.com/mail/u/0/#search/rfc822msgid%3A{mid}"
+                # Skip if actually older than 24h (SINCE is date-level not time-level)
+                if dt and dt.astimezone(timezone.utc) < cutoff:
+                    continue
+
+                # Build the best possible Gmail link
+                # Use X-GM-THRID if available (most reliable), else UID search
+                if "gmail" in account["host"]:
+                    # Fetch Gmail thread ID via IMAP extension
+                    try:
+                        _, th_data = imap.fetch(uid, "(X-GM-THRID)")
+                        th_raw = th_data[0].decode() if th_data[0] else ""
+                        th_match = re.search(r'X-GM-THRID (\d+)', th_raw)
+                        if th_match:
+                            thread_id = int(th_match.group(1))
+                            # Convert to hex for Gmail URL
+                            hex_id = format(thread_id, 'x')
+                            link = f"https://mail.google.com/mail/u/0/#inbox/{hex_id}"
+                        else:
+                            link = f"https://mail.google.com/mail/u/0/#inbox"
+                    except Exception:
+                        link = "https://mail.google.com/mail/u/0/#inbox"
                 elif "yahoo" in account["host"]:
                     link = "https://mail.yahoo.com/"
                 else:
@@ -141,6 +163,7 @@ def fetch_from_account(account):
                     "subject":       decode_str(msg.get("Subject", "(no subject)")),
                     "snippet":       get_snippet(msg),
                     "time":          relative_time(dt),
+                    "timestamp":     dt.astimezone(timezone.utc).timestamp() if dt else 0,
                     "unread":        uid in unread_ids,
                     "gmail_link":    link,
                 })
@@ -148,7 +171,7 @@ def fetch_from_account(account):
                 print(f"    Skip message: {e}")
 
         imap.logout()
-        print(f"  Fetched {len(emails)} from {account['user']}")
+        print(f"  Fetched {len(emails)} from {account['user']} (last 24h)")
     except Exception as e:
         print(f"  ERROR {account['user']}: {e}")
 
@@ -202,7 +225,7 @@ def fetch():
 
     if not all_emails:
         return {
-            "summary":  "No emails found across any inbox.",
+            "summary":  "No emails in the last 24 hours.",
             "emails":   [],
             "accounts": [],
         }
@@ -220,8 +243,9 @@ def fetch():
             "action":   cls.get("action", ""),
         })
 
+    # Sort within each priority group by timestamp — newest first
     order = {"high": 0, "medium": 1, "low": 2}
-    merged.sort(key=lambda e: order.get(e["priority"], 2))
+    merged.sort(key=lambda e: (order.get(e["priority"], 2), -e.get("timestamp", 0)))
 
     return {
         "summary":  result.get("summary", ""),
