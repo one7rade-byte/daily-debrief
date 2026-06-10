@@ -15,11 +15,11 @@ def render_email(data):
     emails = data.get("emails", [])
     summary = data.get("summary", "")
     if not emails:
-        return '<div class="module-empty">No emails found.</div>'
+        return '<div class="module-empty">No emails in the last 24 hours.</div>'
 
-    high   = [e for e in emails if e["priority"] == "high"]
-    medium = [e for e in emails if e["priority"] == "medium"]
-    low    = [e for e in emails if e["priority"] == "low"]
+    high   = sorted([e for e in emails if e["priority"] == "high"],   key=lambda e: -e.get("timestamp", 0))
+    medium = sorted([e for e in emails if e["priority"] == "medium"], key=lambda e: -e.get("timestamp", 0))
+    low    = sorted([e for e in emails if e["priority"] == "low"],    key=lambda e: -e.get("timestamp", 0))
     unread = sum(1 for e in emails if e["unread"])
 
     def card(e):
@@ -29,11 +29,12 @@ def render_email(data):
         name = e.get("from_name", "?")
         parts = name.split()
         init = (parts[0][0] + parts[-1][0]).upper() if len(parts) >= 2 else name[:2].upper()
+        acct = f'<div class="ea">{htmllib.escape(e.get("account_label",""))}</div>' if e.get("account_label") else ""
         return f"""<a class="email-card {e['priority']}{'  unread' if e['unread'] else ''}" href="{htmllib.escape(e.get('gmail_link','#'))}" target="_blank" rel="noopener">
           <div class="avatar av-{av}">{htmllib.escape(init)}</div>
           <div class="email-body">
             <div class="ef">{htmllib.escape(e.get('from_name',''))}</div>
-            <div class="ea">{htmllib.escape(e.get('from_email',''))}</div>
+            {acct}
             <div class="es">{htmllib.escape(e.get('subject',''))}</div>
             <div class="ep">{htmllib.escape(e.get('snippet',''))}</div>
             {action_html}
@@ -147,9 +148,7 @@ RENDERERS = {
 
 def build_dashboard(results, now: datetime) -> str:
     now_str   = now.strftime("%A, %B %d · %I:%M %p")
-    date_str  = now.strftime("%Y-%m-%d %H:%M UTC")
 
-    # Build nav + sections
     nav_items = ""
     sections  = ""
 
@@ -171,7 +170,6 @@ def build_dashboard(results, now: datetime) -> str:
 
     first_id = list(results.keys())[0] if results else ""
 
-    # Inline email data for JS filtering
     email_data_script = ""
     if "email" in results and results["email"].get("status") == "ok":
         email_data_script = f"const EMAIL_DATA = {json.dumps(results['email']['data'].get('emails',[]))};"
@@ -200,8 +198,6 @@ def build_dashboard(results, now: datetime) -> str:
   --r:12px;--rsm:7px;--rxs:5px;
 }}
 body{{background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,sans-serif;min-height:100vh;display:flex;flex-direction:column}}
-
-/* ── Top bar ── */
 .topbar{{display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;height:56px;border-bottom:0.5px solid var(--b1);flex-shrink:0;gap:1rem}}
 .topbar-brand{{display:flex;align-items:center;gap:8px;font-weight:600;font-size:15px}}
 .topbar-brand i{{font-size:18px;color:var(--accent)}}
@@ -209,27 +205,17 @@ body{{background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,s
 .live-dot{{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}}
 @keyframes pulse{{0%,100%{{opacity:1}}50%{{opacity:.3}}}}
 .countdown{{font-size:11px;color:var(--dim)}}
-
-/* ── Layout ── */
 .layout{{display:flex;flex:1;min-height:0}}
-
-/* ── Sidebar nav ── */
 .sidebar{{width:200px;flex-shrink:0;border-right:0.5px solid var(--b1);padding:1.25rem 0;display:flex;flex-direction:column;gap:2px}}
 .nav-item{{display:flex;align-items:center;gap:10px;padding:9px 1.25rem;font-size:13px;font-weight:500;color:var(--muted);cursor:pointer;transition:all .15s;border-right:2px solid transparent;text-decoration:none}}
 .nav-item i{{font-size:16px}}
 .nav-item:hover{{color:var(--text);background:var(--s2)}}
 .nav-item.active{{color:var(--accent);background:var(--ad);border-right-color:var(--accent)}}
 .nav-coming{{display:flex;align-items:center;gap:10px;padding:9px 1.25rem;font-size:12px;color:var(--dim);margin-top:auto}}
-.nav-coming i{{font-size:15px}}
 .soon-badge{{font-size:9px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;background:var(--s3);color:var(--dim);padding:1px 5px;border-radius:3px}}
-
-/* ── Main content ── */
 .main{{flex:1;overflow-y:auto;padding:1.75rem}}
 .mod-section{{display:none;max-width:860px}}
 .mod-section.visible{{display:block}}
-.mod-body{{}}
-
-/* ── Module common ── */
 .module-empty{{text-align:center;padding:2.5rem 1rem;font-size:13px;color:var(--muted);line-height:1.7}}
 .module-empty.error{{color:var(--red);background:var(--rd);border-radius:var(--rsm);padding:1rem 1.25rem;text-align:left;display:flex;align-items:center;gap:8px}}
 .mod-summary{{background:var(--s1);border:0.5px solid var(--b1);border-left:3px solid var(--accent);border-radius:0 var(--rsm) var(--rsm) 0;padding:12px 16px;font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:1.25rem}}
@@ -239,8 +225,6 @@ body{{background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,s
 .msn{{display:block;font-size:24px;font-weight:600}}
 .msn.cr{{color:var(--red)}}.msn.ca{{color:var(--amber)}}.msn.cm{{color:var(--muted)}}
 .msl{{font-size:11px;color:var(--muted);margin-top:2px;display:block}}
-
-/* ── Email ── */
 .filters{{display:flex;gap:6px;margin-bottom:1rem;flex-wrap:wrap}}
 .chip{{padding:4px 12px;border-radius:99px;font-size:12px;font-weight:500;border:0.5px solid var(--b2);background:transparent;color:var(--muted);cursor:pointer;transition:all .15s}}
 .chip:hover,.chip.active{{background:var(--s2);color:var(--text);border-color:var(--b3)}}
@@ -270,16 +254,12 @@ body{{background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,s
 .tag-personal,.tag-work{{background:var(--ad);color:var(--accent)}}
 .email-right{{text-align:right;flex-shrink:0;padding-top:2px}}
 .etime{{font-size:11px;color:var(--dim)}}.eopen{{font-size:11px;color:var(--accent);margin-top:5px;display:inline-flex;align-items:center;gap:3px}}
-
-/* ── Stocks ── */
 .market-open{{color:var(--green);font-weight:500}}.market-closed{{color:var(--dim)}}
 .ticker-grid{{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}}
 .ticker-tile{{background:var(--s1);border:0.5px solid var(--b1);border-radius:var(--rsm);padding:13px 15px}}
 .tt-label{{font-size:11px;color:var(--muted);margin-bottom:4px}}.tt-val{{font-size:20px;font-weight:600}}
 .tt-chg{{font-size:12px;margin-top:3px;display:flex;align-items:center;gap:4px}}
 .tt-chg i{{font-size:13px}}.up{{color:var(--green)}}.down{{color:var(--red)}}.flat{{color:var(--muted)}}
-
-/* ── News ── */
 .story-grid{{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px}}
 .story-card{{background:var(--s1);border:0.5px solid var(--b1);border-radius:var(--r);padding:13px 14px;text-decoration:none;display:flex;flex-direction:column;gap:7px;transition:border-color .15s,background .15s}}
 .story-card:hover{{border-color:var(--b2);background:var(--s2)}}
@@ -290,15 +270,12 @@ body{{background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,s
 .story-title{{font-size:13px;font-weight:500;color:var(--text);line-height:1.4}}
 .story-sum{{font-size:12px;color:var(--muted);line-height:1.55}}
 .story-src{{font-size:11px;color:var(--dim);margin-top:auto}}
-
-/* ── Health ── */
 .health-grid{{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px}}
 .health-tile{{background:var(--s1);border:0.5px solid var(--b1);border-radius:var(--rsm);padding:13px 15px;display:flex;flex-direction:column;gap:4px}}
 .ht-label{{font-size:11px;color:var(--muted)}}.ht-val{{font-size:20px;font-weight:600;color:var(--text)}}
 .ht-unit{{font-size:13px;font-weight:400;color:var(--muted)}}.ht-trend{{font-size:14px}}
-
 @media(max-width:640px){{
-  .sidebar{{display:none}}.topbar-meta .countdown{{display:none}}
+  .sidebar{{display:none}}
   .mod-stats{{grid-template-columns:repeat(2,1fr)}}
   .email-card{{grid-template-columns:36px 1fr}}.email-right{{display:none}}
 }}
@@ -321,7 +298,6 @@ body{{background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,s
     <div class="nav-coming"><i class="ti ti-heart-rate"></i>Health <span class="soon-badge">soon</span></div>
     <div class="nav-coming"><i class="ti ti-calendar-event"></i>Calendar <span class="soon-badge">soon</span></div>
   </nav>
-
   <main class="main">
     {sections}
   </main>
@@ -338,32 +314,34 @@ function showSection(id, el) {{
   if (el) el.classList.add('active');
 }}
 
-// Activate first section
 showSection('{first_id}', document.querySelector('.nav-item'));
 
-// Email filter
 function filterEmail(f, el) {{
   document.querySelectorAll('#email-filters .chip').forEach(c => c.classList.remove('active'));
   el.classList.add('active');
   if (typeof EMAIL_DATA === 'undefined') return;
+
   let filtered = EMAIL_DATA;
   if (f === 'high')   filtered = EMAIL_DATA.filter(e => e.priority === 'high');
   if (f === 'medium') filtered = EMAIL_DATA.filter(e => e.priority === 'medium');
   if (f === 'low')    filtered = EMAIL_DATA.filter(e => e.priority === 'low');
   if (f === 'unread') filtered = EMAIL_DATA.filter(e => e.unread);
 
+  function sortDesc(arr) {{ return arr.slice().sort((a,b) => (b.timestamp||0) - (a.timestamp||0)); }}
   function initials(n) {{ const p=n.trim().split(/\s+/); return p.length>=2?(p[0][0]+p[p.length-1][0]).toUpperCase():n.slice(0,2).toUpperCase(); }}
   function av(p) {{ return {{high:'red',medium:'amber'}}[p]||'blue'; }}
   const tagCls = {{interview:'tag-interview',action:'tag-action',event:'tag-event',finance:'tag-finance',personal:'tag-personal',work:'tag-work'}};
 
   function card(e) {{
-    const tags = (e.tags||[]).map(t=>`<span class="tag ${{tagCls[t]||''}}">${{t}}</span>`).join('');
-    const act = (e.action&&e.priority!=='low')?`<div class="email-action"><i class="ti ti-arrow-right"></i>${{e.action}}</div>`:'';
+    const tags = (e.tags||[]).map(t=>`<span class="tag ${{tagCls[t]||''}}">{{t}}</span>`).join('');
+    const act  = (e.action&&e.priority!=='low')?`<div class="email-action"><i class="ti ti-arrow-right"></i>${{e.action}}</div>`:'';
+    const acct = e.account_label ? `<div class="ea">${{e.account_label}}</div>` : '';
     return `<a class="email-card ${{e.priority}}${{e.unread?' unread':''}}" href="${{e.gmail_link}}" target="_blank" rel="noopener">
       <div class="avatar av-${{av(e.priority)}}">${{initials(e.from_name)}}</div>
       <div class="email-body">
-        <div class="ef">${{e.from_name}}</div><div class="ea">${{e.from_email}}</div>
-        <div class="es">${{e.subject}}</div><div class="ep">${{e.snippet}}</div>
+        <div class="ef">${{e.from_name}}</div>${{acct}}
+        <div class="es">${{e.subject}}</div>
+        <div class="ep">${{e.snippet}}</div>
         ${{act}}<div class="etags">${{tags}}</div>
       </div>
       <div class="email-right"><div class="etime">${{e.time}}</div><div class="eopen"><i class="ti ti-external-link"></i> Open</div></div>
@@ -371,17 +349,22 @@ function filterEmail(f, el) {{
   }}
 
   function sec(label, icon, items, cls) {{
-    if(!items.length) return '';
-    return `<div class="sec-lbl"><i class="ti ti-${{icon}}"></i>${{label}}<span class="sc ${{cls}}">${{items.length}}</span></div><div class="elist">${{items.map(card).join('')}}</div>`;
+    if (!items.length) return '';
+    const sorted = sortDesc(items);
+    return `<div class="sec-lbl"><i class="ti ti-${{icon}}"></i>${{label}}<span class="sc ${{cls}}">${{sorted.length}}</span></div><div class="elist">${{sorted.map(card).join('')}}</div>`;
   }}
 
-  const high=filtered.filter(e=>e.priority==='high'), med=filtered.filter(e=>e.priority==='medium'), low=filtered.filter(e=>e.priority==='low');
+  const high   = filtered.filter(e => e.priority==='high');
+  const medium = filtered.filter(e => e.priority==='medium');
+  const low    = filtered.filter(e => e.priority==='low');
+
   document.getElementById('email-cards').innerHTML =
-    sec('Action needed','alert-circle',high,'red')+sec('Keep an eye on','eye',med,'amber')+sec('Low priority','inbox',low,'muted') ||
+    sec('Action needed','alert-circle',high,'red') +
+    sec('Keep an eye on','eye',medium,'amber') +
+    sec('Low priority','inbox',low,'muted') ||
     '<div class="module-empty">No emails in this view.</div>';
 }}
 
-// Countdown
 (function() {{
   const target = Date.now() + 3600000;
   setInterval(() => {{
