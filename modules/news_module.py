@@ -1,25 +1,20 @@
 """
-News module — pulls top stories from RSS feeds, summarizes with Claude.
-No API key needed for fetching. Claude writes the briefing.
+News module — pulls top stories from RSS feeds, summarizes with Gemini (free).
 """
 
 import os, json, re
 import urllib.request
 import xml.etree.ElementTree as ET
 from datetime import datetime
-import anthropic
 
-ANTHROPIC_KEY = os.environ["ANTHROPIC_API_KEY"]
-
-# ── RSS feeds (free, no keys) ───────────────────────────────────
 FEEDS = [
-    {"url": "https://feeds.bbci.co.uk/news/world/rss.xml",       "source": "BBC World"},
+    {"url": "https://feeds.bbci.co.uk/news/world/rss.xml",           "source": "BBC World"},
     {"url": "https://rss.nytimes.com/services/xml/rss/nyt/World.xml", "source": "NYT World"},
-    {"url": "https://feeds.reuters.com/reuters/businessNews",     "source": "Reuters Business"},
-    {"url": "https://feeds.bbci.co.uk/news/technology/rss.xml",  "source": "BBC Tech"},
+    {"url": "https://feeds.bbci.co.uk/news/technology/rss.xml",      "source": "BBC Tech"},
+    {"url": "https://feeds.bbci.co.uk/news/business/rss.xml",        "source": "BBC Business"},
 ]
 
-MAX_STORIES = 20  # stories sent to Claude for summarization
+MAX_STORIES = 20
 
 
 def parse_feed(url, source):
@@ -29,60 +24,67 @@ def parse_feed(url, source):
         with urllib.request.urlopen(req, timeout=10) as resp:
             tree = ET.parse(resp)
         root = tree.getroot()
-        ns = {"atom": "http://www.w3.org/2005/Atom"}
-        items = root.findall(".//item")
-        for item in items[:6]:
+        for item in root.findall(".//item")[:6]:
             title = (item.findtext("title") or "").strip()
-            desc  = re.sub(r'<[^>]+>', '', item.findtext("description") or "").strip()
+            desc  = re.sub(r"<[^>]+>", "", item.findtext("description") or "").strip()
             link  = (item.findtext("link") or "").strip()
-            pub   = (item.findtext("pubDate") or "").strip()
             if title:
-                stories.append({"title": title, "desc": desc[:200], "link": link, "source": source, "pub": pub})
+                stories.append({
+                    "title":  title,
+                    "desc":   desc[:200],
+                    "link":   link,
+                    "source": source,
+                })
     except Exception as e:
         print(f"  Feed error ({source}): {e}")
     return stories
 
 
+def gemini(prompt):
+    api_key = os.environ["GEMINI_API_KEY"]
+    payload = json.dumps({
+        "contents": [{"parts": [{"text": prompt}]}]
+    }).encode()
+    url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={api_key}"
+    req = urllib.request.Request(
+        url, data=payload, headers={"Content-Type": "application/json"}
+    )
+    with urllib.request.urlopen(req, timeout=60) as resp:
+        result = json.loads(resp.read())
+    raw = result["candidates"][0]["content"]["parts"][0]["text"]
+    return re.sub(r"```json|```", "", raw).strip()
+
+
 def fetch():
-    # Gather stories from all feeds
     all_stories = []
     for feed in FEEDS:
         all_stories.extend(parse_feed(feed["url"], feed["source"]))
 
     if not all_stories:
-        return {"summary": "Could not fetch news feeds.", "stories": []}
+        return {"briefing": "Could not fetch news feeds.", "stories": []}
 
     top = all_stories[:MAX_STORIES]
-
-    # Ask Claude to summarize and classify
-    client = anthropic.Anthropic(api_key=ANTHROPIC_KEY)
     listing = "\n".join(
         f"[{i}] [{s['source']}] {s['title']} — {s['desc']}"
         for i, s in enumerate(top)
     )
 
-    msg = client.messages.create(
-        model="claude-opus-4-5",
-        max_tokens=2000,
-        messages=[{"role": "user", "content": f"""You are a world events briefing editor. Today is {datetime.now().strftime('%B %d, %Y')}.
+    prompt = f"""You are a world events briefing editor. Today is {datetime.now().strftime('%B %d, %Y')}.
 
-Here are today's top stories:
+Stories:
 {listing}
 
 1. Write a 2-sentence overall briefing covering the most important themes.
-2. Pick the 6 most significant stories. For each: write a sharp 1-sentence summary and assign a category.
-   Categories: world, us, markets, tech, science, conflict
+2. Pick the 6 most significant stories. For each write a sharp 1-sentence summary and assign a category.
+Categories: world, us, markets, tech, science, conflict
 
-Return ONLY JSON:
-{{"briefing":"...","stories":[{{"index":0,"category":"world","summary":"1 sentence"}}]}}"""}]
-    )
+Return ONLY valid JSON, no markdown fences:
+{{"briefing":"...","stories":[{{"index":0,"category":"world","summary":"1 sentence"}}]}}"""
 
-    raw = re.sub(r"```json|```", "", msg.content[0].text).strip()
-    result = json.loads(raw)
+    parsed = json.loads(gemini(prompt))
 
-    # Merge with original stories for links
     output_stories = []
-    for s in result.get("stories", []):
+    for s in parsed.get("stories", []):
         i = s.get("index", 0)
         orig = top[i] if i < len(top) else {}
         output_stories.append({
@@ -93,4 +95,4 @@ Return ONLY JSON:
             "link":     orig.get("link", ""),
         })
 
-    return {"briefing": result.get("briefing", ""), "stories": output_stories}
+    return {"briefing": parsed.get("briefing", ""), "stories": output_stories}
