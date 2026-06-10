@@ -1,6 +1,6 @@
 """
-Email module — fetches Gmail via IMAP, triages with Claude.
-Returns structured data consumed by the dashboard builder.
+Email module — fetches from 3 inboxes (2 Gmail + Yahoo IMAP),
+triages all together with Claude, labels each email by account.
 """
 
 import imaplib, email, os, json, re
@@ -9,10 +9,35 @@ from email.utils import parsedate_to_datetime
 from datetime import datetime, timezone
 import anthropic
 
-GMAIL_USER = os.environ["GMAIL_USER"]
-GMAIL_PASS = os.environ["GMAIL_PASS"]
 ANTHROPIC_KEY = os.environ["ANTHROPIC_API_KEY"]
-MAX_EMAILS = 35
+MAX_PER_INBOX = 20  # emails per inbox = up to 60 total
+
+ACCOUNTS = [
+    {
+        "id":     "gmail1",
+        "label":  os.environ.get("GMAIL_USER_1", "Gmail 1"),
+        "user":   os.environ["GMAIL_USER_1"],
+        "pass":   os.environ["GMAIL_PASS_1"],
+        "host":   "imap.gmail.com",
+        "color":  "blue",
+    },
+    {
+        "id":     "gmail2",
+        "label":  os.environ.get("GMAIL_USER_2", "Gmail 2"),
+        "user":   os.environ["GMAIL_USER_2"],
+        "pass":   os.environ["GMAIL_PASS_2"],
+        "host":   "imap.gmail.com",
+        "color":  "purple",
+    },
+    {
+        "id":     "yahoo",
+        "label":  os.environ.get("YAHOO_USER", "Yahoo"),
+        "user":   os.environ["YAHOO_USER"],
+        "pass":   os.environ["YAHOO_PASS"],
+        "host":   "imap.mail.yahoo.com",
+        "color":  "amber",
+    },
+]
 
 
 def decode_str(s):
@@ -23,8 +48,8 @@ def decode_str(s):
         if isinstance(part, bytes):
             out.append(part.decode(enc or "utf-8", errors="replace"))
         else:
-            out.append(part)
-    return " ".join(out)
+            out.append(str(part))
+    return " ".join(out).strip()
 
 
 def relative_time(dt):
@@ -34,9 +59,10 @@ def relative_time(dt):
     except Exception:
         return "unknown"
     s = int(diff.total_seconds())
-    if s < 3600:   return f"{s//60}m ago"
-    if s < 86400:  return f"{s//3600}h ago"
-    if s < 604800: return f"{s//86400}d ago"
+    if s < 60:    return "just now"
+    if s < 3600:  return f"{s // 60}m ago"
+    if s < 86400: return f"{s // 3600}h ago"
+    if s < 604800:return f"{s // 86400}d ago"
     return dt.strftime("%b %d")
 
 
@@ -45,7 +71,9 @@ def get_snippet(msg, max_len=160):
     try:
         if msg.is_multipart():
             for part in msg.walk():
-                if part.get_content_type() == "text/plain" and "attachment" not in str(part.get("Content-Disposition", "")):
+                ct = part.get_content_type()
+                cd = str(part.get("Content-Disposition", ""))
+                if ct == "text/plain" and "attachment" not in cd:
                     raw = part.get_payload(decode=True)
                     if raw:
                         snippet = raw.decode(part.get_content_charset() or "utf-8", errors="replace")
@@ -60,78 +88,114 @@ def get_snippet(msg, max_len=160):
     return snippet[:max_len] + ("…" if len(snippet) > max_len else "")
 
 
-def fetch_raw_emails():
-    imap = imaplib.IMAP4_SSL("imap.gmail.com")
-    imap.login(GMAIL_USER, GMAIL_PASS)
-    imap.select("INBOX")
-    _, data = imap.search(None, "ALL")
-    all_ids = data[0].split()
-    ids = list(reversed(all_ids[-MAX_EMAILS:] if len(all_ids) > MAX_EMAILS else all_ids))
-    _, unread_data = imap.search(None, "UNSEEN")
-    unread_ids = set(unread_data[0].split())
-
+def fetch_from_account(account):
     emails = []
-    for uid in ids:
-        try:
-            _, msg_data = imap.fetch(uid, "(RFC822)")
-            msg = email.message_from_bytes(msg_data[0][1])
-            from_raw = decode_str(msg.get("From", ""))
-            nm = re.match(r'^"?([^"<]+)"?\s*<', from_raw)
-            em = re.search(r'<([^>]+)>', from_raw)
-            try:
-                dt = parsedate_to_datetime(msg.get("Date", ""))
-            except Exception:
-                dt = None
-            mid = msg.get("Message-ID", "").strip("<>")
-            emails.append({
-                "from_name":  nm.group(1).strip() if nm else from_raw.split("@")[0],
-                "from_email": em.group(1) if em else from_raw,
-                "subject":    decode_str(msg.get("Subject", "(no subject)")),
-                "snippet":    get_snippet(msg),
-                "time":       relative_time(dt),
-                "unread":     uid in unread_ids,
-                "gmail_link": f"https://mail.google.com/mail/u/0/#search/rfc822msgid%3A{mid}" if mid else "https://mail.google.com/mail/u/0/#inbox",
-            })
-        except Exception as e:
-            print(f"  skip message: {e}")
+    print(f"  Connecting to {account['user']}…")
+    try:
+        imap = imaplib.IMAP4_SSL(account["host"])
+        imap.login(account["user"], account["pass"])
+        imap.select("INBOX")
 
-    imap.logout()
+        _, data = imap.search(None, "ALL")
+        all_ids = data[0].split()
+        ids = list(reversed(all_ids[-MAX_PER_INBOX:] if len(all_ids) > MAX_PER_INBOX else all_ids))
+
+        _, unread_data = imap.search(None, "UNSEEN")
+        unread_ids = set(unread_data[0].split())
+
+        for uid in ids:
+            try:
+                _, msg_data = imap.fetch(uid, "(RFC822)")
+                msg = email.message_from_bytes(msg_data[0][1])
+
+                from_raw = decode_str(msg.get("From", ""))
+                nm = re.match(r'^"?([^"<]+)"?\s*<', from_raw)
+                em = re.search(r'<([^>]+)>', from_raw)
+
+                try:
+                    dt = parsedate_to_datetime(msg.get("Date", ""))
+                except Exception:
+                    dt = None
+
+                mid = msg.get("Message-ID", "").strip("<>")
+                if "gmail" in account["host"] and mid:
+                    link = f"https://mail.google.com/mail/u/0/#search/rfc822msgid%3A{mid}"
+                elif "yahoo" in account["host"]:
+                    link = "https://mail.yahoo.com/"
+                else:
+                    link = "#"
+
+                emails.append({
+                    "account_id":    account["id"],
+                    "account_label": account["label"],
+                    "account_color": account["color"],
+                    "from_name":     nm.group(1).strip() if nm else from_raw.split("@")[0],
+                    "from_email":    em.group(1) if em else from_raw,
+                    "subject":       decode_str(msg.get("Subject", "(no subject)")),
+                    "snippet":       get_snippet(msg),
+                    "time":          relative_time(dt),
+                    "unread":        uid in unread_ids,
+                    "gmail_link":    link,
+                })
+            except Exception as e:
+                print(f"    Skip message: {e}")
+
+        imap.logout()
+        print(f"  Fetched {len(emails)} from {account['user']}")
+    except Exception as e:
+        print(f"  ERROR {account['user']}: {e}")
+
     return emails
 
 
-def triage(raw_emails):
+def triage(all_emails):
     client = anthropic.Anthropic(api_key=ANTHROPIC_KEY)
     listing = "\n".join(
-        f"[{i}] FROM: {e['from_name']} <{e['from_email']}> | SUBJECT: {e['subject']} | SNIPPET: {e['snippet']}"
-        for i, e in enumerate(raw_emails)
+        f"[{i}] [{e['account_label']}] FROM: {e['from_name']} <{e['from_email']}> | SUBJECT: {e['subject']} | SNIPPET: {e['snippet']}"
+        for i, e in enumerate(all_emails)
     )
     msg = client.messages.create(
         model="claude-opus-4-5",
-        max_tokens=3000,
-        messages=[{"role": "user", "content": f"""Triage these emails. Rules:
-- high: needs action — interviews, event confirmations, payments, real people waiting
-- medium: useful FYI — shipping, bank statements, newsletters
-- low: ignore — promos, spam, social notifications
+        max_tokens=4000,
+        messages=[{"role": "user", "content": f"""Triage emails across 3 inboxes.
+
+Priority:
+- high: needs action — interviews, event confirmations, payments, real people waiting, job opportunities
+- medium: useful FYI — shipping, bank statements, newsletters worth reading, receipts
+- low: ignore — promos, spam, social notifications, ads, marketing
+
 Tags (1-2 each): interview, action, event, finance, personal, work, social, spam, promo
 
+Emails:
 {listing}
 
-Return ONLY JSON:
-{{"summary":"2 sentence inbox overview","classifications":[{{"index":0,"priority":"high","tags":["action"],"action":"what to do in one line"}}]}}"""}]
+Return ONLY valid JSON:
+{{"summary":"2-3 sentence overview across all inboxes mentioning most urgent items","classifications":[{{"index":0,"priority":"high","tags":["action"],"action":"one line what to do"}}]}}"""}]
     )
     raw = re.sub(r"```json|```", "", msg.content[0].text).strip()
     return json.loads(raw)
 
 
 def fetch():
-    """Entry point called by main.py. Returns dict consumed by builder."""
-    raw = fetch_raw_emails()
-    if not raw:
-        return {"summary": "No emails found.", "emails": []}
-    result = triage(raw)
+    all_emails = []
+    for account in ACCOUNTS:
+        all_emails.extend(fetch_from_account(account))
+
+    if not all_emails:
+        return {"summary": "No emails found across any inbox.", "emails": [], "accounts": []}
+
+    result = triage(all_emails)
     cls_map = {c["index"]: c for c in result.get("classifications", [])}
-    emails = [{**e, "priority": cls_map.get(i, {}).get("priority", "low"),
-                    "tags":     cls_map.get(i, {}).get("tags", []),
-                    "action":   cls_map.get(i, {}).get("action", "")}
-              for i, e in enumerate(raw)]
-    return {"summary": result.get("summary", ""), "emails": emails}
+
+    merged = []
+    for i, e in enumerate(all_emails):
+        cls = cls_map.get(i, {})
+        merged.append({**e, "priority": cls.get("priority", "low"),
+                           "tags":     cls.get("tags", []),
+                           "action":   cls.get("action", "")})
+
+    order = {"high": 0, "medium": 1, "low": 2}
+    merged.sort(key=lambda e: order.get(e["priority"], 2))
+
+    return {"summary": result.get("summary", ""), "emails": merged,
+            "accounts": [a["label"] for a in ACCOUNTS]}
