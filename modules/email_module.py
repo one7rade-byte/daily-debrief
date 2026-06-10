@@ -10,7 +10,7 @@ from datetime import datetime, timezone
 import anthropic
 
 ANTHROPIC_KEY = os.environ["ANTHROPIC_API_KEY"]
-MAX_PER_INBOX = 20  # emails per inbox = up to 60 total
+MAX_PER_INBOX = 20
 
 ACCOUNTS = [
     {
@@ -59,10 +59,10 @@ def relative_time(dt):
     except Exception:
         return "unknown"
     s = int(diff.total_seconds())
-    if s < 60:    return "just now"
-    if s < 3600:  return f"{s // 60}m ago"
-    if s < 86400: return f"{s // 3600}h ago"
-    if s < 604800:return f"{s // 86400}d ago"
+    if s < 60:     return "just now"
+    if s < 3600:   return f"{s // 60}m ago"
+    if s < 86400:  return f"{s // 3600}h ago"
+    if s < 604800: return f"{s // 86400}d ago"
     return dt.strftime("%b %d")
 
 
@@ -90,7 +90,7 @@ def get_snippet(msg, max_len=160):
 
 def fetch_from_account(account):
     emails = []
-    print(f"  Connecting to {account['user']}…")
+    print(f"  Connecting to {account['user']}...")
     try:
         imap = imaplib.IMAP4_SSL(account["host"])
         imap.login(account["user"], account["pass"])
@@ -169,7 +169,7 @@ Tags (1-2 each): interview, action, event, finance, personal, work, social, spam
 Emails:
 {listing}
 
-Return ONLY valid JSON:
+Return ONLY valid JSON, no markdown fences:
 {{"summary":"2-3 sentence overview across all inboxes mentioning most urgent items","classifications":[{{"index":0,"priority":"high","tags":["action"],"action":"one line what to do"}}]}}"""}]
     )
     raw = re.sub(r"```json|```", "", msg.content[0].text).strip()
@@ -190,12 +190,18 @@ def fetch():
     merged = []
     for i, e in enumerate(all_emails):
         cls = cls_map.get(i, {})
-        merged.append({**e, "priority": cls.get("priority", "low"),
-                           "tags":     cls.get("tags", []),
-                           "action":   cls.get("action", "")})
+        merged.append({
+            **e,
+            "priority": cls.get("priority", "low"),
+            "tags":     cls.get("tags", []),
+            "action":   cls.get("action", ""),
+        })
 
     order = {"high": 0, "medium": 1, "low": 2}
     merged.sort(key=lambda e: order.get(e["priority"], 2))
 
-    return {"summary": result.get("summary", ""), "emails": merged,
-            "accounts": [a["label"] for a in ACCOUNTS]}
+    return {
+        "summary":  result.get("summary", ""),
+        "emails":   merged,
+        "accounts": [a["label"] for a in ACCOUNTS],
+    }
