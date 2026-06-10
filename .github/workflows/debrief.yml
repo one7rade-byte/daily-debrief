@@ -24,17 +24,17 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: pip install anthropic yfinance requests
+        run: pip install yfinance requests
 
       - name: Run debrief
         env:
-          GMAIL_USER_1:      ${{ secrets.GMAIL_USER_1 }}
-          GMAIL_PASS_1:      ${{ secrets.GMAIL_PASS_1 }}
-          GMAIL_USER_2:      ${{ secrets.GMAIL_USER_2 }}
-          GMAIL_PASS_2:      ${{ secrets.GMAIL_PASS_2 }}
-          YAHOO_USER:        ${{ secrets.YAHOO_USER }}
-          YAHOO_PASS:        ${{ secrets.YAHOO_PASS }}
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GMAIL_USER_1:   ${{ secrets.GMAIL_USER_1 }}
+          GMAIL_PASS_1:   ${{ secrets.GMAIL_PASS_1 }}
+          GMAIL_USER_2:   ${{ secrets.GMAIL_USER_2 }}
+          GMAIL_PASS_2:   ${{ secrets.GMAIL_PASS_2 }}
+          YAHOO_USER:     ${{ secrets.YAHOO_USER }}
+          YAHOO_PASS:     ${{ secrets.YAHOO_PASS }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: python main.py
 
       - name: Commit and push index.html
